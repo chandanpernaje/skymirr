@@ -135,6 +135,9 @@ export function ScrollingImagesGallery({ onOpenQuote, onNavigate }: ScrollingIma
   const [scrollLeftState, setScrollLeftState] = useState(0);
   const touchStartXRef = useRef<number | null>(null);
 
+  // Hover state for Applications Accordion
+  const [hoveredApp, setHoveredApp] = useState<string>('app-edu');
+
   // Auto-advance if playing
   useEffect(() => {
     if (!isPlaying) return;
@@ -498,89 +501,107 @@ export function ScrollingImagesGallery({ onOpenQuote, onNavigate }: ScrollingIma
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Educational */}
-            <div onClick={() => onNavigate?.('applications')} className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-slate-800 shadow-xl hover:shadow-2xl hover:-translate-y-1.5 cursor-pointer transition-all duration-500">
-              <img
-                src="/images/edu_tech_ai.jpg"
-                alt="Educational Campus Connectivity"
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none transition-opacity duration-500 group-hover:opacity-80" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <span className="px-2.5 py-1 rounded-md bg-blue-600/90 backdrop-blur-sm text-white text-[10px] font-mono font-bold uppercase tracking-wider mb-2 inline-block border border-blue-400/30 shadow-md">
-                  Campus Connectivity
-                </span>
-                <h4 className="text-xl font-bold font-display text-white group-hover:text-blue-200 transition-colors">
-                  Educational
-                </h4>
-                <p className="text-xs text-slate-300 mt-1 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-75 transform translate-y-3 group-hover:translate-y-0">
-                  High-density Wi-Fi 7 and 5G networks for modern digital learning.
-                </p>
-              </div>
-            </div>
+          <div className="flex flex-col lg:flex-row h-[600px] lg:h-[450px] w-full gap-4">
+            {[
+              {
+                id: 'app-edu',
+                title: 'Educational',
+                tagline: 'Campus Connectivity',
+                desc: 'High-density Wi-Fi 7 and 5G networks for modern digital learning.',
+                img: '/images/edu_tech_ai.jpg',
+                color: 'blue'
+              },
+              {
+                id: 'app-log',
+                title: 'Logistics',
+                tagline: 'Supply Chain',
+                desc: 'Autonomous tracking and warehouse telemetry using SkyTrack™.',
+                img: '/images/logistics_tech_ai.jpg',
+                color: 'cyan'
+              },
+              {
+                id: 'app-res',
+                title: 'Residential',
+                tagline: 'Smart Home',
+                desc: 'Seamless multi-gigabit routing for the modern connected home.',
+                img: '/images/residential_tech_ai.jpg',
+                color: 'emerald'
+              },
+              {
+                id: 'app-ind',
+                title: 'Industrial',
+                tagline: 'Smart Factory',
+                desc: 'Ultra-low latency connectivity for automation and robotics.',
+                img: '/images/industrial_tech_ai.jpg',
+                color: 'amber'
+              }
+            ].map((app) => {
+              const isHovered = hoveredApp === app.id;
+              
+              // Map colors to tailwind classes since dynamic string interpolation for colors can be stripped by JIT
+              const colorMap = {
+                blue: { border: 'border-blue-400/30', bg: 'bg-blue-600/90', text: 'group-hover:text-blue-200' },
+                cyan: { border: 'border-cyan-400/30', bg: 'bg-cyan-600/90', text: 'group-hover:text-cyan-200' },
+                emerald: { border: 'border-emerald-400/30', bg: 'bg-emerald-600/90', text: 'group-hover:text-emerald-200' },
+                amber: { border: 'border-amber-400/30', bg: 'bg-amber-600/90', text: 'group-hover:text-amber-200' }
+              };
+              const theme = colorMap[app.color as keyof typeof colorMap];
 
-            {/* Logistics */}
-            <div onClick={() => onNavigate?.('applications')} className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-slate-800 shadow-xl hover:shadow-2xl hover:-translate-y-1.5 cursor-pointer transition-all duration-500">
-              <img
-                src="/images/logistics_tech_ai.jpg"
-                alt="Logistics & Warehousing"
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none transition-opacity duration-500 group-hover:opacity-80" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <span className="px-2.5 py-1 rounded-md bg-cyan-600/90 backdrop-blur-sm text-white text-[10px] font-mono font-bold uppercase tracking-wider mb-2 inline-block border border-cyan-400/30 shadow-md">
-                  Supply Chain
-                </span>
-                <h4 className="text-xl font-bold font-display text-white group-hover:text-cyan-200 transition-colors">
-                  Logistics
-                </h4>
-                <p className="text-xs text-slate-300 mt-1 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-75 transform translate-y-3 group-hover:translate-y-0">
-                  Autonomous tracking and warehouse telemetry using SkyTrack™.
-                </p>
-              </div>
-            </div>
-
-            {/* Residential */}
-            <div onClick={() => onNavigate?.('applications')} className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-slate-800 shadow-xl hover:shadow-2xl hover:-translate-y-1.5 cursor-pointer transition-all duration-500">
-              <img
-                src="/images/residential_tech_ai.jpg"
-                alt="Residential Smart Home"
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none transition-opacity duration-500 group-hover:opacity-80" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <span className="px-2.5 py-1 rounded-md bg-emerald-600/90 backdrop-blur-sm text-white text-[10px] font-mono font-bold uppercase tracking-wider mb-2 inline-block border border-emerald-400/30 shadow-md">
-                  Smart Home
-                </span>
-                <h4 className="text-xl font-bold font-display text-white group-hover:text-emerald-200 transition-colors">
-                  Residential
-                </h4>
-                <p className="text-xs text-slate-300 mt-1 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-75 transform translate-y-3 group-hover:translate-y-0">
-                  Seamless multi-gigabit routing for the modern connected home.
-                </p>
-              </div>
-            </div>
-            {/* Industrial */}
-            <div onClick={() => onNavigate?.('applications')} className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-slate-800 shadow-xl hover:shadow-2xl hover:-translate-y-1.5 cursor-pointer transition-all duration-500">
-              <img
-                src="/images/industrial_tech_ai.jpg"
-                alt="Industrial Automation"
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none transition-opacity duration-500 group-hover:opacity-80" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <span className="px-2.5 py-1 rounded-md bg-amber-600/90 backdrop-blur-sm text-white text-[10px] font-mono font-bold uppercase tracking-wider mb-2 inline-block border border-amber-400/30 shadow-md">
-                  Smart Factory
-                </span>
-                <h4 className="text-xl font-bold font-display text-white group-hover:text-amber-200 transition-colors">
-                  Industrial
-                </h4>
-                <p className="text-xs text-slate-300 mt-1 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-75 transform translate-y-3 group-hover:translate-y-0">
-                  Ultra-low latency connectivity for automation and robotics.
-                </p>
-              </div>
-            </div>
+              return (
+                <motion.div
+                  key={app.id}
+                  layout
+                  onHoverStart={() => setHoveredApp(app.id)}
+                  onClick={() => onNavigate?.('applications')}
+                  animate={{ flex: isHovered ? 4 : 1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  className="group relative rounded-2xl overflow-hidden border border-slate-800 shadow-xl cursor-pointer w-full"
+                >
+                  <img
+                    src={app.img}
+                    alt={app.title}
+                    className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none transition-opacity duration-500 group-hover:opacity-80" />
+                  
+                  {/* Text Content */}
+                  <motion.div 
+                    layout="position"
+                    className="absolute bottom-6 left-6 right-6"
+                  >
+                    <div className="overflow-hidden flex">
+                      <motion.span 
+                        layout="position"
+                        className={`px-2.5 py-1 rounded-md backdrop-blur-sm text-white text-[10px] font-mono font-bold uppercase tracking-wider mb-2 inline-block shadow-md ${theme.bg} ${theme.border} whitespace-nowrap`}
+                      >
+                        {app.tagline}
+                      </motion.span>
+                    </div>
+                    
+                    <motion.h4 
+                      layout="position"
+                      className={`text-xl lg:text-3xl font-black font-display text-white transition-colors whitespace-nowrap ${theme.text}`}
+                    >
+                      {app.title}
+                    </motion.h4>
+                    
+                    <AnimatePresence>
+                      {isHovered && (
+                        <motion.p
+                          initial={{ opacity: 0, height: 0, y: 10 }}
+                          animate={{ opacity: 1, height: 'auto', y: 0 }}
+                          exit={{ opacity: 0, height: 0, y: 10 }}
+                          transition={{ duration: 0.3 }}
+                          className="text-xs sm:text-sm text-slate-300 mt-2 line-clamp-2 md:line-clamp-none max-w-sm"
+                        >
+                          {app.desc}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                </motion.div>
+              );
+            })}
           </div>
         </motion.div>
       </div>
