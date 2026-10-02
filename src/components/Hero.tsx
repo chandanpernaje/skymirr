@@ -98,22 +98,6 @@ export function Hero({ onOpenQuote, onNavigate }: HeroProps) {
           <div className="pointer-events-auto hidden sm:block">
              <ScrollingMouse targetId="products-overview" />
           </div>
-
-          {/* Slider Controls */}
-          <div className="flex items-center gap-4 pointer-events-auto bg-black/40 backdrop-blur-md p-2 rounded-xl border border-white/10">
-            <div className="flex items-center gap-2 px-2">
-              {slides.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentSlide(idx)}
-                  className={`transition-all duration-300 rounded-full cursor-pointer ${
-                    currentSlide === idx ? 'w-8 h-2 bg-blue-500' : 'w-2 h-2 bg-white/30 hover:bg-white/60'
-                  }`}
-                  aria-label={`Go to slide ${idx + 1}`}
-                />
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
@@ -158,30 +142,6 @@ export function Hero({ onOpenQuote, onNavigate }: HeroProps) {
             >
               <ChevronRight className="w-4 h-4" />
             </button>
-          </div>
-        </div>
-      </section>
-      
-      {/* 3. CERTIFICATIONS RIBBON (Moved from old editorial section) */}
-      <section id="products-overview" className="bg-white border-b border-slate-100 py-6">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-[11px] sm:text-xs uppercase tracking-widest font-semibold text-slate-500 font-mono">
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
-              <span>T-Mobile &amp; AT&amp;T Certified</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
-              <span>T-Priority First Responders</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
-              <span>CES® 2026 Innovation Honoree</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
-              <span>Patented MuLCAT® Technology</span>
-            </div>
           </div>
         </div>
       </section>
