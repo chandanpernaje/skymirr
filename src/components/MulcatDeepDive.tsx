@@ -381,30 +381,39 @@ export function MulcatDeepDive({ onNavigate }: MulcatDeepDiveProps = {}) {
             </h3>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {SKYMIRR_DATA.mulcatTechnology.advantages.map((adv, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-30px' }}
-                transition={{ duration: 0.45, delay: idx * 0.08 }}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className="bg-white border border-slate-200 hover:border-blue-400 rounded-2xl p-5 transition-all duration-300 shadow-xs hover:shadow-md flex flex-col justify-between"
-              >
-                <div>
-                  <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-mono font-bold text-xs flex items-center justify-center mb-3">
-                    0{idx + 1}
+          <div className="relative">
+            <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-12 pt-8 px-4 sm:px-8 hide-scrollbar" style={{ perspective: '1200px' }}>
+              {SKYMIRR_DATA.mulcatTechnology.advantages.map((adv, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, z: -100, rotateY: 15 }}
+                  whileInView={{ opacity: 1, z: 0, rotateY: 0 }}
+                  viewport={{ once: true, margin: '-30px' }}
+                  transition={{ duration: 0.8, delay: idx * 0.15, type: "spring", stiffness: 80 }}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    rotateY: -8,
+                    rotateX: 8,
+                    z: 50,
+                    boxShadow: "0 25px 50px -12px rgba(37, 99, 235, 0.25)"
+                  }}
+                  className="snap-center shrink-0 w-[85vw] sm:w-[300px] lg:w-[320px] bg-white/90 backdrop-blur-xl border border-slate-200/80 hover:border-blue-400/80 rounded-[2rem] p-8 transition-all duration-300 shadow-xl flex flex-col justify-between group-hover:bg-white"
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <div style={{ transform: 'translateZ(30px)' }}>
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 group-hover:from-blue-600 group-hover:to-indigo-600 text-blue-600 font-mono font-black text-xl flex items-center justify-center mb-6 shadow-inner transition-colors duration-500">
+                      0{idx + 1}
+                    </div>
+                    <h4 className="text-xl font-bold text-slate-900 font-display leading-snug mb-4">
+                      {adv.title}
+                    </h4>
+                    <p className="text-sm text-slate-600 leading-relaxed font-medium">
+                      {adv.desc}
+                    </p>
                   </div>
-                  <h4 className="text-sm font-bold text-slate-900 font-display leading-snug">
-                    {adv.title}
-                  </h4>
-                  <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-                    {adv.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

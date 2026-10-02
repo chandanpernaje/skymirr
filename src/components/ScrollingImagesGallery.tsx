@@ -125,7 +125,7 @@ interface ScrollingImagesGalleryProps {
 
 export function ScrollingImagesGallery({ onOpenQuote, onNavigate }: ScrollingImagesGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
 
   // Horizontal Scroll Carousel Ref & Mouse Dragging State
@@ -343,49 +343,39 @@ export function ScrollingImagesGallery({ onOpenQuote, onNavigate }: ScrollingIma
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left: 100% Correctly Fitted Hardware Photography in High-Tech Studio Enclosure */}
             <div className="lg:col-span-6 flex flex-col items-center">
-              <div className="w-full relative aspect-[16/11] sm:aspect-[16/10] rounded-sm bg-gradient-to-b from-slate-950 via-[#0a0a0a] to-slate-950 border border-slate-800 p-4 sm:p-6 flex items-center justify-center overflow-hidden group shadow-inner">
-                {/* Blueprint grid inside viewport */}
-                <div className="absolute inset-0 opacity-10 pointer-events-none" />
+              <div className="w-full relative aspect-[16/11] sm:aspect-[16/10] rounded-2xl bg-white border border-slate-200 p-4 sm:p-6 flex items-center justify-center overflow-hidden group shadow-[inset_0_0_60px_rgba(0,0,0,0.03)]">
+                {/* Clean Studio Background */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-slate-50 to-white pointer-events-none" />
 
                 {/* Subtle Radial Pedestal Glow behind hardware */}
-                <div className="absolute w-48 h-48 sm:w-64 sm:h-64 rounded-full bg-slate-800/20 blur-3xl pointer-events-none" />
+                <div className="absolute w-48 h-48 sm:w-64 sm:h-64 rounded-full bg-sky-50 blur-3xl pointer-events-none" />
 
                 {/* The Unobstructed Hardware Image with 100% Fit */}
                 <img
                   src={activeProduct.image}
                   alt={activeProduct.title}
                   key={activeProduct.image}
-                  className="max-h-full max-w-full object-contain relative z-10 transition-all duration-500 filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.7)] group-hover:scale-104 cursor-zoom-in"
+                  className="max-h-full max-w-full object-contain relative z-10 transition-transform duration-700 ease-out group-hover:scale-105 group-hover:-rotate-1 cursor-zoom-in mix-blend-multiply"
                   onClick={() => setSelectedItem(activeProduct)}
                   loading="lazy"
                 />
 
-                {/* Floating Micro-Badges: Non-obstructive positioning */}
-                <div className="absolute top-3 left-3 z-20">
-                  <span className="px-2.5 py-1 rounded-sm text-[10px] font-mono font-bold uppercase tracking-wider bg-slate-800 text-slate-300 border border-slate-700 shadow-sm">
+                {/* Floating Micro-Badges: Clean Theme */}
+                <div className="absolute top-4 left-4 z-20">
+                  <span className="px-3 py-1.5 rounded-lg text-[10px] font-mono font-bold uppercase tracking-wider bg-white/80 backdrop-blur-md text-blue-700 border border-blue-100 shadow-sm">
                     {activeProduct.badge}
                   </span>
                 </div>
 
-                <div className="absolute top-3 right-3 z-20">
+                <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                   <button
                     onClick={() => setSelectedItem(activeProduct)}
-                    className="p-2 rounded-sm bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-400 hover:text-white transition-all shadow-md cursor-pointer flex items-center gap-1.5 text-xs font-mono"
+                    className="p-2.5 rounded-xl bg-white/90 backdrop-blur-md hover:bg-blue-50 border border-slate-200 text-slate-600 hover:text-blue-700 transition-all shadow-lg cursor-pointer flex items-center gap-1.5 text-xs font-mono"
                     title="Enlarge & Inspect Details"
                   >
-                    <Maximize2 className="w-3.5 h-3.5" />
-                    <span className="hidden sm:inline text-[10px] uppercase tracking-wider">Inspect</span>
+                    <Maximize2 className="w-4 h-4" />
+                    <span className="hidden sm:inline text-[10px] uppercase tracking-wider font-bold">Inspect</span>
                   </button>
-                </div>
-
-                {/* Bottom Hardware Tagline Bar */}
-                <div className="absolute bottom-2.5 left-3 right-3 z-20 flex items-center justify-between pointer-events-none">
-                  <span className="text-[10px] font-mono font-semibold text-slate-500 bg-slate-950 px-2 py-0.5 rounded-sm border border-slate-800 uppercase tracking-wide">
-                    MuLCAT® Physical Layer
-                  </span>
-                  <span className="text-[10px] font-mono font-bold text-slate-300 bg-slate-950 px-2 py-0.5 rounded-sm border border-slate-800 uppercase tracking-wide">
-                    {activeProduct.highlight.split('·')[0]}
-                  </span>
                 </div>
               </div>
 

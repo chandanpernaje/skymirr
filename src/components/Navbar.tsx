@@ -61,9 +61,9 @@ export function Navbar({ activePage, onNavigate, onOpenQuote, onOpenSearch }: Na
             className="flex items-center gap-2 group shrink-0 cursor-pointer text-left"
           >
             <img
-              src="/images/skymirr-logo-3d.png"
+              src="/images/skymirr-logo-footer.png"
               alt="SkyMirr"
-              className="h-8 sm:h-9 w-auto object-contain transition-transform duration-500 group-hover:opacity-80"
+              className="h-8 sm:h-9 w-auto object-contain transition-all duration-500 group-hover:opacity-80 brightness-0 opacity-90"
             />
           </button>
 

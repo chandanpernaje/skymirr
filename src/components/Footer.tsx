@@ -18,7 +18,7 @@ export function Footer({ onNavigate }: FooterProps) {
   };
 
   return (
-    <footer className="bg-slate-800 text-white border-t border-slate-700">
+    <footer className="bg-[#001738] text-white border-t border-[#0A2B5E]">
       {/* Upper Footer: Logo, Quick Links, Office Locations */}
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
@@ -48,7 +48,7 @@ export function Footer({ onNavigate }: FooterProps) {
                   href="https://instagram.com/skymirr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-pink-600 text-slate-300 hover:text-white transition-colors flex items-center justify-center border border-slate-700 cursor-pointer"
+                  className="w-8 h-8 rounded-lg bg-[#0A2B5E] hover:bg-pink-600 text-slate-300 hover:text-white transition-colors flex items-center justify-center border border-[#15418C] cursor-pointer shadow-sm hover:shadow-lg"
                   aria-label="Instagram"
                 >
                   <Instagram className="w-4 h-4" />
@@ -57,7 +57,7 @@ export function Footer({ onNavigate }: FooterProps) {
                   href="https://www.linkedin.com/company/skymirr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-blue-600 text-slate-300 hover:text-white transition-colors flex items-center justify-center border border-slate-700 cursor-pointer"
+                  className="w-8 h-8 rounded-lg bg-[#0A2B5E] hover:bg-[#0077B5] text-slate-300 hover:text-white transition-colors flex items-center justify-center border border-[#15418C] cursor-pointer shadow-sm hover:shadow-lg"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-4 h-4" />
@@ -66,7 +66,7 @@ export function Footer({ onNavigate }: FooterProps) {
                   href="https://youtube.com/@skymirr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-rose-600 text-slate-300 hover:text-white transition-colors flex items-center justify-center border border-slate-700 cursor-pointer"
+                  className="w-8 h-8 rounded-lg bg-[#0A2B5E] hover:bg-rose-600 text-slate-300 hover:text-white transition-colors flex items-center justify-center border border-[#15418C] cursor-pointer shadow-sm hover:shadow-lg"
                   aria-label="YouTube"
                 >
                   <Youtube className="w-4 h-4" />
@@ -75,7 +75,7 @@ export function Footer({ onNavigate }: FooterProps) {
                   href="https://twitter.com/skymirr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-sky-500 text-slate-300 hover:text-white transition-colors flex items-center justify-center border border-slate-700 cursor-pointer"
+                  className="w-8 h-8 rounded-lg bg-[#0A2B5E] hover:bg-sky-500 text-slate-300 hover:text-white transition-colors flex items-center justify-center border border-[#15418C] cursor-pointer shadow-sm hover:shadow-lg"
                   aria-label="X-twitter"
                 >
                   <Twitter className="w-4 h-4" />
@@ -212,7 +212,7 @@ export function Footer({ onNavigate }: FooterProps) {
       </div>
 
       {/* Bottom Bar matching SkyMirr © 2026. All Rights Reserved. */}
-      <div className="border-t border-slate-700 bg-slate-900 py-6 px-6">
+      <div className="border-t border-[#0A2B5E] bg-[#000d23] py-6 px-6">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500 font-sans">
           <div>
             SkyMirr © {new Date().getFullYear()}. All Rights Reserved. MuLCAT® is a registered trademark of SkyMirr.

@@ -1,5 +1,6 @@
 import { WaveCanvas } from '../components/WaveCanvas';
 import { PenTool, Target, Cpu, CheckCircle2, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface DesignServicesPageProps {
   onOpenQuote: (productName?: string) => void;
@@ -41,63 +42,133 @@ export function DesignServicesPage({ onOpenQuote, onNavigate }: DesignServicesPa
             <div className="text-xs font-mono font-bold tracking-widest text-cyan-300 uppercase mb-2">
               Engineering & Consulting
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white leading-tight">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white leading-tight"
+            >
               Design Services
-            </h1>
-            <p className="text-slate-300 text-sm sm:text-base mt-3 leading-relaxed">
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-slate-300 text-sm sm:text-base mt-4 leading-relaxed"
+            >
               Leveraging our proprietary MuLCAT® (Multi-Layer Coupling Controlled Antenna Technology) to achieve higher isolation, better radiation efficiency, and optimized performance in challenging RF environments.
-            </p>
+            </motion.p>
           </div>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 max-w-7xl mx-auto px-6">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-2xl sm:text-4xl font-extrabold font-display text-slate-950 mb-4">
+      <section className="py-24 max-w-7xl mx-auto px-6 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-50/50 via-white to-white -z-10" />
+
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-20"
+        >
+          <div className="text-sm font-bold text-blue-600 tracking-wider uppercase mb-3 font-mono">
+            Our Approach
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-extrabold font-display text-slate-950 mb-6 tracking-tight">
             Antenna-First Design Philosophy
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base">
+          <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
             We prioritize physical-layer RF performance to improve connectivity, throughput, and link stability, working across sectors including broadband wireless, enterprise connectivity, surveillance, and industrial IoT to reduce time-to-market while enhancing product performance.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            visible: { transition: { staggerChildren: 0.15 } },
+            hidden: {}
+          }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10"
+        >
           {services.map((service) => {
             const Icon = service.icon;
             return (
-              <div key={service.id} className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm hover:shadow-xl hover:border-blue-500 transition-all duration-300 flex flex-col group">
-                <div className="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <Icon className="w-7 h-7" />
+              <motion.div 
+                key={service.id}
+                variants={{
+                  hidden: { opacity: 0, y: 40, scale: 0.95 },
+                  visible: { 
+                    opacity: 1, 
+                    y: 0, 
+                    scale: 1, 
+                    transition: { type: "spring", stiffness: 100, damping: 20 } 
+                  }
+                }}
+                whileHover={{ 
+                  y: -10, 
+                  scale: 1.02, 
+                  boxShadow: "0 30px 40px -10px rgba(37, 99, 235, 0.15), 0 15px 20px -10px rgba(37, 99, 235, 0.1)"
+                }}
+                className="bg-white border-2 border-slate-100 hover:border-blue-400/60 rounded-[2rem] p-8 lg:p-10 transition-all duration-300 flex flex-col group shadow-lg shadow-slate-200/50 relative overflow-hidden"
+              >
+                {/* Background Glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 to-blue-100/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                
+                {/* Decorative circle */}
+                <div className="absolute -top-12 -right-12 w-32 h-32 bg-blue-50/80 rounded-full group-hover:scale-[2.5] transition-transform duration-700 ease-in-out pointer-events-none" />
+
+                <div className="relative z-10 flex-1 flex flex-col">
+                  <div className="w-16 h-16 rounded-2xl bg-blue-100/50 text-blue-600 flex items-center justify-center mb-8 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm border border-blue-200/50 group-hover:shadow-blue-500/30 group-hover:shadow-lg group-hover:-rotate-6">
+                    <Icon className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-2xl font-bold font-display text-slate-950 mb-4 group-hover:text-blue-700 transition-colors">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed mb-8">
+                    {service.description}
+                  </p>
+                  
+                  <div className="space-y-3 pt-6 border-t border-slate-100/80 mt-auto">
+                    {service.features.map((feature, i) => (
+                      <motion.div 
+                        key={i} 
+                        whileHover={{ x: 4 }}
+                        className="flex items-center gap-3 text-xs sm:text-sm text-slate-700 font-semibold cursor-default"
+                      >
+                        <div className="w-5 h-5 rounded-full bg-emerald-50 flex items-center justify-center shrink-0 border border-emerald-100 group-hover:bg-emerald-500 group-hover:border-emerald-500 transition-colors duration-300">
+                          <CheckCircle2 className="w-3 h-3 text-emerald-500 group-hover:text-white transition-colors duration-300" />
+                        </div>
+                        <span className="group-hover:text-slate-900 transition-colors">{feature}</span>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold font-display text-slate-950 mb-3 group-hover:text-blue-700 transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-slate-600 leading-relaxed mb-6 flex-1">
-                  {service.description}
-                </p>
-                <div className="space-y-2 pt-4 border-t border-slate-100">
-                  {service.features.map((feature, i) => (
-                    <div key={i} className="flex items-start gap-2 text-xs text-slate-700 font-medium">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                      <span>{feature}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
-        <div className="mt-16 text-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-20 text-center relative z-10"
+        >
           <button
             onClick={() => onNavigate('contact')}
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-md transition-all cursor-pointer font-display"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-sm font-bold tracking-wide rounded-full shadow-[0_10px_20px_-10px_rgba(37,99,235,0.5)] hover:shadow-[0_15px_30px_-10px_rgba(37,99,235,0.7)] hover:-translate-y-1 transition-all duration-300 cursor-pointer font-display uppercase group"
           >
             <span>Discuss Your Project</span>
-            <ArrowRight className="w-4 h-4" />
+            <div className="bg-white/20 p-1.5 rounded-full group-hover:bg-white group-hover:text-blue-600 transition-colors">
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </div>
           </button>
-        </div>
+        </motion.div>
       </section>
     </div>
   );

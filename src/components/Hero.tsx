@@ -60,10 +60,17 @@ export function Hero({ onOpenQuote, onNavigate }: HeroProps) {
     <div className="w-full pt-16 sm:pt-20 bg-slate-950 flex flex-col">
       {/* 1. IMMERSIVE ANIMATED HERO SLIDER */}
       <section
-        className="relative w-full h-[75vh] min-h-[600px] overflow-hidden group select-none flex-1"
+        className="relative w-full overflow-hidden group select-none flex-1 bg-slate-950"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
+        {/* Invisible placeholder image sets the exact responsive height of the container to match the banners */}
+        <img
+          src={slides[0].image}
+          className="w-full h-auto invisible opacity-0 pointer-events-none block"
+          alt="Layout Placeholder"
+        />
+
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -81,65 +88,6 @@ export function Hero({ onOpenQuote, onNavigate }: HeroProps) {
                 className="w-full h-full object-cover object-center"
                 loading="eager"
               />
-              {/* Gradient Overlay for Text Readability */}
-              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/60 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
-            </div>
-
-            {/* Slide Content */}
-            <div className="absolute inset-0 flex items-center">
-              <div className="max-w-7xl mx-auto px-6 w-full mt-10">
-                <div className="max-w-2xl">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3, duration: 0.5 }}
-                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-900/40 border border-cyan-400/30 text-cyan-300 text-xs font-mono font-bold tracking-wider uppercase mb-6 backdrop-blur-md"
-                  >
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>{slides[currentSlide].badge}</span>
-                  </motion.div>
-
-                  <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.5 }}
-                    className="text-4xl sm:text-5xl lg:text-7xl font-black text-white font-display tracking-tight uppercase leading-[1.1] mb-6 drop-shadow-xl"
-                  >
-                    {slides[currentSlide].title}
-                  </motion.h1>
-
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5, duration: 0.5 }}
-                    className="text-base sm:text-lg text-slate-300 leading-relaxed font-sans max-w-xl mb-10 drop-shadow-md"
-                  >
-                    {slides[currentSlide].description}
-                  </motion.p>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6, duration: 0.5 }}
-                    className="flex flex-col sm:flex-row items-center gap-4"
-                  >
-                    <button
-                      onClick={() => onNavigate(slides[currentSlide].ctaLink.replace('#', ''))}
-                      className="w-full sm:w-auto px-8 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs tracking-widest uppercase rounded-lg transition-all duration-300 shadow-lg shadow-blue-900/50 hover:shadow-blue-600/40 hover:-translate-y-0.5 flex items-center justify-center gap-2 cursor-pointer font-sans"
-                    >
-                      <span>{slides[currentSlide].ctaText}</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={onOpenQuote}
-                      className="w-full sm:w-auto px-8 py-3.5 bg-white/5 hover:bg-white/10 text-white font-semibold text-xs tracking-widest uppercase rounded-lg transition-all duration-300 border border-white/20 backdrop-blur-sm hover:border-white/40 flex items-center justify-center gap-2 cursor-pointer font-sans"
-                    >
-                      <span>Connect with an Expert</span>
-                    </button>
-                  </motion.div>
-                </div>
-              </div>
             </div>
           </motion.div>
         </AnimatePresence>

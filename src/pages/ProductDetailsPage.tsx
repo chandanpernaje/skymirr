@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { SKYMIRR_DATA } from '../data/skymirrData';
-import { ArrowRight, Download, ShoppingCart, CheckCircle2, ChevronRight } from 'lucide-react';
+import { ArrowRight, Download, ShoppingCart, CheckCircle2, ChevronRight, Maximize2, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface ProductDetailsPageProps {
   productId: string;
@@ -10,6 +11,7 @@ interface ProductDetailsPageProps {
 
 export function ProductDetailsPage({ productId, onOpenQuote, onNavigate }: ProductDetailsPageProps) {
   const product = SKYMIRR_DATA.products.find((p) => p.id === productId);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -149,15 +151,63 @@ export function ProductDetailsPage({ productId, onOpenQuote, onNavigate }: Produ
         </div>
 
         {product.gallery && product.gallery.length > 0 && (
-          <div className="mt-12 max-w-5xl">
-            <h3 className="text-2xl font-bold text-slate-900 mb-6">Gallery</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="mt-16 max-w-6xl mx-auto">
+            <h3 className="text-3xl font-black font-display text-slate-900 mb-8 flex items-center gap-4">
+              Product Gallery
+              <div className="h-px bg-slate-200 flex-1" />
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {product.gallery.map((imgSrc, idx) => (
-                <div key={idx} className="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center justify-center overflow-hidden">
-                  <img src={imgSrc} alt={`${product.name} gallery image ${idx + 1}`} className="max-h-[300px] w-auto object-contain rounded-lg hover:scale-105 transition-transform duration-300" />
-                </div>
+                <motion.div 
+                  key={idx} 
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => setSelectedImage(imgSrc)}
+                  className="bg-white p-6 rounded-3xl border border-slate-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(15,165,233,0.15)] hover:border-sky-300 transition-all duration-300 flex items-center justify-center overflow-hidden cursor-pointer group relative h-80"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-tr from-sky-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  <img 
+                    src={imgSrc} 
+                    alt={`${product.name} gallery image ${idx + 1}`} 
+                    className="max-h-full max-w-full w-auto object-contain drop-shadow-xl group-hover:scale-110 group-hover:-rotate-2 transition-transform duration-700 ease-out relative z-10" 
+                  />
+                  
+                  <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm p-3 rounded-2xl shadow-lg opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 z-20 text-sky-600">
+                    <Maximize2 className="w-5 h-5" />
+                  </div>
+                </motion.div>
               ))}
             </div>
+
+            <AnimatePresence>
+              {selectedImage && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8"
+                  onClick={() => setSelectedImage(null)}
+                >
+                  <button
+                    onClick={() => setSelectedImage(null)}
+                    className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-all duration-300 hover:rotate-90 z-[101]"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
+                  <motion.img
+                    initial={{ scale: 0.8, opacity: 0, y: 20 }}
+                    animate={{ scale: 1, opacity: 1, y: 0 }}
+                    exit={{ scale: 0.8, opacity: 0, y: 20 }}
+                    transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                    src={selectedImage}
+                    alt="Expanded gallery"
+                    className="max-h-[90vh] max-w-[90vw] object-contain drop-shadow-[0_0_50px_rgba(255,255,255,0.1)] rounded-2xl cursor-default"
+                    onClick={(e) => e.stopPropagation()}
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         )}
         
