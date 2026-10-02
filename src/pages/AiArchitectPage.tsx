@@ -18,7 +18,7 @@ export function AiArchitectPage({ onOpenQuote }: AiArchitectPageProps) {
               <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
               <span>Gemini 3.8 Flash Powered RF Synthesis</span>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-['Poppins'] tracking-tight text-white leading-tight">
+            <h1 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white leading-tight">
               SkyMirr AI RF Deployment Architect
             </h1>
             <p className="text-slate-300 text-sm sm:text-base mt-3 leading-relaxed">

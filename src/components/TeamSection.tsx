@@ -32,10 +32,10 @@ export function TeamSection() {
             <div className="text-xs font-bold text-blue-700 tracking-wider uppercase mb-2 font-mono">
               About Us · Executive Leadership &amp; Board
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 font-['Poppins'] tracking-tight [text-wrap:balance]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight uppercase [text-wrap:balance]">
               The Engineers &amp; Pioneers Behind SkyMirr
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base mt-2">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed [text-wrap:balance]">
               Decades of world-class electromagnetic physics, microwave engineering, and telecommunications leadership.
             </p>
           </div>
@@ -109,14 +109,14 @@ export function TeamSection() {
                         }}
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center font-bold text-blue-700 font-['Poppins'] text-lg">
+                      <div className="w-full h-full flex items-center justify-center font-bold text-blue-700 font-display text-lg">
                         {getInitials(member.name)}
                       </div>
                     )}
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-base font-bold text-slate-950 font-['Poppins'] leading-tight group-hover:text-blue-700 transition-colors">
+                    <h3 className="text-base font-bold text-slate-950 font-display leading-tight group-hover:text-blue-700 transition-colors">
                       {member.name}
                     </h3>
                     <div className="text-xs font-bold text-blue-700 mt-1 leading-snug">
@@ -174,14 +174,14 @@ export function TeamSection() {
                       className="w-full h-full object-cover object-top"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center font-bold text-white font-['Poppins'] text-xl">
+                    <div className="w-full h-full flex items-center justify-center font-bold text-white font-display text-xl">
                       {getInitials(selectedMember.name)}
                     </div>
                   )}
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-bold font-['Poppins'] text-white">
+                  <h3 className="text-xl font-bold font-display text-white">
                     {selectedMember.name}
                   </h3>
                   <div className="text-sm font-semibold text-cyan-300 mt-0.5">

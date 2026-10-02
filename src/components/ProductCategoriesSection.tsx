@@ -59,10 +59,10 @@ export function ProductCategoriesSection({ onOpenQuote, onNavigate }: ProductCat
             <Layers className="w-3.5 h-3.5 text-slate-600" />
             <span>Core Hardware Architecture</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 font-display tracking-tight uppercase leading-tight [text-wrap:balance]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight uppercase [text-wrap:balance]">
             WHEN IT HAS TO CONNECT, IT HAS TO BE SKYMIRR
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base mt-4 max-w-3xl mx-auto leading-relaxed [text-wrap:balance]">
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed [text-wrap:balance]">
             We develop/manufacture advanced RF technology-based products that better our lives, such as cost-effective, better performing, broadband wireless communications for everyone and medical applications that treat serious disease far more effectively.
           </p>
 

@@ -41,7 +41,7 @@ export function DesignServicesPage({ onOpenQuote, onNavigate }: DesignServicesPa
             <div className="text-xs font-mono font-bold tracking-widest text-cyan-300 uppercase mb-2">
               Engineering & Consulting
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-['Poppins'] tracking-tight text-white leading-tight">
+            <h1 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white leading-tight">
               Design Services
             </h1>
             <p className="text-slate-300 text-sm sm:text-base mt-3 leading-relaxed">
@@ -54,7 +54,7 @@ export function DesignServicesPage({ onOpenQuote, onNavigate }: DesignServicesPa
       {/* Services Grid */}
       <section className="py-20 max-w-7xl mx-auto px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-2xl sm:text-4xl font-extrabold font-['Poppins'] text-slate-950 mb-4">
+          <h2 className="text-2xl sm:text-4xl font-extrabold font-display text-slate-950 mb-4">
             Antenna-First Design Philosophy
           </h2>
           <p className="text-slate-600 text-sm sm:text-base">
@@ -70,7 +70,7 @@ export function DesignServicesPage({ onOpenQuote, onNavigate }: DesignServicesPa
                 <div className="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <Icon className="w-7 h-7" />
                 </div>
-                <h3 className="text-xl font-bold font-['Poppins'] text-slate-950 mb-3 group-hover:text-blue-700 transition-colors">
+                <h3 className="text-xl font-bold font-display text-slate-950 mb-3 group-hover:text-blue-700 transition-colors">
                   {service.title}
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed mb-6 flex-1">
@@ -92,7 +92,7 @@ export function DesignServicesPage({ onOpenQuote, onNavigate }: DesignServicesPa
         <div className="mt-16 text-center">
           <button
             onClick={() => onNavigate('contact')}
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-md transition-all cursor-pointer font-['Poppins']"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-md transition-all cursor-pointer font-display"
           >
             <span>Discuss Your Project</span>
             <ArrowRight className="w-4 h-4" />

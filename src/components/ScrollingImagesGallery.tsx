@@ -246,7 +246,7 @@ export function ScrollingImagesGallery({ onOpenQuote, onNavigate }: ScrollingIma
               <Sparkles className="w-3.5 h-3.5 text-sky-600 animate-pulse" />
               <span>Interactive Hardware Slider &amp; Spec Inspector</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-medium font-display tracking-tight text-sky-700 uppercase leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight uppercase [text-wrap:balance]">
               CORE HARDWARE &amp; TECHNOLOGY SHOWCASE
             </h2>
             <p className="text-sky-800 font-sans text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
@@ -415,7 +415,7 @@ export function ScrollingImagesGallery({ onOpenQuote, onNavigate }: ScrollingIma
                   <span className="text-xs font-mono text-slate-500">SkyMirr Engineering Spec</span>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display tracking-tight uppercase">
+                <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight uppercase [text-wrap:balance]">
                   {activeProduct.title}
                 </h3>
                 <p className="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed font-sans">

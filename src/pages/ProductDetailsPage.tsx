@@ -27,7 +27,7 @@ export function ProductDetailsPage({ productId, onOpenQuote, onNavigate }: Produ
   }
 
   return (
-    <div className="pt-24 pb-20 bg-[#F9FAFB] min-h-screen font-['Poppins']">
+    <div className="pt-24 pb-20 bg-[#F9FAFB] min-h-screen font-display">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Breadcrumbs */}

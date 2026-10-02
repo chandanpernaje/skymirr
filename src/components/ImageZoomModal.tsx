@@ -145,7 +145,7 @@ export function ImageZoomModal({
                     {subtitle}
                   </span>
                 )}
-                <h3 className="text-base sm:text-lg font-bold text-white font-['Poppins'] truncate">
+                <h3 className="text-base sm:text-lg font-bold text-white font-display truncate">
                   {title}
                 </h3>
               </div>

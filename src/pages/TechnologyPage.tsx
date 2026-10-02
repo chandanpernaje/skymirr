@@ -17,7 +17,7 @@ export function TechnologyPage({ onOpenQuote, onNavigate }: TechnologyPageProps)
             <div className="text-xs font-mono font-bold tracking-widest text-cyan-300 uppercase mb-2">
               Technology
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-['Poppins'] tracking-tight text-white leading-tight">
+            <h1 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white leading-tight">
               MuLCAT® Technology
             </h1>
             <p className="text-slate-300 text-sm sm:text-base mt-4 leading-relaxed font-medium">
@@ -36,7 +36,7 @@ export function TechnologyPage({ onOpenQuote, onNavigate }: TechnologyPageProps)
             <div className="text-xs font-bold text-blue-700 tracking-wider uppercase font-mono mb-2">
               The Need for Innovation
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 font-['Poppins'] leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 font-display leading-tight">
               WHY NOW?
             </h2>
           </div>
@@ -57,7 +57,7 @@ export function TechnologyPage({ onOpenQuote, onNavigate }: TechnologyPageProps)
               <Sparkles className="w-4 h-4 text-blue-600" />
               <span>Core Mechanism</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 font-['Poppins'] leading-tight mb-6">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 font-display leading-tight mb-6">
               WHAT IS MuLCAT®?
             </h2>
             <div className="space-y-6 text-sm sm:text-base text-slate-700 leading-relaxed max-w-4xl">
@@ -80,7 +80,7 @@ export function TechnologyPage({ onOpenQuote, onNavigate }: TechnologyPageProps)
         {/* Quote Section */}
         <div className="max-w-4xl mx-auto text-center py-10">
           <Quote className="w-12 h-12 text-blue-200 mx-auto mb-6" />
-          <blockquote className="text-2xl sm:text-3xl font-bold font-['Poppins'] text-slate-900 italic leading-snug">
+          <blockquote className="text-2xl sm:text-3xl font-bold font-display text-slate-900 italic leading-snug">
             "Whether it be radio, LAN, or otherwise, an antenna is extremely important."
           </blockquote>
           <div className="mt-6 text-sm font-mono font-bold text-slate-500 uppercase tracking-widest">
@@ -96,7 +96,7 @@ export function TechnologyPage({ onOpenQuote, onNavigate }: TechnologyPageProps)
             <div className="text-xs font-bold text-blue-700 tracking-wider uppercase font-mono">
               MuLCAT® Advantages
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-950 font-['Poppins'] leading-tight">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-950 font-display leading-tight">
               AFTER DECADES OF ANTENNA DEV EXPERIENCE
             </h2>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
@@ -111,7 +111,7 @@ export function TechnologyPage({ onOpenQuote, onNavigate }: TechnologyPageProps)
           <div className="bg-slate-900 rounded-3xl p-8 shadow-xl text-white border border-slate-800 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/20 rounded-full blur-3xl"></div>
             
-            <h3 className="text-xl font-bold font-['Poppins'] text-cyan-400 mb-6 relative z-10">
+            <h3 className="text-xl font-bold font-display text-cyan-400 mb-6 relative z-10">
               MuLCAT® CAN IMPROVE THE PERFORMANCE
             </h3>
             
@@ -158,7 +158,7 @@ export function TechnologyPage({ onOpenQuote, onNavigate }: TechnologyPageProps)
           <div className="absolute inset-0 bg-gradient-to-tr from-blue-800 to-transparent opacity-50 pointer-events-none"></div>
           
           <div className="relative z-10 max-w-3xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-black font-['Poppins'] mb-8 tracking-wide">
+            <h2 className="text-2xl sm:text-3xl font-black font-display mb-8 tracking-wide">
               WITH MuLCAT®
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
@@ -185,7 +185,7 @@ export function TechnologyPage({ onOpenQuote, onNavigate }: TechnologyPageProps)
             <div className="mt-10">
               <button
                 onClick={() => onNavigate('contact')}
-                className="px-8 py-3.5 bg-white text-blue-700 hover:bg-slate-50 font-bold text-sm rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 mx-auto cursor-pointer font-['Poppins']"
+                className="px-8 py-3.5 bg-white text-blue-700 hover:bg-slate-50 font-bold text-sm rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 mx-auto cursor-pointer font-display"
               >
                 <span>Discuss MuLCAT® Implementation</span>
                 <ArrowRight className="w-4 h-4" />

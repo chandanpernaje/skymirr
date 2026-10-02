@@ -85,7 +85,7 @@ export function ApplicationsPage({ onOpenQuote, onNavigate }: ApplicationsPagePr
             <div className="text-xs font-mono font-bold tracking-widest text-cyan-300 uppercase mb-2">
               Real-World Deployments
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-['Poppins'] tracking-tight text-white leading-tight">
+            <h1 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white leading-tight">
               Applications of SkyMirr Technology
             </h1>
             <p className="text-slate-300 text-sm sm:text-base mt-3 leading-relaxed">
@@ -127,7 +127,7 @@ export function ApplicationsPage({ onOpenQuote, onNavigate }: ApplicationsPagePr
                         <div className="text-[10px] font-mono text-cyan-300 uppercase tracking-wider font-bold">
                           {app.category}
                         </div>
-                        <div className="text-base font-bold font-['Poppins']">
+                        <div className="text-base font-bold font-display">
                           {app.title}
                         </div>
                       </div>
@@ -141,7 +141,7 @@ export function ApplicationsPage({ onOpenQuote, onNavigate }: ApplicationsPagePr
                 <div className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider">
                   {app.tagline}
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-extrabold font-['Poppins'] text-slate-950">
+                <h2 className="text-2xl sm:text-3xl font-extrabold font-display text-slate-950">
                   {app.title}
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">

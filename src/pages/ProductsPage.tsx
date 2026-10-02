@@ -70,7 +70,7 @@ export function ProductsPage({ onOpenQuote, onNavigate, initialCategory = 'all' 
             <div className="text-xs font-mono font-bold tracking-widest text-cyan-300 uppercase mb-2">
               SkyMirr Hardware Catalog
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-['Poppins'] tracking-tight text-white leading-tight">
+            <h1 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white leading-tight">
               Products Built From The Field Outward
             </h1>
             <p className="text-slate-300 text-sm sm:text-base mt-3 leading-relaxed">
@@ -110,7 +110,7 @@ export function ProductsPage({ onOpenQuote, onNavigate, initialCategory = 'all' 
           <div className="text-xs font-bold text-blue-700 tracking-wider uppercase mb-2 font-mono">
             Featured Hardware
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-950 font-['Poppins'] mb-8">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-950 font-display mb-8">
             Sky5G™ Wireless Router (TCPA-117)
           </h2>
 
@@ -156,7 +156,7 @@ export function ProductsPage({ onOpenQuote, onNavigate, initialCategory = 'all' 
                 <span className="text-xs font-mono font-bold text-blue-600 uppercase tracking-wider block mb-1">
                   CES® 2026 Innovation Awards Honoree
                 </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-950 font-['Poppins']">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-950 font-display">
                   Next-Generation Carrier-Grade Fixed Wireless Access
                 </h3>
                 <p className="text-slate-600 text-sm mt-3 leading-relaxed">
@@ -179,7 +179,7 @@ export function ProductsPage({ onOpenQuote, onNavigate, initialCategory = 'all' 
               <div className="flex flex-wrap gap-3">
                 <button
                   onClick={() => onOpenQuote('Sky5G™ Wireless Router (TCPA-117)')}
-                  className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-xl transition-all shadow-md shadow-blue-600/25 flex items-center gap-2 cursor-pointer font-['Poppins']"
+                  className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-xl transition-all shadow-md shadow-blue-600/25 flex items-center gap-2 cursor-pointer font-display"
                 >
                   <span>Request Evaluation Unit</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -194,7 +194,7 @@ export function ProductsPage({ onOpenQuote, onNavigate, initialCategory = 'all' 
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-xl sm:text-2xl font-black font-['Poppins'] text-slate-950">
+            <h2 className="text-xl sm:text-2xl font-black font-display text-slate-950">
               {activeCategory === 'all'
                 ? 'All SkyMirr Hardware'
                 : categories.find((c) => c.id === activeCategory)?.label}
@@ -256,7 +256,7 @@ export function ProductsPage({ onOpenQuote, onNavigate, initialCategory = 'all' 
                         ? 'Industrial Asset Tracker'
                         : 'Embedded Array'}
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-bold font-['Poppins'] text-[#034B9C] mb-3 text-center transition-colors">
+                    <h3 className="text-xl sm:text-2xl font-bold font-display text-[#034B9C] mb-3 text-center transition-colors">
                       {product.name.replace('SkyBlade™ ', '').replace('BioTrack™ ', '').replace('SkyTrack™ ', '')}
                     </h3>
                     <p className="text-sm font-semibold text-slate-800 text-center leading-relaxed">
@@ -271,7 +271,7 @@ export function ProductsPage({ onOpenQuote, onNavigate, initialCategory = 'all' 
                   <div className="p-6 pt-0">
                     <button
                       onClick={() => onNavigate(`product/${product.id}`)}
-                      className="w-full py-3 px-4 bg-[#0FA5E9] hover:bg-[#0284C7] text-white font-semibold text-sm rounded-full transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-md font-['Poppins']"
+                      className="w-full py-3 px-4 bg-[#0FA5E9] hover:bg-[#0284C7] text-white font-semibold text-sm rounded-full transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-md font-display"
                     >
                       <span>View Product</span>
                       <ArrowRight className="w-4 h-4" />

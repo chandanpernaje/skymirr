@@ -21,7 +21,7 @@ export function AboutPage({ onOpenQuote, onNavigate }: AboutPageProps) {
             <div className="text-xs font-mono font-bold tracking-widest text-cyan-300 uppercase mb-2">
               Corporate Overview &amp; Leadership
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-['Poppins'] tracking-tight text-white leading-tight">
+            <h1 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white leading-tight">
               About SkyMirr Technologies
             </h1>
             <p className="text-slate-300 text-sm sm:text-base mt-3 leading-relaxed">

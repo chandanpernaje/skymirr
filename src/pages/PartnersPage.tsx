@@ -35,7 +35,7 @@ export function PartnersPage({ onOpenQuote }: PartnersPageProps) {
             <div className="text-xs font-mono font-bold tracking-widest text-cyan-300 uppercase mb-2">
               Global Distribution Network
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-['Poppins'] tracking-tight text-white leading-tight">
+            <h1 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white leading-tight">
               Our Partners &amp; Distributors
             </h1>
             <p className="text-slate-300 text-sm sm:text-base mt-3 leading-relaxed">
@@ -54,7 +54,7 @@ export function PartnersPage({ onOpenQuote }: PartnersPageProps) {
       <section className="py-20 max-w-7xl mx-auto px-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
           <div>
-            <h2 className="text-2xl font-bold font-['Poppins'] text-slate-950">
+            <h2 className="text-2xl font-bold font-display text-slate-950">
               Authorized Sales Channels
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 mt-1">
@@ -106,7 +106,7 @@ export function PartnersPage({ onOpenQuote }: PartnersPageProps) {
                   className="max-h-10 max-w-[120px] object-contain transition-all duration-300"
                 />
               </div>
-              <div className="text-xs font-bold text-slate-800 font-['Poppins'] group-hover:text-blue-600 transition-colors">
+              <div className="text-xs font-bold text-slate-800 font-display group-hover:text-blue-600 transition-colors">
                 {partner.name}
               </div>
               <div className="text-[10px] font-mono text-slate-400 mt-0.5">
@@ -128,7 +128,7 @@ export function PartnersPage({ onOpenQuote }: PartnersPageProps) {
               <div className="text-xs font-bold text-blue-700 tracking-wider uppercase font-mono mb-2">
                 Channel Expansion
               </div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold font-['Poppins'] text-slate-950">
+              <h3 className="text-2xl sm:text-3xl font-extrabold font-display text-slate-950">
                 Become an Authorized SkyMirr Partner
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 mt-2">
@@ -141,7 +141,7 @@ export function PartnersPage({ onOpenQuote }: PartnersPageProps) {
                 <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-3">
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
-                <h4 className="text-base font-bold text-emerald-950 font-['Poppins']">
+                <h4 className="text-base font-bold text-emerald-950 font-display">
                   Partnership Application Received
                 </h4>
                 <p className="text-xs text-emerald-700 mt-1 max-w-md mx-auto">

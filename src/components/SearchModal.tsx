@@ -441,7 +441,7 @@ export function SearchModal({ isOpen, onClose, onNavigate, onOpenQuote }: Search
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Search any product, keyword (A to Z), model, frequency, team, or firmware..."
-                className="w-full bg-transparent text-slate-900 placeholder-slate-400 text-sm sm:text-base font-['Poppins'] font-medium focus:outline-hidden"
+                className="w-full bg-transparent text-slate-900 placeholder-slate-400 text-sm sm:text-base font-display font-medium focus:outline-hidden"
               />
               {query ? (
                 <button
@@ -491,7 +491,7 @@ export function SearchModal({ isOpen, onClose, onNavigate, onOpenQuote }: Search
                     <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-3">
                       <Search className="w-6 h-6" />
                     </div>
-                    <h4 className="text-base font-bold text-slate-900 font-['Poppins']">
+                    <h4 className="text-base font-bold text-slate-900 font-display">
                       Universal A to Z Search Engine
                     </h4>
                     <p className="text-xs text-slate-500 mt-1 max-w-md mx-auto">
@@ -509,7 +509,7 @@ export function SearchModal({ isOpen, onClose, onNavigate, onOpenQuote }: Search
                         <button
                           key={term}
                           onClick={() => setQuery(term)}
-                          className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 text-xs font-['Poppins'] font-medium transition-colors border border-slate-200 cursor-pointer"
+                          className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 text-xs font-display font-medium transition-colors border border-slate-200 cursor-pointer"
                         >
                           {term}
                         </button>
@@ -543,12 +543,12 @@ export function SearchModal({ isOpen, onClose, onNavigate, onOpenQuote }: Search
                           <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-blue-700 bg-blue-100/70 px-2 py-0.5 rounded">
                             {item.category}
                           </span>
-                          <span className="text-sm sm:text-base font-bold text-slate-950 font-['Poppins'] truncate">
+                          <span className="text-sm sm:text-base font-bold text-slate-950 font-display truncate">
                             {item.title}
                           </span>
                         </div>
 
-                        <div className="text-xs font-medium text-slate-500 font-['Poppins'] truncate">
+                        <div className="text-xs font-medium text-slate-500 font-display truncate">
                           {item.subtitle}
                         </div>
 
@@ -565,7 +565,7 @@ export function SearchModal({ isOpen, onClose, onNavigate, onOpenQuote }: Search
                       </div>
 
                       <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
-                        <span className="text-xs font-bold text-blue-600 hidden sm:inline font-['Poppins']">
+                        <span className="text-xs font-bold text-blue-600 hidden sm:inline font-display">
                           {item.actionType === 'quote' ? 'Request' : 'Open'}
                         </span>
                         <div
@@ -588,7 +588,7 @@ export function SearchModal({ isOpen, onClose, onNavigate, onOpenQuote }: Search
                     <AlertCircle className="w-7 h-7" />
                   </div>
                   <div className="space-y-1.5">
-                    <h4 className="text-base sm:text-lg font-bold text-slate-900 font-['Poppins']">
+                    <h4 className="text-base sm:text-lg font-bold text-slate-900 font-display">
                       No products or results found for &ldquo;<span className="text-rose-600">{query}</span>&rdquo;
                     </h4>
                     <p className="text-xs text-slate-500 max-w-md mx-auto leading-relaxed">

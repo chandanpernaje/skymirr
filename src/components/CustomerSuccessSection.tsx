@@ -23,10 +23,10 @@ export function CustomerSuccessSection({ onOpenQuote }: CustomerSuccessSectionPr
             <Store className="w-3.5 h-3.5 text-blue-600" />
             <span>{scenario.badge}</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-950 font-['Poppins'] tracking-tight [text-wrap:balance]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight uppercase [text-wrap:balance]">
             {scenario.title}
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base mt-3 leading-relaxed [text-wrap:balance]">
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed [text-wrap:balance]">
             Case Study: How a nationwide multi-location retail chain avoided costly fiber deployment delays using SkyMirr Sky5G™ routers and MuLCAT® wireless fabric.
           </p>
         </motion.div>
@@ -89,7 +89,7 @@ export function CustomerSuccessSection({ onOpenQuote }: CustomerSuccessSectionPr
               <div className="text-xs font-mono font-bold text-sky-200 uppercase tracking-wider mb-2">
                 Verified Outcome
               </div>
-              <h3 className="text-2xl sm:text-3xl font-bold font-['Poppins'] leading-snug">
+              <h3 className="text-2xl sm:text-3xl font-bold font-display leading-snug">
                 Zero Retail Downtime Across 10 Launch Sites
               </h3>
               <p className="text-xs sm:text-sm text-blue-100 mt-3 leading-relaxed">
@@ -109,7 +109,7 @@ export function CustomerSuccessSection({ onOpenQuote }: CustomerSuccessSectionPr
 
               <button
                 onClick={() => onOpenQuote('Enterprise Retail FWA Gateway')}
-                className="w-full py-3.5 px-4 bg-white hover:bg-blue-50 text-blue-700 font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-2 shadow-md active:scale-98 cursor-pointer font-['Poppins']"
+                className="w-full py-3.5 px-4 bg-white hover:bg-blue-50 text-blue-700 font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-2 shadow-md active:scale-98 cursor-pointer font-display"
               >
                 <span>Deploy Retail &amp; Enterprise Gateways</span>
                 <ArrowRight className="w-4 h-4" />

@@ -21,7 +21,7 @@ export function LatestPage({ onOpenQuote, onNavigate }: LatestPageProps) {
             <div className="text-xs font-mono font-bold tracking-widest text-cyan-300 uppercase mb-2">
               Corporate Press &amp; Releases
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-['Poppins'] tracking-tight text-white leading-tight">
+            <h1 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white leading-tight">
               The Latest @ SkyMirr
             </h1>
             <p className="text-slate-300 text-sm sm:text-base mt-3 leading-relaxed">
@@ -36,7 +36,7 @@ export function LatestPage({ onOpenQuote, onNavigate }: LatestPageProps) {
         <div className="text-xs font-bold text-blue-700 tracking-wider uppercase font-mono mb-2">
           Carrier Milestones &amp; Honors
         </div>
-        <h2 className="text-2xl sm:text-3xl font-extrabold font-['Poppins'] text-slate-950 mb-10">
+        <h2 className="text-2xl sm:text-3xl font-extrabold font-display text-slate-950 mb-10">
           Recent Announcements
         </h2>
 
@@ -57,7 +57,7 @@ export function LatestPage({ onOpenQuote, onNavigate }: LatestPageProps) {
                   </div>
                 </div>
 
-                <h3 className="text-base font-bold font-['Poppins'] text-slate-950 group-hover:text-blue-600 transition-colors leading-snug">
+                <h3 className="text-base font-bold font-display text-slate-950 group-hover:text-blue-600 transition-colors leading-snug">
                   {item.title}
                 </h3>
 

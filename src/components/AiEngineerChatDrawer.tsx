@@ -100,7 +100,7 @@ export function AiEngineerChatDrawer() {
                 <Bot className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="text-xs font-bold font-['Poppins'] text-white">
+                <h4 className="text-xs font-bold font-display text-white">
                   SkyMirr AI RF Engineer
                 </h4>
                 <div className="text-[10px] font-mono text-cyan-400 flex items-center gap-1.5">

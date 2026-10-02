@@ -28,10 +28,10 @@ export function PartnersSection({ onNavigate }: PartnersSectionProps = {}) {
             <Handshake className="w-3.5 h-3.5 text-blue-600" />
             <span>Authorized Sales Channels</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-950 font-['Poppins'] tracking-tight uppercase">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight uppercase [text-wrap:balance]">
             OUR PARTNERS
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base mt-3 max-w-xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed [text-wrap:balance]">
             Products can be purchased through our distributors and online partners.
           </p>
         </motion.div>
@@ -39,7 +39,7 @@ export function PartnersSection({ onNavigate }: PartnersSectionProps = {}) {
         {/* Group 1: Online Partners with Staggered Entrance */}
         <div className="mb-14">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-base sm:text-lg font-bold text-slate-900 font-['Poppins'] flex items-center gap-2">
+            <h3 className="text-base sm:text-lg font-bold text-slate-900 font-display flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse" />
               <span>Online Partners</span>
             </h3>
@@ -69,7 +69,7 @@ export function PartnersSection({ onNavigate }: PartnersSectionProps = {}) {
                     loading="lazy"
                   />
                 </div>
-                <div className="w-full flex items-center justify-between text-[11px] text-slate-800 font-bold pt-2 font-['Poppins']">
+                <div className="w-full flex items-center justify-between text-[11px] text-slate-800 font-bold pt-2 font-display">
                   <span className="truncate">{partner.name}</span>
                   <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600 transition-colors shrink-0 ml-1" />
                 </div>
@@ -81,7 +81,7 @@ export function PartnersSection({ onNavigate }: PartnersSectionProps = {}) {
         {/* Group 2: Partners & Distributors with Staggered Entrance */}
         <div>
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-base sm:text-lg font-bold text-slate-900 font-['Poppins'] flex items-center gap-2">
+            <h3 className="text-base sm:text-lg font-bold text-slate-900 font-display flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-cyan-500 animate-pulse" />
               <span>Partners &amp; Distributors</span>
             </h3>
@@ -111,7 +111,7 @@ export function PartnersSection({ onNavigate }: PartnersSectionProps = {}) {
                     loading="lazy"
                   />
                 </div>
-                <div className="w-full flex items-center justify-between text-[11px] text-slate-800 font-bold pt-2 font-['Poppins']">
+                <div className="w-full flex items-center justify-between text-[11px] text-slate-800 font-bold pt-2 font-display">
                   <span className="truncate">{partner.name}</span>
                   <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-cyan-600 transition-colors shrink-0 ml-1" />
                 </div>

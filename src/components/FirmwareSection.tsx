@@ -31,10 +31,10 @@ export function FirmwareSection() {
             <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-widest block">
               Device Lifecycle &amp; Security Maintenance
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 font-['Poppins'] tracking-tight uppercase">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight uppercase [text-wrap:balance]">
               DOWNLOAD LATEST FIRMWARE
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed [text-wrap:balance]">
               Please fill the below information to download the latest firmware vesrion for your Sky5G™ Wireless Router (TCPA-117) and carrier-certified cellular modems.
             </p>
 
@@ -64,7 +64,7 @@ export function FirmwareSection() {
                   <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
-                  <h3 className="text-lg font-bold text-slate-950 font-['Poppins']">
+                  <h3 className="text-lg font-bold text-slate-950 font-display">
                     Firmware Package Ready
                   </h3>
                   <p className="text-xs text-slate-600 max-w-sm mx-auto">
@@ -72,7 +72,7 @@ export function FirmwareSection() {
                   </p>
                   <button
                     onClick={() => setDownloadSuccess(false)}
-                    className="mt-4 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-xl transition-all shadow-md shadow-blue-600/20 cursor-pointer font-['Poppins']"
+                    className="mt-4 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-xl transition-all shadow-md shadow-blue-600/20 cursor-pointer font-display"
                   >
                     Download Another Version
                   </button>
@@ -80,7 +80,7 @@ export function FirmwareSection() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1 font-['Poppins']">
+                    <label className="block text-xs font-semibold text-slate-700 mb-1 font-display">
                       Name *
                     </label>
                     <input
@@ -95,7 +95,7 @@ export function FirmwareSection() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-700 mb-1 font-['Poppins']">
+                      <label className="block text-xs font-semibold text-slate-700 mb-1 font-display">
                         Phone *
                       </label>
                       <input
@@ -108,7 +108,7 @@ export function FirmwareSection() {
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-slate-700 mb-1 font-['Poppins']">
+                      <label className="block text-xs font-semibold text-slate-700 mb-1 font-display">
                         Email *
                       </label>
                       <input
@@ -124,7 +124,7 @@ export function FirmwareSection() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-700 mb-1 font-['Poppins']">
+                      <label className="block text-xs font-semibold text-slate-700 mb-1 font-display">
                         Product Series Number *
                       </label>
                       <input
@@ -137,7 +137,7 @@ export function FirmwareSection() {
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-slate-700 mb-1 font-['Poppins']">
+                      <label className="block text-xs font-semibold text-slate-700 mb-1 font-display">
                         Existing VersionNumber
                       </label>
                       <input
@@ -153,7 +153,7 @@ export function FirmwareSection() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md shadow-blue-600/25 flex items-center justify-center gap-2 cursor-pointer font-['Poppins'] mt-2"
+                    className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md shadow-blue-600/25 flex items-center justify-center gap-2 cursor-pointer font-display mt-2"
                   >
                     <Download className="w-4 h-4" />
                     <span>{loading ? 'Validating...' : 'download'}</span>

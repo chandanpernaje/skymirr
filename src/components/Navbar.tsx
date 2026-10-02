@@ -221,7 +221,7 @@ export function Navbar({ activePage, onNavigate, onOpenQuote, onOpenSearch }: Na
                   setMobileMenuOpen(false);
                   onOpenSearch();
                 }}
-                className="w-full flex items-center justify-between px-4 py-3 rounded-2xl bg-slate-50 hover:bg-blue-50/50 border border-slate-200 text-slate-500 text-xs font-['Poppins'] cursor-pointer transition-colors"
+                className="w-full flex items-center justify-between px-4 py-3 rounded-2xl bg-slate-50 hover:bg-blue-50/50 border border-slate-200 text-slate-500 text-xs font-display cursor-pointer transition-colors"
               >
                 <div className="flex items-center gap-2.5">
                   <Search className="w-4 h-4 text-blue-600" />
@@ -233,7 +233,7 @@ export function Navbar({ activePage, onNavigate, onOpenQuote, onOpenSearch }: Na
               </button>
             </div>
 
-            <nav className="flex flex-col text-sm font-semibold text-slate-800 divide-y divide-slate-100 font-['Poppins']">
+            <nav className="flex flex-col text-sm font-semibold text-slate-800 divide-y divide-slate-100 font-display">
               <button
                 onClick={() => handleNavClick('home')}
                 className={`text-left py-3 transition-colors ${

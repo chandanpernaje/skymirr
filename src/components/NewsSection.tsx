@@ -10,10 +10,10 @@ export function NewsSection() {
           <div className="text-xs font-bold text-blue-700 tracking-wider uppercase mb-2 font-mono">
             Blogs &amp; Press Releases
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 font-['Poppins'] tracking-tight [text-wrap:balance]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight uppercase [text-wrap:balance]">
             THE LATEST@SKYMIRR
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base mt-2">
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed [text-wrap:balance]">
             The latest certifications, product releases, technology whitepapers, and carrier approvals from SkyMirr.
           </p>
         </div>
@@ -27,7 +27,7 @@ export function NewsSection() {
             >
               <div>
                 <div className="text-xs font-mono text-blue-700 font-bold">{cert.category}</div>
-                <div className="text-sm font-bold text-slate-900 mt-1 font-['Poppins']">{cert.name}</div>
+                <div className="text-sm font-bold text-slate-900 mt-1 font-display">{cert.name}</div>
               </div>
               <div className="text-[11px] text-slate-500 mt-2 leading-snug">{cert.detail}</div>
             </div>
@@ -48,7 +48,7 @@ export function NewsSection() {
                     {item.badge}
                   </span>
                 </div>
-                <h3 className="text-base font-bold text-slate-950 font-['Poppins'] leading-snug group-hover:text-blue-700 transition-colors">
+                <h3 className="text-base font-bold text-slate-950 font-display leading-snug group-hover:text-blue-700 transition-colors">
                   {item.title}
                 </h3>
                 <div className="text-xs font-semibold text-slate-500 mt-2">{item.publication}</div>

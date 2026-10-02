@@ -75,10 +75,10 @@ export function AiRfAdvisorSection({ onOpenQuoteWithAiResult }: AiRfAdvisorSecti
             <Sparkles className="w-3.5 h-3.5 text-blue-600 animate-spin" />
             <span>AI-Powered Engineering</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 font-['Poppins'] tracking-tight [text-wrap:balance]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight uppercase [text-wrap:balance]">
             SkyMirr AI RF Deployment Architect
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base mt-2">
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed [text-wrap:balance]">
             Describe your enterprise connectivity challenge. Our Gemini-powered RF system engineer analyzes path loss,
             frequency bands, and carrier certification to recommend the optimal MuLCAT® hardware blueprint.
           </p>
@@ -144,7 +144,7 @@ export function AiRfAdvisorSection({ onOpenQuoteWithAiResult }: AiRfAdvisorSecti
                     }}
                     className="text-left p-3 rounded-xl bg-white border border-slate-200 hover:border-blue-400 hover:bg-blue-50/40 transition-colors shadow-xs group cursor-pointer"
                   >
-                    <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 font-['Poppins']">
+                    <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 font-display">
                       {preset.title}
                     </div>
                     <div className="text-[11px] text-slate-500 mt-1 line-clamp-2">
@@ -196,7 +196,7 @@ export function AiRfAdvisorSection({ onOpenQuoteWithAiResult }: AiRfAdvisorSecti
                       >
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="text-xs font-bold text-slate-950 font-['Poppins']">
+                            <span className="text-xs font-bold text-slate-950 font-display">
                               {prod.name}
                             </span>
                             <span className="text-[10px] font-mono text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200/60">
@@ -279,7 +279,7 @@ export function AiRfAdvisorSection({ onOpenQuoteWithAiResult }: AiRfAdvisorSecti
                 <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 mb-4 shadow-xs">
                   <Cpu className="w-6 h-6" />
                 </div>
-                <h3 className="text-base font-bold text-slate-900 font-['Poppins']">
+                <h3 className="text-base font-bold text-slate-900 font-display">
                   AI RF Architecture Engine Ready
                 </h3>
                 <p className="text-xs text-slate-500 max-w-sm mt-1 leading-relaxed">

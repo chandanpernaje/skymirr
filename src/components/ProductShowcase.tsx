@@ -23,10 +23,10 @@ export function ProductShowcase({ onOpenQuote }: ProductShowcaseProps) {
             <div className="text-xs font-bold text-blue-700 tracking-wider uppercase mb-2 font-mono">
               03. Hardware Portfolio &amp; Antennas
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 font-['Poppins'] tracking-tight [text-wrap:balance]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight uppercase [text-wrap:balance]">
               Production-Grade RF Systems
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base mt-2">
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed [text-wrap:balance]">
               From carrier-certified 5G CPE routers to global ultra-wideband whip antennas and biomedical implants.
             </p>
           </div>
@@ -112,7 +112,7 @@ export function ProductShowcase({ onOpenQuote }: ProductShowcaseProps) {
                     {/* Router Body */}
                     <div className="w-full h-44 rounded-xl bg-gradient-to-b from-slate-800 via-slate-900 to-[#070e1e] border border-slate-700 shadow-2xl p-5 flex flex-col justify-between relative">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm font-bold tracking-tight text-white font-['Poppins']">
+                        <span className="text-sm font-bold tracking-tight text-white font-display">
                           SkyMirr Sky5G™
                         </span>
                         <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
@@ -215,7 +215,7 @@ export function ProductShowcase({ onOpenQuote }: ProductShowcaseProps) {
                 <span className="text-xs font-mono font-bold text-blue-700 tracking-wider uppercase">
                   {currentProduct.category.toUpperCase()} SPECIFICATION
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-950 font-['Poppins'] mt-1">
+                <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight uppercase [text-wrap:balance]">
                   {currentProduct.name}
                 </h3>
                 <p className="text-blue-700 text-sm font-semibold mt-1">{currentProduct.tagline}</p>

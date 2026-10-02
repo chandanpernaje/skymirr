@@ -12,7 +12,7 @@ export function ContactPage() {
             <div className="text-xs font-mono font-bold tracking-widest text-cyan-300 uppercase mb-2">
               Direct Engineering Consultation
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-['Poppins'] tracking-tight text-white leading-tight">
+            <h1 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white leading-tight">
               Connect With An Expert
             </h1>
             <p className="text-slate-300 text-sm sm:text-base mt-3 leading-relaxed">
