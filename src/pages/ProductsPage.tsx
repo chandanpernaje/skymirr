@@ -3,6 +3,7 @@ import { SKYMIRR_DATA, Product } from '../data/skymirrData';
 import { WaveCanvas } from '../components/WaveCanvas';
 import { ArrowRight, CheckCircle2, Radio, Shield, Cpu, ChevronRight, Layers, ZoomIn } from 'lucide-react';
 import { ImageZoomModal } from '../components/ImageZoomModal';
+import { TiltCard } from '../components/TiltCard';
 
 interface ProductsPageProps {
   onOpenQuote: (productName?: string) => void;
@@ -205,11 +206,8 @@ export function ProductsPage({ onOpenQuote, onNavigate, initialCategory = 'all' 
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProducts.map((product) => (
-              <div
-                key={product.id}
-                className="bg-white border border-slate-200 hover:border-blue-500 rounded-3xl overflow-hidden transition-all duration-300 flex flex-col justify-between group shadow-xs hover:shadow-xl"
-              >
+            {filteredProducts.map((product, idx) => (
+              <TiltCard key={product.id} index={idx}>
                 <div>
                   {/* Product Image Box with Click-to-Zoom Trigger */}
                     <div
@@ -277,8 +275,8 @@ export function ProductsPage({ onOpenQuote, onNavigate, initialCategory = 'all' 
                       <ArrowRight className="w-4 h-4" />
                     </button>
                   </div>
-                </div>
-              ))}
+              </TiltCard>
+            ))}
           </div>
         </div>
       </section>

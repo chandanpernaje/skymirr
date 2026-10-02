@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { SKYMIRR_DATA } from '../data/skymirrData';
 import { ArrowRight, CheckCircle2, ShieldCheck, ChevronRight, Sparkles, Layers, ZoomIn } from 'lucide-react';
 import { ImageZoomModal } from './ImageZoomModal';
+import { TiltCard } from './TiltCard';
 
 interface ProductCategoriesProps {
   onOpenQuote: (productName?: string) => void;
@@ -85,17 +86,7 @@ export function ProductCategoriesSection({ onOpenQuote, onNavigate }: ProductCat
         {/* 3 Main Product Categories with Staggered Framer Motion Fade and Slide-In */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16">
           {SKYMIRR_DATA.productCategories.map((cat, idx) => (
-            <motion.div
-              key={cat.id}
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.55, delay: idx * 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className="bg-white border border-slate-200 hover:border-slate-400 rounded-xl overflow-hidden transition-all duration-500 flex flex-col justify-between group shadow-sm hover:shadow-2xl hover:-translate-y-1.5 relative cursor-pointer"
-            >
-              {/* Subtle top rim light */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] bg-slate-800 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
+            <TiltCard key={cat.id} index={idx}>
               <div>
                 {/* 100% Complete Product Image Stage with Interactive Zoom/Magnify Trigger */}
                 <div
@@ -182,7 +173,7 @@ export function ProductCategoriesSection({ onOpenQuote, onNavigate }: ProductCat
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
-            </motion.div>
+            </TiltCard>
           ))}
         </div>
 
