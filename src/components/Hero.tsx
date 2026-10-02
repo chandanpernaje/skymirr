@@ -101,13 +101,6 @@ export function Hero({ onOpenQuote, onNavigate }: HeroProps) {
 
           {/* Slider Controls */}
           <div className="flex items-center gap-4 pointer-events-auto bg-black/40 backdrop-blur-md p-2 rounded-xl border border-white/10">
-            <button
-              onClick={prevSlide}
-              className="w-10 h-10 rounded-lg hover:bg-white/10 text-white flex items-center justify-center transition-colors cursor-pointer"
-            >
-              <ArrowLeft className="w-5 h-5" />
-            </button>
-            
             <div className="flex items-center gap-2 px-2">
               {slides.map((_, idx) => (
                 <button
@@ -120,22 +113,6 @@ export function Hero({ onOpenQuote, onNavigate }: HeroProps) {
                 />
               ))}
             </div>
-
-            <button
-              onClick={nextSlide}
-              className="w-10 h-10 rounded-lg hover:bg-white/10 text-white flex items-center justify-center transition-colors cursor-pointer"
-            >
-              <ArrowRight className="w-5 h-5" />
-            </button>
-
-            <div className="w-px h-6 bg-white/20 mx-2" />
-
-            <button
-              onClick={() => setIsPaused(!isPaused)}
-              className="w-10 h-10 rounded-lg hover:bg-white/10 text-slate-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
-            >
-              {isPaused ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
-            </button>
           </div>
         </div>
       </section>
