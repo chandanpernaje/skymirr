@@ -17,6 +17,7 @@ import { TeamPage } from './pages/TeamPage';
 import { ContactPage } from './pages/ContactPage';
 import { DesignServicesPage } from './pages/DesignServicesPage';
 import { ProductDetailsPage } from './pages/ProductDetailsPage';
+import { LatestPage } from './pages/LatestPage';
 
 export type PageId =
   | 'home'
@@ -31,6 +32,10 @@ export type PageId =
   | 'team'
   | 'contact'
   | 'design-services'
+  | 'latest'
+  | 'the-latest'
+  | 'press-releases'
+  | 'blogs'
   | `product/${string}`;
 
 export default function App() {
@@ -89,6 +94,8 @@ export default function App() {
         setCurrentPage('contact');
       } else if (hash === 'design-services' || hash === 'design') {
         setCurrentPage('design-services');
+      } else if (hash === 'latest' || hash === 'the-latest' || hash === 'press-releases' || hash === 'blogs') {
+        setCurrentPage(hash as PageId);
       } else if (hash.startsWith('product/')) {
         setCurrentPage(hash as PageId);
       }
@@ -163,6 +170,16 @@ export default function App() {
         )}
         {currentPage === 'design-services' && (
           <DesignServicesPage onOpenQuote={handleOpenQuote} onNavigate={handleNavigate} />
+        )}
+        {(currentPage === 'latest' || currentPage === 'the-latest' || currentPage === 'press-releases' || currentPage === 'blogs') && (
+          <LatestPage 
+            initialCategory={
+              currentPage === 'press-releases' ? 'press' :
+              currentPage === 'blogs' ? 'blogs' : 'all'
+            }
+            onOpenQuote={handleOpenQuote}
+            onNavigate={handleNavigate}
+          />
         )}
         {currentPage.startsWith('product/') && (
           <ProductDetailsPage 

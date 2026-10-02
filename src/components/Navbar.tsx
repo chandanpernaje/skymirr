@@ -36,6 +36,7 @@ export function Navbar({ activePage, onNavigate, onOpenQuote, onOpenSearch }: Na
     onNavigate(page);
     setMobileMenuOpen(false);
     setProductsDropdownOpen(false);
+    setAboutDropdownOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -135,12 +136,6 @@ export function Navbar({ activePage, onNavigate, onOpenQuote, onOpenSearch }: Na
                 {productsDropdownOpen && (
                   <div className="absolute top-full left-0 w-52 bg-white shadow-xl border border-slate-200 py-2 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
                     <button
-                      onClick={() => handleNavClick('products')}
-                      className="w-full text-left block px-4 py-2 text-xs font-semibold text-slate-700 hover:text-blue-700 hover:bg-slate-50 transition-colors tracking-wide"
-                    >
-                      All Products
-                    </button>
-                    <button
                       onClick={() => handleNavClick('antennas')}
                       className="w-full text-left block px-4 py-2 text-xs font-semibold text-slate-700 hover:text-blue-700 hover:bg-slate-50 transition-colors tracking-wide"
                     >
@@ -180,20 +175,14 @@ export function Navbar({ activePage, onNavigate, onOpenQuote, onOpenSearch }: Na
                 Services
               </button>
 
-              {/* The Latest Dropdown */}
-              <div
-                className="relative h-full flex items-center"
+              <button
+                onClick={() => handleNavClick('latest')}
+                className={`transition-colors h-full flex items-center cursor-pointer pt-[2px] ${
+                  (activePage === 'latest' || activePage === 'the-latest' || activePage === 'press-releases' || activePage === 'blogs') ? 'text-blue-700 border-b-[3px] border-blue-700' : 'hover:text-blue-700 border-b-[3px] border-transparent'
+                }`}
               >
-                <button
-                  onClick={() => handleNavClick('latest')}
-                  className={`flex items-center h-full gap-1 transition-colors cursor-pointer pt-[2px] ${
-                    activePage === 'latest' ? 'text-blue-700 border-b-[3px] border-blue-700' : 'hover:text-blue-700 border-b-[3px] border-transparent'
-                  }`}
-                >
-                  <span>The Latest@SkyMirr</span>
-                  <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-700" />
-                </button>
-              </div>
+                The Latest@SkyMirr
+              </button>
 
               {/* About Us Dropdown */}
               <div
@@ -213,12 +202,6 @@ export function Navbar({ activePage, onNavigate, onOpenQuote, onOpenSearch }: Na
 
                 {aboutDropdownOpen && (
                   <div className="absolute top-full left-0 w-48 bg-white shadow-xl border border-slate-200 py-2 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
-                    <button
-                      onClick={() => handleNavClick('about')}
-                      className="w-full text-left block px-4 py-2 text-xs font-semibold text-slate-700 hover:text-blue-700 hover:bg-slate-50 transition-colors tracking-wide"
-                    >
-                      Company Overview
-                    </button>
                     <button
                       onClick={() => handleNavClick('team')}
                       className="w-full text-left block px-4 py-2 text-xs font-semibold text-slate-700 hover:text-blue-700 hover:bg-slate-50 transition-colors tracking-wide"
@@ -292,12 +275,6 @@ export function Navbar({ activePage, onNavigate, onOpenQuote, onOpenSearch }: Na
                 {mobileProductsOpen && (
                   <div className="pl-4 py-2 space-y-2 text-xs font-medium text-slate-600 bg-slate-50 rounded-lg my-1">
                     <button
-                      onClick={() => handleNavClick('products')}
-                      className="block w-full text-left py-1 hover:text-blue-600 cursor-pointer"
-                    >
-                      All Products Overview
-                    </button>
-                    <button
                       onClick={() => handleNavClick('antennas')}
                       className="block w-full text-left py-1 hover:text-blue-600 cursor-pointer"
                     >
@@ -340,49 +317,31 @@ export function Navbar({ activePage, onNavigate, onOpenQuote, onOpenSearch }: Na
               </button>
 
               <button
-                onClick={() => handleNavClick('partners')}
+                onClick={() => handleNavClick('latest')}
                 className={`text-left py-3 transition-colors ${
-                  activePage === 'partners' ? 'text-blue-700 font-bold' : 'hover:text-blue-600'
+                  (activePage === 'latest' || activePage === 'the-latest' || activePage === 'press-releases' || activePage === 'blogs') ? 'text-blue-700 font-bold' : 'hover:text-blue-600'
                 }`}
               >
-                Our Partners &amp; Distributors
+                The Latest@SkyMirr
               </button>
 
+              <button
+                onClick={() => handleNavClick('about')}
+                className={`text-left py-3 transition-colors ${
+                  activePage === 'about' ? 'text-blue-700 font-bold' : 'hover:text-blue-600'
+                }`}
+              >
+                About Us
+              </button>
 
-
-              {/* Mobile About Accordion */}
-              <div className="py-2">
-                <button
-                  onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
-                  className="w-full flex items-center justify-between py-2 hover:text-blue-600 transition-colors cursor-pointer"
-                >
-                  <span className={(activePage === 'about' || activePage === 'team') ? 'text-blue-700 font-bold' : ''}>
-                    About Us
-                  </span>
-                  <ChevronDown
-                    className={`w-4 h-4 text-slate-400 transition-transform ${
-                      mobileAboutOpen ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
-
-                {mobileAboutOpen && (
-                  <div className="pl-4 py-2 space-y-2 text-xs font-medium text-slate-600 bg-slate-50 rounded-lg my-1">
-                    <button
-                      onClick={() => handleNavClick('about')}
-                      className="block w-full text-left py-1 hover:text-blue-600 cursor-pointer"
-                    >
-                      Company Overview
-                    </button>
-                    <button
-                      onClick={() => handleNavClick('team')}
-                      className="block w-full text-left py-1 hover:text-blue-600 cursor-pointer"
-                    >
-                      Team &amp; Leadership
-                    </button>
-                  </div>
-                )}
-              </div>
+              <button
+                onClick={() => handleNavClick('team')}
+                className={`text-left py-3 transition-colors ${
+                  activePage === 'team' ? 'text-blue-700 font-bold' : 'hover:text-blue-600'
+                }`}
+              >
+                Team &amp; Leadership
+              </button>
 
               <button
                 onClick={() => handleNavClick('contact')}

@@ -51,7 +51,7 @@ export function PartnersPage({ onOpenQuote }: PartnersPageProps) {
       </div>
 
       {/* Partner Logos Catalog */}
-      <section className="py-20 max-w-7xl mx-auto px-6">
+      <section className="py-10 sm:py-12 max-w-7xl mx-auto px-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
           <div>
             <h2 className="text-2xl font-bold font-display text-slate-950">

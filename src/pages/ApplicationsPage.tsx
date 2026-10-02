@@ -96,7 +96,7 @@ export function ApplicationsPage({ onOpenQuote, onNavigate }: ApplicationsPagePr
       </section>
 
       {/* Main Applications List */}
-      <section className="py-20 max-w-7xl mx-auto px-6 space-y-20">
+      <section className="py-10 sm:py-12 max-w-7xl mx-auto px-6 space-y-12 sm:space-y-14">
         {applications.map((app, index) => {
           const Icon = app.icon;
           const isReversed = index % 2 === 1;

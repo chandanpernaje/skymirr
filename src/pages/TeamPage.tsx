@@ -57,7 +57,7 @@ export const TeamPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="max-w-3xl">
             <div className="text-xs font-mono font-bold tracking-widest text-cyan-300 uppercase mb-2">
-              Executive Leadership & Board Governance
+              Team &amp; Leadership
             </div>
             <h1 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white leading-tight">
               Team & Leadership
@@ -71,14 +71,6 @@ export const TeamPage: React.FC = () => {
 
       {/* Complete Official Team Section with 14 Portraits & Bio Modals */}
       <TeamSection />
-
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 space-y-24 relative z-10">
-        
-
-
-
-
-      </div>
 
       {/* ========================================================
           FULL BIO MODAL WITH SMOOTH FADE & SLIDE ANIMATION
@@ -101,7 +93,7 @@ export const TeamPage: React.FC = () => {
                   className="w-14 h-14 rounded-2xl object-cover border-2 border-white shadow-md bg-blue-600"
                 />
                 <div>
-                  <h3 className="text-sm sm:text-base font-black text-slate-950 font-sans">
+                  <h3 className="text-sm sm:text-base font-black text-slate-950 font-display">
                     {selectedBio.name}
                   </h3>
                   <span className="text-xs font-bold text-blue-700 uppercase tracking-wide bg-blue-100/70 px-2.5 py-0.5 rounded-full inline-block mt-0.5">

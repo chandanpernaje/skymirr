@@ -122,14 +122,7 @@ export function Footer({ onNavigate }: FooterProps) {
                   Applications
                 </button>
               </li>
-              <li>
-                <button
-                  onClick={() => handleNav('partners')}
-                  className="text-slate-600 hover:text-sky-700 transition-colors cursor-pointer"
-                >
-                  Partners &amp; Distributors
-                </button>
-              </li>
+
               <li>
                 <button
                   onClick={() => handleNav('about')}

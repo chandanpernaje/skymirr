@@ -105,94 +105,96 @@ export function ProductsPage({ onOpenQuote, onNavigate, initialCategory = 'all' 
         </div>
       </section>
 
-      {/* Flagship Product Showcase */}
-      <section className="py-16 bg-[#F8FAFC] border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-xs font-bold text-blue-700 tracking-wider uppercase mb-2 font-mono">
-            Featured Hardware
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-950 font-display mb-8">
-            Sky5G™ Wireless Router (TCPA-117)
-          </h2>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            {/* Left: Router Hardware Card with Click-to-Zoom */}
-            <div className="lg:col-span-6 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm overflow-hidden group">
-              <div
-                onClick={() =>
-                  openZoom(
-                    '/images/5g-routers.jpg',
-                    'Sky5G™ Wireless Router (TCPA-117)',
-                    'Carrier-Certified 5G Sub-6 & Wi-Fi 7 Enterprise Gateway',
-                    [
-                      { label: 'Bands', value: 'Sub-6 GHz & Wi-Fi 7' },
-                      { label: 'Carrier', value: 'AT&T & T-Mobile' },
-                      { label: 'Antenna', value: 'Dual Internal MuLCAT®' },
-                    ],
-                    'CES® 2026 Innovation Awards Honoree'
-                  )
-                }
-                className="relative aspect-[16/11] bg-slate-900 rounded-xl overflow-hidden flex items-center justify-center p-4 cursor-zoom-in group/featured"
-                title="Click to zoom in high-resolution"
-              >
-                <img
-                  src="/images/5g-routers.jpg"
-                  alt="Sky5G Wireless Router (TCPA-117)"
-                  className="w-full h-full object-contain group-hover/featured:scale-106 transition-transform duration-500"
-                />
-                <div className="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-white text-[10px] font-mono border border-white/20">
-                  Model: TCPA-117 · FCC ID: 2BXXX-TCPA117
-                </div>
-
-                <div className="absolute top-3 right-3 bg-blue-600 text-white px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold flex items-center gap-1 shadow-md opacity-0 group-hover/featured:opacity-100 transition-opacity">
-                  <ZoomIn className="w-3 h-3" />
-                  <span>Zoom / Inspect</span>
-                </div>
-              </div>
+      {/* Flagship Product Showcase (Shown only for 'all' or 'router' category) */}
+      {(activeCategory === 'all' || activeCategory === 'router') && (
+        <section className="py-10 sm:py-12 bg-[#F8FAFC] border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-xs font-bold text-blue-700 tracking-wider uppercase mb-2 font-mono">
+              Featured Hardware
             </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-950 font-display mb-8">
+              Sky5G™ Wireless Router (TCPA-117)
+            </h2>
 
-            {/* Right: Key Specs & Features */}
-            <div className="lg:col-span-6 space-y-6">
-              <div>
-                <span className="text-xs font-mono font-bold text-blue-600 uppercase tracking-wider block mb-1">
-                  CES® 2026 Innovation Awards Honoree
-                </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-950 font-display">
-                  Next-Generation Carrier-Grade Fixed Wireless Access
-                </h3>
-                <p className="text-slate-600 text-sm mt-3 leading-relaxed">
-                  Engineered specifically for challenging RF environments where traditional routers fail to connect.
-                  Equipped with dual internal patented MuLCAT® antennas providing unmatched constructive phase alignment.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 rounded-xl bg-white border border-slate-200">
-                  <div className="text-xs text-slate-500 font-mono">Cell Edge Reach</div>
-                  <div className="text-xl font-extrabold text-blue-700 font-mono mt-1">+42% Range</div>
-                </div>
-                <div className="p-4 rounded-xl bg-white border border-slate-200">
-                  <div className="text-xs text-slate-500 font-mono">Throughput</div>
-                  <div className="text-xl font-extrabold text-slate-900 font-mono mt-1">Multi-Gigabit</div>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-3">
-                <button
-                  onClick={() => onOpenQuote('Sky5G™ Wireless Router (TCPA-117)')}
-                  className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-xl transition-all shadow-md shadow-blue-600/25 flex items-center gap-2 cursor-pointer font-display"
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+              {/* Left: Router Hardware Card with Click-to-Zoom */}
+              <div className="lg:col-span-6 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm overflow-hidden group">
+                <div
+                  onClick={() =>
+                    openZoom(
+                      '/images/5g-routers.jpg',
+                      'Sky5G™ Wireless Router (TCPA-117)',
+                      'Carrier-Certified 5G Sub-6 & Wi-Fi 7 Enterprise Gateway',
+                      [
+                        { label: 'Bands', value: 'Sub-6 GHz & Wi-Fi 7' },
+                        { label: 'Carrier', value: 'AT&T & T-Mobile' },
+                        { label: 'Antenna', value: 'Dual Internal MuLCAT®' },
+                      ],
+                      'CES® 2026 Innovation Awards Honoree'
+                    )
+                  }
+                  className="relative aspect-[16/11] bg-slate-900 rounded-xl overflow-hidden flex items-center justify-center p-4 cursor-zoom-in group/featured"
+                  title="Click to zoom in high-resolution"
                 >
-                  <span>Request Evaluation Unit</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
+                  <img
+                    src="/images/5g-routers.jpg"
+                    alt="Sky5G Wireless Router (TCPA-117)"
+                    className="w-full h-full object-contain group-hover/featured:scale-106 transition-transform duration-500"
+                  />
+                  <div className="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-white text-[10px] font-mono border border-white/20">
+                    Model: TCPA-117 · FCC ID: 2BXXX-TCPA117
+                  </div>
+
+                  <div className="absolute top-3 right-3 bg-blue-600 text-white px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold flex items-center gap-1 shadow-md opacity-0 group-hover/featured:opacity-100 transition-opacity">
+                    <ZoomIn className="w-3 h-3" />
+                    <span>Zoom / Inspect</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Key Specs & Features */}
+              <div className="lg:col-span-6 space-y-6">
+                <div>
+                  <span className="text-xs font-mono font-bold text-blue-600 uppercase tracking-wider block mb-1">
+                    CES® 2026 Innovation Awards Honoree
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-950 font-display">
+                    Next-Generation Carrier-Grade Fixed Wireless Access
+                  </h3>
+                  <p className="text-slate-600 text-sm mt-3 leading-relaxed">
+                    Engineered specifically for challenging RF environments where traditional routers fail to connect.
+                    Equipped with dual internal patented MuLCAT® antennas providing unmatched constructive phase alignment.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="p-4 rounded-xl bg-white border border-slate-200">
+                    <div className="text-xs text-slate-500 font-mono">Cell Edge Reach</div>
+                    <div className="text-xl font-extrabold text-blue-700 font-mono mt-1">+42% Range</div>
+                  </div>
+                  <div className="p-4 rounded-xl bg-white border border-slate-200">
+                    <div className="text-xs text-slate-500 font-mono">Throughput</div>
+                    <div className="text-xl font-extrabold text-slate-900 font-mono mt-1">Multi-Gigabit</div>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-3">
+                  <button
+                    onClick={() => onOpenQuote('Sky5G™ Wireless Router (TCPA-117)')}
+                    className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-xl transition-all shadow-md shadow-blue-600/25 flex items-center gap-2 cursor-pointer font-display"
+                  >
+                    <span>Request Evaluation Unit</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Main Filterable Product Grid */}
-      <section className="py-16">
+      <section className="py-10 sm:py-12">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-xl sm:text-2xl font-black font-display text-slate-950">

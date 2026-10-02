@@ -46,88 +46,82 @@ export function ProductDetailsPage({ productId, onOpenQuote, onNavigate }: Produ
           {/* Left Content */}
           <div className="flex-1 space-y-6">
             {product.isNew && (
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[11px] font-bold tracking-wide uppercase">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[11px] font-bold tracking-wide uppercase font-mono">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
                 Now Available
               </div>
             )}
             
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#0FA5E9] tracking-tight">
-              {product.name.replace('SkyBlade™ ', '').replace('BioTrack™ ', '').replace('SkyTrack™ ', '')}
+            <h1 className="text-3xl sm:text-5xl font-black text-slate-900 font-display tracking-tight leading-tight">
+              {product.name}
             </h1>
             
-            <h2 className="text-xl sm:text-2xl text-slate-700 font-medium">
+            <h2 className="text-lg sm:text-2xl text-blue-700 font-semibold font-display">
               {product.tagline}
             </h2>
             
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl">
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl font-medium">
               {product.description}
             </p>
 
             {/* Quick Specs inline */}
-            <div className="flex flex-wrap gap-4 py-4">
-              <div className="flex items-center gap-2 px-4 py-2 bg-white border border-blue-100 rounded-xl shadow-xs text-sm font-semibold text-slate-700">
-                <div className="text-blue-500">📈</div>
-                {product.specs.gain ? `${product.specs.gain}` : 'High Efficiency'}
+            <div className="flex flex-wrap gap-3 py-2">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 bg-white border border-slate-200/80 rounded-xl shadow-2xs text-xs font-semibold text-slate-700">
+                <span className="text-blue-600 font-mono font-bold">GAIN:</span>
+                <span>{product.specs.gain ? `${product.specs.gain}` : 'High Efficiency'}</span>
               </div>
-              <div className="flex items-center gap-2 text-sm font-semibold text-blue-600">
-                <div className="text-blue-500">{"('A')"}</div>
-                {product.specs.frequency || 'Multi-band'}
+              <div className="flex items-center gap-2 px-3.5 py-1.5 bg-white border border-slate-200/80 rounded-xl shadow-2xs text-xs font-semibold text-slate-700">
+                <span className="text-blue-600 font-mono font-bold">FREQ:</span>
+                <span>{product.specs.frequency || 'Multi-band'}</span>
               </div>
-              <div className="flex items-center gap-2 text-sm font-semibold text-slate-700">
-                <div className="text-blue-500">📏</div>
-                {product.specs.dimensions || 'Compact Form Factor'}
+              <div className="flex items-center gap-2 px-3.5 py-1.5 bg-white border border-slate-200/80 rounded-xl shadow-2xs text-xs font-semibold text-slate-700">
+                <span className="text-blue-600 font-mono font-bold">FORM:</span>
+                <span>{product.specs.dimensions || 'Compact Form Factor'}</span>
               </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-4">
+            <div className="flex flex-wrap items-center gap-3 pt-3">
               <button 
                 onClick={() => onOpenQuote(product.name)}
-                className="px-6 py-3 bg-[#0FA5E9] hover:bg-[#0284C7] text-white font-semibold text-sm rounded-full transition-colors flex items-center gap-2 shadow-md shadow-sky-500/20 cursor-pointer"
+                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-xl transition-all flex items-center gap-2 shadow-md shadow-blue-600/25 cursor-pointer font-display"
               >
-                <span>Contact Us Now</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>Request Evaluation / Quote</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
               
               <button 
-                onClick={() => window.open(product.datasheetUrl || '#', '_blank')}
-                className="px-6 py-3 bg-white hover:bg-slate-50 text-slate-800 font-semibold text-sm rounded-full border border-slate-200 transition-colors flex items-center gap-2 shadow-xs cursor-pointer"
+                onClick={() => window.open(product.datasheetUrl || 'https://skymirr.com', '_blank')}
+                className="px-5 py-3 bg-white hover:bg-slate-50 text-slate-800 font-semibold text-xs rounded-xl border border-slate-200 transition-colors flex items-center gap-2 shadow-2xs cursor-pointer font-display"
               >
                 <span>Download Datasheet</span>
-                <Download className="w-4 h-4 text-slate-400" />
+                <Download className="w-3.5 h-3.5 text-slate-400" />
               </button>
 
               <button 
                 onClick={() => onOpenQuote(product.name)}
-                className="px-6 py-3 bg-[#0FA5E9] hover:bg-[#0284C7] text-white font-semibold text-sm rounded-full transition-colors flex items-center gap-2 shadow-md shadow-sky-500/20 cursor-pointer"
+                className="px-5 py-3 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs rounded-xl transition-colors flex items-center gap-2 shadow-2xs cursor-pointer font-display"
               >
-                <span>Pre-order Now</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-
-              <button 
-                onClick={() => onOpenQuote(product.name)}
-                className="px-6 py-3 bg-[#0FA5E9] hover:bg-[#0284C7] text-white font-semibold text-sm rounded-full transition-colors flex items-center gap-2 shadow-md shadow-sky-500/20 cursor-pointer"
-              >
-                <span>Buy Online</span>
-                <ShoppingCart className="w-4 h-4" />
+                <span>Buy Online / Order</span>
+                <ShoppingCart className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
 
-          {/* Right Image */}
-          <div className="flex-1 w-full max-w-md lg:max-w-xl">
-            <div className="relative aspect-square md:aspect-auto md:h-[600px] flex items-center justify-center">
-              {product.image ? (
-                <img 
-                  src={product.image} 
-                  alt={product.name} 
-                  className="w-full h-full object-contain filter drop-shadow-2xl"
-                />
-              ) : (
-                <div className="text-slate-300">No Image Available</div>
-              )}
+          {/* Right Image Box (100% Fit Image Container) */}
+          <div className="flex-1 w-full max-w-md lg:max-w-lg">
+            <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-md flex items-center justify-center">
+              <div className="aspect-square w-full bg-slate-900/5 rounded-2xl p-6 flex items-center justify-center relative overflow-hidden border border-slate-100">
+                {product.image ? (
+                  <img 
+                    src={product.image} 
+                    alt={product.name} 
+                    className="w-full h-full object-contain filter drop-shadow-xl hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <div className="text-slate-400 font-mono text-xs">No Image Available</div>
+                )}
+              </div>
             </div>
           </div>
           

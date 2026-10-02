@@ -30,9 +30,6 @@ export function TeamSection() {
         {/* Anti-Slop Editorial Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div className="max-w-2xl">
-            <div className="text-xs font-bold text-blue-700 tracking-wider uppercase mb-2 font-mono">
-              About Us · Executive Leadership &amp; Board
-            </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight uppercase [text-wrap:balance]">
               The Engineers &amp; Pioneers Behind SkyMirr
             </h2>
@@ -45,9 +42,9 @@ export function TeamSection() {
           <div className="flex items-center gap-2 p-1.5 bg-slate-100/80 backdrop-blur-md border border-slate-200/60 rounded-2xl mt-6 md:mt-0 flex-wrap relative shadow-inner">
             {[
               { id: 'all', label: 'All', count: SKYMIRR_DATA.team.length },
-              { id: 'leadership', label: 'Executive Team', count: 8 },
-              { id: 'board', label: 'Board of Directors', count: 3 },
-              { id: 'advisory', label: 'Advisory Board', count: 3 }
+              { id: 'leadership', label: 'Executive Team', count: SKYMIRR_DATA.team.filter(m => m.category === 'leadership').length },
+              { id: 'board', label: 'Board of Directors', count: SKYMIRR_DATA.team.filter(m => m.category === 'board').length },
+              { id: 'advisory', label: 'Advisory Board', count: SKYMIRR_DATA.team.filter(m => m.category === 'advisory').length }
             ].map((tab) => (
               <button
                 key={tab.id}

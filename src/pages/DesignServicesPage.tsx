@@ -63,7 +63,7 @@ export function DesignServicesPage({ onOpenQuote, onNavigate }: DesignServicesPa
       </section>
 
       {/* Services Grid */}
-      <section className="py-24 max-w-7xl mx-auto px-6 relative">
+      <section className="py-10 sm:py-12 max-w-7xl mx-auto px-6 relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-50/50 via-white to-white -z-10" />
 
         <motion.div 
@@ -71,7 +71,7 @@ export function DesignServicesPage({ onOpenQuote, onNavigate }: DesignServicesPa
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-20"
+          className="text-center max-w-3xl mx-auto mb-10 sm:mb-12"
         >
           <div className="text-sm font-bold text-blue-600 tracking-wider uppercase mb-3 font-mono">
             Our Approach
