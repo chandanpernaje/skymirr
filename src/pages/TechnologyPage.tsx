@@ -302,62 +302,6 @@ export function TechnologyPage({ onOpenQuote, onNavigate }: TechnologyPageProps)
           </div>
         </div>
 
-      {/* 5 Core Advantages Section */}
-      <div className="py-10 sm:py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.55 }}
-              className="text-center max-w-2xl mx-auto mb-10"
-            >
-              <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider block mb-1">
-                Verified Physical Performance
-              </span>
-              <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight uppercase [text-wrap:balance]">
-                The 5 MuLCAT® Engineering Advantages
-              </h3>
-            </motion.div>
-
-            <div className="relative">
-              <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-6 pb-12 pt-8 px-4 sm:px-8" style={{ perspective: '1200px' }}>
-                {SKYMIRR_DATA.mulcatTechnology.advantages.map((adv, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, z: -100, rotateY: 15 }}
-                    whileInView={{ opacity: 1, z: 0, rotateY: 0 }}
-                    viewport={{ once: true, margin: '-30px' }}
-                    transition={{ duration: 0.8, delay: idx * 0.15, type: "spring", stiffness: 80 }}
-                    whileHover={{ 
-                      scale: 1.05, 
-                      rotateY: -8,
-                      rotateX: 8,
-                      z: 50,
-                      boxShadow: "0 25px 50px -12px rgba(37, 99, 235, 0.25)"
-                    }}
-                    className="group w-full sm:w-[300px] lg:w-[320px] bg-white/90 backdrop-blur-xl border border-slate-200/80 hover:border-blue-400/80 rounded-[2rem] p-8 transition-all duration-300 shadow-xl flex flex-col hover:bg-white"
-                    style={{ transformStyle: 'preserve-3d' }}
-                  >
-                    <div style={{ transform: 'translateZ(30px)' }}>
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 group-hover:from-blue-600 group-hover:to-indigo-600 group-hover:text-white text-blue-600 font-mono font-black text-xl flex items-center justify-center mb-6 shadow-inner transition-colors duration-500">
-                        0{idx + 1}
-                      </div>
-                      <h4 className="text-xl font-bold text-slate-900 font-display leading-snug mb-4">
-                        {adv.title}
-                      </h4>
-                      <p className="text-sm text-slate-600 leading-relaxed font-medium">
-                        {adv.desc}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
