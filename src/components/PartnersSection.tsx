@@ -11,7 +11,7 @@ export function PartnersSection({ onNavigate }: PartnersSectionProps = {}) {
   const distributors = SKYMIRR_DATA.partners.filter((p) => p.category === 'Distributor');
 
   return (
-    <section id="partners-grid" className="scroll-mt-20 py-20 sm:py-24 bg-[#F8FAFC] border-t border-slate-200 relative overflow-hidden">
+    <section id="partners-grid" className="scroll-mt-20 py-10 sm:py-12 bg-[#F8FAFC] border-t border-slate-200 relative overflow-hidden">
       {/* Background radial glow */}
       <div className="pointer-events-none absolute top-10 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-blue-500/5 blur-[120px] rounded-full" />
 

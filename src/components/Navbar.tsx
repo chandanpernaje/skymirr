@@ -14,6 +14,8 @@ export function Navbar({ activePage, onNavigate, onOpenQuote, onOpenSearch }: Na
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,166 +50,194 @@ export function Navbar({ activePage, onNavigate, onOpenQuote, onOpenSearch }: Na
       </div>
 
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 border-b ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 flex flex-col ${
           scrolled
-            ? 'bg-white/85 backdrop-blur-xl border-slate-200/50 shadow-lg py-2'
-            : 'bg-white/50 backdrop-blur-md border-transparent py-4'
+            ? 'shadow-md border-b border-slate-200'
+            : ''
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-2 sm:gap-4">
-          {/* Logo matching https://skymirr.com/ */}
-          <button
-            onClick={() => handleNavClick('home')}
-            className="flex items-center gap-2 group shrink-0 cursor-pointer text-left"
-          >
-            <img
-              src="/images/skymirr-logo-footer.png"
-              alt="SkyMirr"
-              className="h-8 sm:h-9 w-auto object-contain transition-all duration-500 group-hover:opacity-80 brightness-0 opacity-90"
-            />
-          </button>
-
-          {/* Desktop Navigation Links from https://skymirr.com/ */}
-          <nav className="hidden xl:flex items-center gap-6 text-[13px] tracking-wide font-semibold text-slate-600 uppercase">
+        {/* Top Tier: Light Blue, Logo + Search */}
+        <div className="bg-sky-100 py-3 sm:py-4 w-full border-b border-sky-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
+            {/* Logo */}
             <button
               onClick={() => handleNavClick('home')}
-              className={`transition-colors cursor-pointer tracking-wider ${
-                activePage === 'home' ? 'text-slate-900 font-bold border-b border-slate-900 pb-1' : 'hover:text-slate-900'
-              }`}
+              className="flex items-center gap-2 group shrink-0 cursor-pointer text-left"
             >
-              Home
+              <img
+                src="/images/skymirr-logo-3d-hd.png"
+                alt="SkyMirr"
+                className="h-10 sm:h-12 lg:h-14 w-auto object-contain transition-all duration-500 group-hover:opacity-80"
+              />
             </button>
 
-            {/* Products Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => setProductsDropdownOpen(true)}
-              onMouseLeave={() => setProductsDropdownOpen(false)}
-            >
+            {/* Desktop Instant Search Trigger (looks like input field) */}
+            <div className="hidden xl:flex items-center">
               <button
-                onClick={() => handleNavClick('products')}
-                className={`flex items-center gap-1.5 py-1.5 transition-colors cursor-pointer tracking-wider ${
-                  activePage === 'products' ? 'text-slate-900 font-bold border-b border-slate-900 pb-1' : 'hover:text-slate-900'
-                }`}
+                onClick={onOpenSearch}
+                className="flex items-center justify-between w-64 md:w-80 h-10 px-4 rounded bg-white text-slate-500 border border-slate-200 shadow-inner hover:bg-slate-50 transition-colors cursor-text group"
+                aria-label="Search"
               >
-                <span>Products</span>
-                <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-900 transition-transform" />
+                <span className="text-sm font-sans">Search here...</span>
+                <Search className="w-4 h-4 text-slate-500 group-hover:text-slate-800 transition-colors" />
               </button>
-
-              {productsDropdownOpen && (
-                <div className="absolute top-full left-0 w-52 bg-white rounded-xl shadow-xl border border-slate-200 py-2 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
-                  <button
-                    onClick={() => handleNavClick('products')}
-                    className="w-full text-left block px-4 py-2 text-xs font-semibold text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition-colors tracking-wide"
-                  >
-                    All Products
-                  </button>
-                  <button
-                    onClick={() => handleNavClick('antennas')}
-                    className="w-full text-left block px-4 py-2 text-xs font-semibold text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition-colors tracking-wide"
-                  >
-                    Antennas
-                  </button>
-                  <button
-                    onClick={() => handleNavClick('routers')}
-                    className="w-full text-left block px-4 py-2 text-xs font-semibold text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition-colors tracking-wide"
-                  >
-                    Routers (Sky5G™)
-                  </button>
-                  <button
-                    onClick={() => handleNavClick('trackers')}
-                    className="w-full text-left block px-4 py-2 text-xs font-semibold text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition-colors tracking-wide"
-                  >
-                    Asset Trackers
-                  </button>
-                </div>
-              )}
             </div>
 
-            <button
-              onClick={() => handleNavClick('technology')}
-              className={`transition-colors cursor-pointer tracking-wider ${
-                activePage === 'technology' ? 'text-slate-900 font-bold border-b border-slate-900 pb-1' : 'hover:text-slate-900'
-              }`}
-            >
-              Technology
-            </button>
+            {/* Mobile Hamburger Button + Mobile Search */}
+            <div className="flex xl:hidden items-center gap-3">
+              <button
+                onClick={onOpenSearch}
+                className="p-2 rounded-lg text-slate-700 hover:bg-white/50 transition-colors"
+                aria-label="Search SkyMirr"
+              >
+                <Search className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2 rounded-lg text-slate-700 hover:bg-white/50 transition-colors border border-slate-300"
+                aria-label="Toggle Mobile Navigation Menu"
+              >
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
+          </div>
+        </div>
 
+        {/* Bottom Tier: Light Grey/White (Navigation Links) */}
+        <div className="hidden xl:block bg-slate-50 border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <nav className="flex items-center gap-8 lg:gap-10 text-[12px] lg:text-[13px] tracking-widest font-bold text-slate-600 uppercase h-14">
+              <button
+                onClick={() => handleNavClick('home')}
+                className={`transition-colors h-full flex items-center cursor-pointer pt-[2px] ${
+                  activePage === 'home' ? 'text-blue-700 border-b-[3px] border-blue-700' : 'hover:text-blue-700 border-b-[3px] border-transparent'
+                }`}
+              >
+                Home
+              </button>
 
+              {/* Products Dropdown */}
+              <div
+                className="relative h-full flex items-center"
+                onMouseEnter={() => setProductsDropdownOpen(true)}
+                onMouseLeave={() => setProductsDropdownOpen(false)}
+              >
+                <button
+                  onClick={() => handleNavClick('products')}
+                  className={`flex items-center h-full gap-1 transition-colors cursor-pointer pt-[2px] ${
+                    activePage === 'products' ? 'text-blue-700 border-b-[3px] border-blue-700' : 'hover:text-blue-700 border-b-[3px] border-transparent'
+                  }`}
+                >
+                  <span>Products</span>
+                  <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-700" />
+                </button>
 
-            <button
-              onClick={() => handleNavClick('design-services')}
-              className={`transition-colors cursor-pointer tracking-wider ${
-                activePage === 'design-services' ? 'text-slate-900 font-bold border-b border-slate-900 pb-1' : 'hover:text-slate-900'
-              }`}
-            >
-              Design Services
-            </button>
+                {productsDropdownOpen && (
+                  <div className="absolute top-full left-0 w-52 bg-white shadow-xl border border-slate-200 py-2 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                    <button
+                      onClick={() => handleNavClick('products')}
+                      className="w-full text-left block px-4 py-2 text-xs font-semibold text-slate-700 hover:text-blue-700 hover:bg-slate-50 transition-colors tracking-wide"
+                    >
+                      All Products
+                    </button>
+                    <button
+                      onClick={() => handleNavClick('antennas')}
+                      className="w-full text-left block px-4 py-2 text-xs font-semibold text-slate-700 hover:text-blue-700 hover:bg-slate-50 transition-colors tracking-wide"
+                    >
+                      Antennas
+                    </button>
+                    <button
+                      onClick={() => handleNavClick('routers')}
+                      className="w-full text-left block px-4 py-2 text-xs font-semibold text-slate-700 hover:text-blue-700 hover:bg-slate-50 transition-colors tracking-wide"
+                    >
+                      Routers (Sky5G™)
+                    </button>
+                    <button
+                      onClick={() => handleNavClick('trackers')}
+                      className="w-full text-left block px-4 py-2 text-xs font-semibold text-slate-700 hover:text-blue-700 hover:bg-slate-50 transition-colors tracking-wide"
+                    >
+                      Asset Trackers
+                    </button>
+                  </div>
+                )}
+              </div>
 
-            <button
-              onClick={() => handleNavClick('partners')}
-              className={`transition-colors cursor-pointer tracking-wider ${
-                activePage === 'partners' ? 'text-slate-900 font-bold border-b border-slate-900 pb-1' : 'hover:text-slate-900'
-              }`}
-            >
-              Our Partners
-            </button>
+              <button
+                onClick={() => handleNavClick('technology')}
+                className={`transition-colors h-full flex items-center cursor-pointer pt-[2px] ${
+                  activePage === 'technology' ? 'text-blue-700 border-b-[3px] border-blue-700' : 'hover:text-blue-700 border-b-[3px] border-transparent'
+                }`}
+              >
+                Technology
+              </button>
 
+              <button
+                onClick={() => handleNavClick('design-services')}
+                className={`transition-colors h-full flex items-center cursor-pointer pt-[2px] ${
+                  activePage === 'design-services' ? 'text-blue-700 border-b-[3px] border-blue-700' : 'hover:text-blue-700 border-b-[3px] border-transparent'
+                }`}
+              >
+                Services
+              </button>
 
+              {/* The Latest Dropdown */}
+              <div
+                className="relative h-full flex items-center"
+              >
+                <button
+                  onClick={() => handleNavClick('latest')}
+                  className={`flex items-center h-full gap-1 transition-colors cursor-pointer pt-[2px] ${
+                    activePage === 'latest' ? 'text-blue-700 border-b-[3px] border-blue-700' : 'hover:text-blue-700 border-b-[3px] border-transparent'
+                  }`}
+                >
+                  <span>The Latest@SkyMirr</span>
+                  <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-700" />
+                </button>
+              </div>
 
-            <button
-              onClick={() => handleNavClick('about')}
-              className={`transition-colors cursor-pointer tracking-wider ${
-                activePage === 'about' ? 'text-slate-900 font-bold border-b border-slate-900 pb-1' : 'hover:text-slate-900'
-              }`}
-            >
-              About Us
-            </button>
+              {/* About Us Dropdown */}
+              <div
+                className="relative h-full flex items-center"
+                onMouseEnter={() => setAboutDropdownOpen(true)}
+                onMouseLeave={() => setAboutDropdownOpen(false)}
+              >
+                <button
+                  onClick={() => handleNavClick('about')}
+                  className={`flex items-center h-full gap-1 transition-colors cursor-pointer pt-[2px] ${
+                    (activePage === 'about' || activePage === 'team') ? 'text-blue-700 border-b-[3px] border-blue-700' : 'hover:text-blue-700 border-b-[3px] border-transparent'
+                  }`}
+                >
+                  <span>About Us</span>
+                  <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-700" />
+                </button>
 
-            <button
-              onClick={() => handleNavClick('contact')}
-              className={`transition-colors cursor-pointer tracking-wider ${
-                activePage === 'contact' ? 'text-slate-900 font-bold border-b border-slate-900 pb-1' : 'hover:text-slate-900'
-              }`}
-            >
-              Contact Us
-            </button>
-          </nav>
+                {aboutDropdownOpen && (
+                  <div className="absolute top-full left-0 w-48 bg-white shadow-xl border border-slate-200 py-2 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                    <button
+                      onClick={() => handleNavClick('about')}
+                      className="w-full text-left block px-4 py-2 text-xs font-semibold text-slate-700 hover:text-blue-700 hover:bg-slate-50 transition-colors tracking-wide"
+                    >
+                      Company Overview
+                    </button>
+                    <button
+                      onClick={() => handleNavClick('team')}
+                      className="w-full text-left block px-4 py-2 text-xs font-semibold text-slate-700 hover:text-blue-700 hover:bg-slate-50 transition-colors tracking-wide"
+                    >
+                      Team &amp; Leadership
+                    </button>
+                  </div>
+                )}
+              </div>
 
-          {/* Right Header Actions & Global Search Bar Trigger */}
-          <div className="flex items-center gap-2 sm:gap-4">
-            {/* Desktop Instant Search Trigger */}
-            <button
-              onClick={onOpenSearch}
-              className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/60 hover:bg-white backdrop-blur-sm border border-slate-200 text-slate-600 hover:text-slate-900 text-xs font-mono transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md hover:-translate-y-0.5 group"
-              title="Search SkyMirr platform (⌘K / Ctrl+K)"
-              aria-label="Search SkyMirr platform"
-            >
-              <Search className="w-3.5 h-3.5 text-slate-700 group-hover:scale-110 transition-transform" />
-              <span className="hidden sm:inline font-medium text-slate-500 group-hover:text-slate-700 font-sans">
-                Search
-              </span>
-              <kbd className="hidden sm:inline px-1.5 py-0.5 text-[10px] font-bold bg-white text-slate-500 rounded-sm border border-slate-300 shadow-sm">
-                ⌘K
-              </kbd>
-            </button>
-
-            {/* Phone as shown on skymirr.com */}
-            <a
-              href="tel:321-393-1039"
-              className="hidden xl:flex items-center gap-1.5 text-xs font-mono font-bold text-slate-700 hover:text-slate-900 bg-slate-50 hover:bg-slate-100 px-3 py-1.5 rounded-sm border border-slate-200 transition-colors"
-            >
-              <Phone className="w-3.5 h-3.5 text-slate-700" />
-              <span>321-393-1039</span>
-            </a>
-            {/* Mobile Hamburger Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-700 hover:bg-slate-100 xl:hidden transition-colors border border-slate-200"
-              aria-label="Toggle Mobile Navigation Menu"
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
+              <button
+                onClick={() => handleNavClick('contact')}
+                className={`transition-colors h-full flex items-center cursor-pointer pt-[2px] ${
+                  activePage === 'contact' ? 'text-blue-700 border-b-[3px] border-blue-700' : 'hover:text-blue-700 border-b-[3px] border-transparent'
+                }`}
+              >
+                Contact Us
+              </button>
+            </nav>
           </div>
         </div>
 
@@ -320,14 +350,39 @@ export function Navbar({ activePage, onNavigate, onOpenQuote, onOpenSearch }: Na
 
 
 
-              <button
-                onClick={() => handleNavClick('about')}
-                className={`text-left py-3 transition-colors ${
-                  activePage === 'about' ? 'text-blue-700 font-bold' : 'hover:text-blue-600'
-                }`}
-              >
-                About Us &amp; Leadership
-              </button>
+              {/* Mobile About Accordion */}
+              <div className="py-2">
+                <button
+                  onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
+                  className="w-full flex items-center justify-between py-2 hover:text-blue-600 transition-colors cursor-pointer"
+                >
+                  <span className={(activePage === 'about' || activePage === 'team') ? 'text-blue-700 font-bold' : ''}>
+                    About Us
+                  </span>
+                  <ChevronDown
+                    className={`w-4 h-4 text-slate-400 transition-transform ${
+                      mobileAboutOpen ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+
+                {mobileAboutOpen && (
+                  <div className="pl-4 py-2 space-y-2 text-xs font-medium text-slate-600 bg-slate-50 rounded-lg my-1">
+                    <button
+                      onClick={() => handleNavClick('about')}
+                      className="block w-full text-left py-1 hover:text-blue-600 cursor-pointer"
+                    >
+                      Company Overview
+                    </button>
+                    <button
+                      onClick={() => handleNavClick('team')}
+                      className="block w-full text-left py-1 hover:text-blue-600 cursor-pointer"
+                    >
+                      Team &amp; Leadership
+                    </button>
+                  </div>
+                )}
+              </div>
 
               <button
                 onClick={() => handleNavClick('contact')}

@@ -491,30 +491,6 @@ export function SearchModal({ isOpen, onClose, onNavigate, onOpenQuote }: Search
                     <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-3">
                       <Search className="w-6 h-6" />
                     </div>
-                    <h4 className="text-base font-bold text-slate-900 font-display">
-                      Universal A to Z Search Engine
-                    </h4>
-                    <p className="text-xs text-slate-500 mt-1 max-w-md mx-auto">
-                      Search any term across products, antenna specs, 5G routers, firmware, scientific team, or frequency bands.
-                    </p>
-                  </div>
-
-                  {/* Popular Search Suggestions */}
-                  <div className="space-y-2">
-                    <span className="text-[11px] font-mono uppercase font-bold text-slate-400 tracking-wider block">
-                      Popular Search Terms
-                    </span>
-                    <div className="flex flex-wrap justify-center gap-1.5 max-w-lg mx-auto">
-                      {POPULAR_SEARCHES.map((term) => (
-                        <button
-                          key={term}
-                          onClick={() => setQuery(term)}
-                          className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 text-xs font-display font-medium transition-colors border border-slate-200 cursor-pointer"
-                        >
-                          {term}
-                        </button>
-                      ))}
-                    </div>
                   </div>
 
                   <div className="pt-4 border-t border-slate-100 text-[11px] font-mono text-slate-400">

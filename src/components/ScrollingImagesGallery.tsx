@@ -33,6 +33,7 @@ export interface GalleryItem {
   highlight: string;
   specs: { label: string; value: string }[];
   description: string;
+  navigateTarget?: string;
 }
 
 const GALLERY_ITEMS: GalleryItem[] = [
@@ -51,6 +52,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
       { label: 'VSWR', value: '< 2.0:1 Typ.' },
       { label: 'Radiation Pattern', value: 'Omni 360° Azimuth' },
     ],
+    navigateTarget: 'antennas',
   },
   {
     id: 'routers-gallery',
@@ -67,6 +69,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
       { label: 'Ethernet Ports', value: '2.5G WAN + 4x GbE LAN' },
       { label: 'Carrier Certs', value: 'AT&T, T-Mobile, PTCRB' },
     ],
+    navigateTarget: 'routers',
   },
   {
     id: 'trackers-gallery',
@@ -83,6 +86,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
       { label: 'Battery Capacity', value: 'Up to 7 Years Autonomous' },
       { label: 'Positioning', value: 'GPS, GLONASS, Galileo, BeiDou' },
     ],
+    navigateTarget: 'trackers',
   },
   {
     id: 'mimo-gallery',
@@ -99,6 +103,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
       { label: 'Submersion', value: 'IP67 Ingress Rated' },
       { label: 'Cable Length', value: 'Low-loss RG-58 / CFD200' },
     ],
+    navigateTarget: 'antennas',
   },
   {
     id: 'next-gen-gallery',
@@ -115,6 +120,7 @@ const GALLERY_ITEMS: GalleryItem[] = [
       { label: 'R&D Facility', value: 'Songdo 3D Anechoic Lab' },
       { label: 'Key Patent', value: 'Multi-Layer Reactive Coupling' },
     ],
+    navigateTarget: 'products',
   },
 ];
 
@@ -137,6 +143,7 @@ export function ScrollingImagesGallery({ onOpenQuote, onNavigate }: ScrollingIma
 
   // Hover state for Applications Accordion
   const [hoveredApp, setHoveredApp] = useState<string>('app-edu');
+  const [hoveredProduct, setHoveredProduct] = useState<string>('antennas-gallery');
 
   // Auto-advance if playing
   useEffect(() => {
@@ -229,7 +236,7 @@ export function ScrollingImagesGallery({ onOpenQuote, onNavigate }: ScrollingIma
   const activeProduct = GALLERY_ITEMS[activeIndex];
 
   return (
-    <section id="interactive-showcase" className="scroll-mt-20 py-20 sm:py-24 bg-sky-50 relative overflow-hidden border-t border-sky-100 text-slate-900">
+    <section id="interactive-showcase" className="scroll-mt-20 py-10 sm:py-12 bg-sky-50 relative overflow-hidden border-t border-sky-100 text-slate-900">
       {/* Radiant High-Tech Ambient Glows */}
       <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-white/40 blur-[140px] rounded-full" />
       <div className="pointer-events-none absolute bottom-0 right-10 w-[500px] h-[350px] bg-blue-100/50 blur-[120px] rounded-full" />
@@ -242,233 +249,114 @@ export function ScrollingImagesGallery({ onOpenQuote, onNavigate }: ScrollingIma
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12"
+          className="flex flex-col items-center text-center gap-6 mb-12"
         >
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-white border border-sky-200 text-sky-800 text-xs font-mono font-bold tracking-widest uppercase mb-3 shadow-sm">
+          <div className="flex flex-col items-center">
+            <div className="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-sm bg-white border border-sky-200 text-sky-800 text-xs font-mono font-bold tracking-widest uppercase mb-3 shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-sky-600 animate-pulse" />
-              <span>Interactive Hardware Slider &amp; Spec Inspector</span>
+              <span>WHEN IT HAS TO CONNECT, IT HAS TO BE SKYMIRR</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight uppercase [text-wrap:balance]">
-              CORE HARDWARE &amp; TECHNOLOGY SHOWCASE
+              PRODUCTS
             </h2>
-            <p className="text-sky-800 font-sans text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
-              Explore authentic SkyMirr carrier-grade antennas, 5G gateways, and IoT devices. Click, drag to scroll, or swipe to inspect verified RF specifications.
+            <p className="text-sky-800 font-sans text-sm sm:text-base mt-2 max-w-2xl leading-relaxed mx-auto">
+              We develop/manufacture advanced RF technology-based products that better our lives, such as cost-effective, better performing, broadband wireless communications for everyone and medical applications that treat serious disease far more effectively
             </p>
           </div>
-
-          {/* Slider Controls: Counter, Play/Pause, Next/Prev */}
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 bg-white border border-slate-200 rounded-sm px-3.5 py-2 font-mono text-xs text-slate-500 shadow-sm">
-              <span className="font-bold text-sky-700">0{activeIndex + 1}</span>
-              <span className="text-slate-400">/</span>
-              <span>0{GALLERY_ITEMS.length}</span>
-            </div>
-
-            <button
-              onClick={() => setIsPlaying(!isPlaying)}
-              className={`p-2.5 rounded-sm border transition-all cursor-pointer shadow-sm ${
-                isPlaying
-                  ? 'bg-sky-100 border-sky-300 text-sky-800'
-                  : 'bg-white border-slate-200 text-slate-500 hover:text-slate-800 hover:border-slate-300'
-              }`}
-              title={isPlaying ? 'Pause Slideshow' : 'Play Slideshow'}
-              aria-label={isPlaying ? 'Pause Slideshow' : 'Play Slideshow'}
-            >
-              {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
-            </button>
-
-            <button
-              onClick={prevSlide}
-              className="p-2.5 rounded-sm bg-white border border-slate-200 text-slate-600 hover:text-sky-700 hover:border-sky-300 transition-all cursor-pointer active:scale-95 shadow-sm"
-              aria-label="Previous hardware slide"
-            >
-              <ArrowLeft className="w-4 h-4" />
-            </button>
-
-            <button
-              onClick={nextSlide}
-              className="p-2.5 rounded-sm bg-slate-900 border border-slate-800 text-white hover:bg-slate-800 transition-all cursor-pointer active:scale-95 shadow-sm"
-              aria-label="Next hardware slide"
-            >
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
         </motion.div>
 
-        {/* Click-to-Move Category Tabs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex items-center gap-2 overflow-x-auto pb-3 mb-8 no-scrollbar"
-        >
-          {GALLERY_ITEMS.map((item, idx) => {
-            const isActive = activeIndex === idx;
-            return (
-              <button
-                key={item.id}
-                onClick={() => {
-                  setActiveIndex(idx);
-                  scrollToCard(idx);
-                }}
-                className={`shrink-0 px-4 py-2 rounded-sm text-xs font-semibold font-sans transition-all flex items-center gap-2 cursor-pointer border tracking-wide uppercase ${
-                  isActive
-                    ? 'bg-slate-800 border-slate-600 text-white shadow-sm scale-102'
-                    : 'bg-slate-900 border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-800 hover:border-slate-700'
-                }`}
-              >
-                <span className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-slate-300 animate-ping' : 'bg-slate-600'}`} />
-                <span>{item.category}</span>
-              </button>
-            );
-          })}
-        </motion.div>
+          {/* Products Accordion Layout */}
+          <div className="flex flex-col lg:flex-row h-[600px] lg:h-[500px] w-full gap-4 mt-8">
+            {GALLERY_ITEMS.map((item, idx) => {
+              const isHovered = hoveredProduct === item.id;
+              
+              const themeColors = [
+                { border: 'border-sky-400/30', bg: 'bg-sky-600/90', text: 'group-hover:text-sky-200' },
+                { border: 'border-indigo-400/30', bg: 'bg-indigo-600/90', text: 'group-hover:text-indigo-200' },
+                { border: 'border-emerald-400/30', bg: 'bg-emerald-600/90', text: 'group-hover:text-emerald-200' },
+                { border: 'border-amber-400/30', bg: 'bg-amber-600/90', text: 'group-hover:text-amber-200' },
+                { border: 'border-purple-400/30', bg: 'bg-purple-600/90', text: 'group-hover:text-purple-200' }
+              ];
+              const theme = themeColors[idx % themeColors.length];
 
-        {/* Featured Click-Move Active Display Card (Premium Desktop & Mobile Bento) */}
-        <motion.div
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          className="rounded-none bg-white border border-slate-200 p-5 sm:p-8 lg:p-10 shadow-xl relative overflow-hidden transition-all duration-500"
-        >
-          {/* Subtle Accent Glow Ring */}
-          <div className="pointer-events-none absolute -top-32 -right-32 w-96 h-96 bg-sky-100/50 blur-[100px] rounded-full" />
-          <div className="pointer-events-none absolute top-0 left-0 right-0 h-[2px] bg-sky-200" />
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left: 100% Correctly Fitted Hardware Photography in High-Tech Studio Enclosure */}
-            <div className="lg:col-span-6 flex flex-col items-center">
-              <div className="w-full relative aspect-[16/11] sm:aspect-[16/10] rounded-2xl bg-white border border-slate-200 p-4 sm:p-6 flex items-center justify-center overflow-hidden group shadow-[inset_0_0_60px_rgba(0,0,0,0.03)]">
-                {/* Clean Studio Background */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-slate-50 to-white pointer-events-none" />
-
-                {/* Subtle Radial Pedestal Glow behind hardware */}
-                <div className="absolute w-48 h-48 sm:w-64 sm:h-64 rounded-full bg-sky-50 blur-3xl pointer-events-none" />
-
-                {/* The Unobstructed Hardware Image with 100% Fit */}
-                <img
-                  src={activeProduct.image}
-                  alt={activeProduct.title}
-                  key={activeProduct.image}
-                  className="max-h-full max-w-full object-contain relative z-10 transition-transform duration-700 ease-out group-hover:scale-105 group-hover:-rotate-1 cursor-zoom-in mix-blend-multiply"
-                  onClick={() => setSelectedItem(activeProduct)}
-                  loading="lazy"
-                />
-
-                {/* Floating Micro-Badges: Clean Theme */}
-                <div className="absolute top-4 left-4 z-20">
-                  <span className="px-3 py-1.5 rounded-lg text-[10px] font-mono font-bold uppercase tracking-wider bg-white/80 backdrop-blur-md text-blue-700 border border-blue-100 shadow-sm">
-                    {activeProduct.badge}
-                  </span>
-                </div>
-
-                <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                  <button
-                    onClick={() => setSelectedItem(activeProduct)}
-                    className="p-2.5 rounded-xl bg-white/90 backdrop-blur-md hover:bg-blue-50 border border-slate-200 text-slate-600 hover:text-blue-700 transition-all shadow-lg cursor-pointer flex items-center gap-1.5 text-xs font-mono"
-                    title="Enlarge & Inspect Details"
-                  >
-                    <Maximize2 className="w-4 h-4" />
-                    <span className="hidden sm:inline text-[10px] uppercase tracking-wider font-bold">Inspect</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Quick Slide Dots Indicator */}
-              <div className="flex items-center justify-center gap-2 mt-4 w-full">
-                {GALLERY_ITEMS.map((item, idx) => (
-                  <button
-                    key={item.id}
-                    onClick={() => {
-                      setActiveIndex(idx);
-                      scrollToCard(idx);
-                    }}
-                    className={`h-1.5 rounded-sm transition-all cursor-pointer ${
-                      activeIndex === idx ? 'w-8 bg-slate-400' : 'w-2 bg-slate-800 hover:bg-slate-600'
-                    }`}
-                    aria-label={`Go to slide ${idx + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* Right: Technical Specifications & Commercial Inquiries */}
-            <div className="lg:col-span-6 space-y-6">
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-mono font-bold text-sky-600 uppercase tracking-widest">
-                    {activeProduct.category}
-                  </span>
-                  <span className="text-slate-300">·</span>
-                  <span className="text-xs font-mono text-slate-500">SkyMirr Engineering Spec</span>
-                </div>
-
-                <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight uppercase [text-wrap:balance]">
-                  {activeProduct.title}
-                </h3>
-                <p className="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed font-sans">
-                  {activeProduct.description}
-                </p>
-              </div>
-
-              {/* 4-Cell Engineering Specs Grid with Mobile Responsive Alignment */}
-              <div className="grid grid-cols-2 gap-3 pt-2">
-                {activeProduct.specs.map((spec, sIdx) => (
-                  <div
-                    key={sIdx}
-                    className="p-3 rounded-sm bg-slate-50 border border-slate-200 hover:border-slate-300 transition-colors"
-                  >
-                    <span className="text-[10px] font-mono text-slate-500 uppercase block tracking-wider">
-                      {spec.label}
-                    </span>
-                    <span className="text-xs sm:text-sm font-bold text-slate-800 font-mono mt-0.5 block truncate">
-                      {spec.value}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Highlight Pill */}
-              <div className="p-3.5 rounded-sm bg-sky-50 border border-sky-100 flex items-center justify-between gap-3">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-sky-600 shrink-0" />
-                  <span className="text-xs font-mono font-bold text-sky-800">
-                    {activeProduct.highlight}
-                  </span>
-                </div>
-                <span className="text-[10px] font-mono uppercase text-sky-600 font-semibold shrink-0">
-                  Carrier Grade
-                </span>
-              </div>
-
-              {/* Call-to-Action Buttons */}
-              <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
-                <button
-                  onClick={() => onOpenQuote(activeProduct.title)}
-                  className="w-full sm:w-auto flex-1 py-3 px-6 rounded-md bg-slate-900 hover:bg-slate-800 text-white font-bold text-[11px] font-sans tracking-widest uppercase transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-md hover:shadow-xl hover:-translate-y-0.5 active:scale-95 group"
+              return (
+                <motion.div
+                  key={item.id}
+                  layout
+                  onHoverStart={() => setHoveredProduct(item.id)}
+                  onClick={() => setHoveredProduct(item.id)}
+                  animate={{ flex: isHovered ? 4 : 1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  className="group relative rounded-2xl overflow-hidden border border-slate-200 shadow-xl cursor-pointer w-full bg-white"
                 >
-                  <span>Request Engineering Datasheet</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
+                  {/* Clean Studio Background */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-slate-50 to-white pointer-events-none" />
+                  <div className="absolute w-64 h-64 rounded-full bg-sky-50 blur-3xl pointer-events-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
 
-                {onNavigate && (
-                  <button
-                    onClick={() => onNavigate('products')}
-                    className="w-full sm:w-auto py-3 px-5 rounded-md bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 text-slate-700 text-[11px] font-semibold font-sans uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-1.5 cursor-pointer shadow-sm hover:shadow-md hover:-translate-y-0.5 active:scale-95 group"
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="absolute inset-0 w-full h-full object-contain p-8 mix-blend-multiply opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none transition-opacity duration-500 ${isHovered ? 'opacity-90' : 'opacity-70'}`} />
+                  
+                  {/* Text Content */}
+                  <motion.div 
+                    layout="position"
+                    className="absolute bottom-6 left-6 right-6"
                   >
-                    <span>View All Products</span>
-                    <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                  </button>
-                )}
-              </div>
-            </div>
+                    <div className="overflow-hidden flex">
+                      <motion.span 
+                        layout="position"
+                        className={`px-2.5 py-1 rounded-md backdrop-blur-sm text-white text-[10px] font-mono font-bold uppercase tracking-wider mb-2 inline-block shadow-md ${theme.bg} ${theme.border} whitespace-nowrap`}
+                      >
+                        {item.category}
+                      </motion.span>
+                    </div>
+                    
+                    <motion.h4 
+                      layout="position"
+                      className={`text-xl lg:text-3xl font-black font-display text-white transition-colors whitespace-nowrap ${theme.text}`}
+                    >
+                      {item.title}
+                    </motion.h4>
+                    
+                    <AnimatePresence>
+                      {isHovered && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0, y: 10 }}
+                          animate={{ opacity: 1, height: 'auto', y: 0 }}
+                          exit={{ opacity: 0, height: 0, y: 10 }}
+                          transition={{ duration: 0.3 }}
+                          className="mt-2"
+                        >
+                          <p className="text-xs sm:text-sm text-slate-200 line-clamp-2 md:line-clamp-3">
+                            {item.description}
+                          </p>
+                          <div className="mt-4 flex flex-col sm:flex-row gap-3">
+                            <button
+                              onClick={(e) => { e.stopPropagation(); onOpenQuote(item.title); }}
+                              className="w-full sm:w-auto py-2.5 px-5 rounded bg-white text-slate-900 font-bold text-[10px] sm:text-xs uppercase tracking-widest hover:bg-slate-100 transition-colors shadow flex items-center justify-center gap-1.5"
+                            >
+                              Request Datasheet
+                            </button>
+                            {onNavigate && (
+                              <button
+                                onClick={(e) => { e.stopPropagation(); onNavigate(item.navigateTarget || 'products'); }}
+                                className="w-full sm:w-auto py-2.5 px-5 rounded bg-slate-800 border border-slate-600 text-white font-bold text-[10px] sm:text-xs uppercase tracking-widest hover:bg-slate-700 transition-colors shadow flex items-center justify-center gap-1.5"
+                              >
+                                View All
+                              </button>
+                            )}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                </motion.div>
+              );
+            })}
           </div>
-        </motion.div>
 
         {/* Advanced Deployment Use Cases Showcase */}
         <motion.div
@@ -478,15 +366,12 @@ export function ScrollingImagesGallery({ onOpenQuote, onNavigate }: ScrollingIma
           transition={{ duration: 0.6 }}
           className="mt-10"
         >
-          <div className="flex flex-col mb-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-white border border-sky-200 text-sky-800 text-xs font-mono font-bold tracking-widest uppercase mb-3 shadow-sm self-start">
-              <Compass className="w-3.5 h-3.5 text-sky-600" />
-              <span>Use Cases</span>
-            </div>
-            <h3 className="text-2xl sm:text-3xl font-bold font-display tracking-tight text-sky-700 uppercase leading-tight">
+          <div className="flex flex-col items-center text-center mb-8">
+
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight uppercase [text-wrap:balance]">
               APPLICATIONS
             </h3>
-            <p className="text-sky-800 font-sans text-sm mt-1 max-w-2xl leading-relaxed">
+            <p className="text-sky-800 font-sans text-sm mt-1 max-w-2xl leading-relaxed mx-auto">
               Advanced Real-World Deployments Powered by MuLCAT®
             </p>
           </div>
@@ -542,7 +427,7 @@ export function ScrollingImagesGallery({ onOpenQuote, onNavigate }: ScrollingIma
                   key={app.id}
                   layout
                   onHoverStart={() => setHoveredApp(app.id)}
-                  onClick={() => onNavigate?.('applications')}
+                  onClick={() => setHoveredApp(app.id)}
                   animate={{ flex: isHovered ? 4 : 1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   className="group relative rounded-2xl overflow-hidden border border-slate-800 shadow-xl cursor-pointer w-full"

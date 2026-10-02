@@ -18,7 +18,7 @@ export function Footer({ onNavigate }: FooterProps) {
   };
 
   return (
-    <footer className="bg-[#001738] text-white border-t border-[#0A2B5E]">
+    <footer className="bg-sky-50 text-slate-900 border-t border-sky-100">
       {/* Upper Footer: Logo, Quick Links, Office Locations */}
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
@@ -31,16 +31,16 @@ export function Footer({ onNavigate }: FooterProps) {
               <img
                 src={SKYMIRR_DATA.company.footerLogoUrl}
                 alt={SKYMIRR_DATA.company.name}
-                className="h-10 w-auto object-contain brightness-105"
+                className="h-10 w-auto object-contain"
               />
             </button>
-            <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
+            <p className="text-xs text-slate-600 leading-relaxed max-w-sm">
               SkyMirr develops and manufactures advanced RF technology-based products that better connect the world, powered by patented MuLCAT® electromagnetic innovation.
             </p>
 
             {/* FIND US ON SOCIAL MEDIA matching skymirr.com */}
             <div className="pt-2">
-              <div className="text-xs font-bold text-white uppercase tracking-wider font-mono mb-2.5">
+              <div className="text-xs font-bold text-sky-900 uppercase tracking-wider font-mono mb-2.5">
                 FIND US ON SOCIAL MEDIA
               </div>
               <div className="flex items-center gap-3">
@@ -48,7 +48,7 @@ export function Footer({ onNavigate }: FooterProps) {
                   href="https://instagram.com/skymirr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-lg bg-[#0A2B5E] hover:bg-pink-600 text-slate-300 hover:text-white transition-colors flex items-center justify-center border border-[#15418C] cursor-pointer shadow-sm hover:shadow-lg"
+                  className="w-8 h-8 rounded-lg bg-white hover:bg-pink-600 text-slate-500 hover:text-white transition-colors flex items-center justify-center border border-sky-200 cursor-pointer shadow-sm hover:shadow-lg"
                   aria-label="Instagram"
                 >
                   <Instagram className="w-4 h-4" />
@@ -57,7 +57,7 @@ export function Footer({ onNavigate }: FooterProps) {
                   href="https://www.linkedin.com/company/skymirr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-lg bg-[#0A2B5E] hover:bg-[#0077B5] text-slate-300 hover:text-white transition-colors flex items-center justify-center border border-[#15418C] cursor-pointer shadow-sm hover:shadow-lg"
+                  className="w-8 h-8 rounded-lg bg-white hover:bg-[#0077B5] text-slate-500 hover:text-white transition-colors flex items-center justify-center border border-sky-200 cursor-pointer shadow-sm hover:shadow-lg"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-4 h-4" />
@@ -66,7 +66,7 @@ export function Footer({ onNavigate }: FooterProps) {
                   href="https://youtube.com/@skymirr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-lg bg-[#0A2B5E] hover:bg-rose-600 text-slate-300 hover:text-white transition-colors flex items-center justify-center border border-[#15418C] cursor-pointer shadow-sm hover:shadow-lg"
+                  className="w-8 h-8 rounded-lg bg-white hover:bg-rose-600 text-slate-500 hover:text-white transition-colors flex items-center justify-center border border-sky-200 cursor-pointer shadow-sm hover:shadow-lg"
                   aria-label="YouTube"
                 >
                   <Youtube className="w-4 h-4" />
@@ -75,7 +75,7 @@ export function Footer({ onNavigate }: FooterProps) {
                   href="https://twitter.com/skymirr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-lg bg-[#0A2B5E] hover:bg-sky-500 text-slate-300 hover:text-white transition-colors flex items-center justify-center border border-[#15418C] cursor-pointer shadow-sm hover:shadow-lg"
+                  className="w-8 h-8 rounded-lg bg-white hover:bg-sky-500 text-slate-500 hover:text-white transition-colors flex items-center justify-center border border-sky-200 cursor-pointer shadow-sm hover:shadow-lg"
                   aria-label="X-twitter"
                 >
                   <Twitter className="w-4 h-4" />
@@ -86,14 +86,14 @@ export function Footer({ onNavigate }: FooterProps) {
 
           {/* Quick Links: Navigation */}
           <div className="lg:col-span-2 space-y-3 font-sans">
-            <div className="text-xs font-bold text-white uppercase tracking-wider font-mono">
+            <div className="text-xs font-bold text-sky-900 uppercase tracking-wider font-mono">
               Navigation
             </div>
             <ul className="space-y-2 text-xs">
               <li>
                 <button
                   onClick={() => handleNav('home')}
-                  className="text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
+                  className="text-slate-600 hover:text-sky-700 transition-colors cursor-pointer"
                 >
                   Home
                 </button>
@@ -101,7 +101,7 @@ export function Footer({ onNavigate }: FooterProps) {
               <li>
                 <button
                   onClick={() => handleNav('products')}
-                  className="text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
+                  className="text-slate-600 hover:text-sky-700 transition-colors cursor-pointer"
                 >
                   Products Catalog
                 </button>
@@ -109,7 +109,7 @@ export function Footer({ onNavigate }: FooterProps) {
               <li>
                 <button
                   onClick={() => handleNav('technology')}
-                  className="text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
+                  className="text-slate-600 hover:text-sky-700 transition-colors cursor-pointer"
                 >
                   MuLCAT® Technology
                 </button>
@@ -117,7 +117,7 @@ export function Footer({ onNavigate }: FooterProps) {
               <li>
                 <button
                   onClick={() => handleNav('applications')}
-                  className="text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
+                  className="text-slate-600 hover:text-sky-700 transition-colors cursor-pointer"
                 >
                   Applications
                 </button>
@@ -125,7 +125,7 @@ export function Footer({ onNavigate }: FooterProps) {
               <li>
                 <button
                   onClick={() => handleNav('partners')}
-                  className="text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
+                  className="text-slate-600 hover:text-sky-700 transition-colors cursor-pointer"
                 >
                   Partners &amp; Distributors
                 </button>
@@ -133,7 +133,7 @@ export function Footer({ onNavigate }: FooterProps) {
               <li>
                 <button
                   onClick={() => handleNav('about')}
-                  className="text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
+                  className="text-slate-600 hover:text-sky-700 transition-colors cursor-pointer"
                 >
                   About Us &amp; Leadership
                 </button>
@@ -143,14 +143,14 @@ export function Footer({ onNavigate }: FooterProps) {
 
           {/* Core Hardware Models */}
           <div className="lg:col-span-2 space-y-3 font-sans">
-            <div className="text-xs font-bold text-white uppercase tracking-wider font-mono">
+            <div className="text-xs font-bold text-sky-900 uppercase tracking-wider font-mono">
               Hardware Suite
             </div>
             <ul className="space-y-2 text-xs">
               <li>
                 <button
                   onClick={() => handleNav('products')}
-                  className="text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
+                  className="text-slate-600 hover:text-sky-700 transition-colors cursor-pointer"
                 >
                   SkyBlade™ Antennas
                 </button>
@@ -158,7 +158,7 @@ export function Footer({ onNavigate }: FooterProps) {
               <li>
                 <button
                   onClick={() => handleNav('products')}
-                  className="text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
+                  className="text-slate-600 hover:text-sky-700 transition-colors cursor-pointer"
                 >
                   Sky5G™ CPE Router (TCPA-117)
                 </button>
@@ -166,7 +166,7 @@ export function Footer({ onNavigate }: FooterProps) {
               <li>
                 <button
                   onClick={() => handleNav('products')}
-                  className="text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
+                  className="text-slate-600 hover:text-sky-700 transition-colors cursor-pointer"
                 >
                   SkyTrack™ Asset Trackers
                 </button>
@@ -174,7 +174,7 @@ export function Footer({ onNavigate }: FooterProps) {
               <li>
                 <button
                   onClick={() => handleNav('latest')}
-                  className="text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
+                  className="text-slate-600 hover:text-sky-700 transition-colors cursor-pointer"
                 >
                   The Latest @ SkyMirr
                 </button>
@@ -182,7 +182,7 @@ export function Footer({ onNavigate }: FooterProps) {
               <li>
                 <button
                   onClick={() => handleNav('contact')}
-                  className="text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
+                  className="text-slate-600 hover:text-sky-700 transition-colors cursor-pointer"
                 >
                   Contact Us
                 </button>
@@ -192,19 +192,19 @@ export function Footer({ onNavigate }: FooterProps) {
 
           {/* Corporate Offices & Contact matching skymirr.com */}
           <div className="lg:col-span-4 space-y-3 font-sans">
-            <div className="text-xs font-bold text-white uppercase tracking-wider font-mono">
+            <div className="text-xs font-bold text-sky-900 uppercase tracking-wider font-mono">
               Corporate Headquarters
             </div>
-            <p className="text-xs text-slate-400 leading-snug">
+            <p className="text-xs text-slate-600 leading-snug">
               {SKYMIRR_DATA.company.headquarters}<br />
               Asia-Pacific Center: {SKYMIRR_DATA.company.rdLab}
             </p>
-            <div className="pt-2 text-xs space-y-1 font-mono text-slate-300">
-              <div className="text-sm font-bold text-slate-100">
-                Phone: <a href={`tel:${SKYMIRR_DATA.company.phone}`} className="hover:underline">{SKYMIRR_DATA.company.phone}</a>
+            <div className="pt-2 text-xs space-y-1 font-mono text-slate-600">
+              <div className="text-sm font-bold text-slate-900">
+                Phone: <a href={`tel:${SKYMIRR_DATA.company.phone}`} className="hover:underline text-blue-700">{SKYMIRR_DATA.company.phone}</a>
               </div>
               <div>
-                Email: <a href={`mailto:${SKYMIRR_DATA.company.salesEmail}`} className="hover:text-slate-100 font-semibold">{SKYMIRR_DATA.company.salesEmail}</a>
+                Email: <a href={`mailto:${SKYMIRR_DATA.company.salesEmail}`} className="hover:text-blue-700 font-semibold">{SKYMIRR_DATA.company.salesEmail}</a>
               </div>
             </div>
           </div>
@@ -212,18 +212,18 @@ export function Footer({ onNavigate }: FooterProps) {
       </div>
 
       {/* Bottom Bar matching SkyMirr © 2026. All Rights Reserved. */}
-      <div className="border-t border-[#0A2B5E] bg-[#000d23] py-6 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500 font-sans">
+      <div className="border-t border-sky-200 bg-sky-100/50 py-6 px-6">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-600 font-sans">
           <div>
             SkyMirr © {new Date().getFullYear()}. All Rights Reserved. MuLCAT® is a registered trademark of SkyMirr.
           </div>
 
           <div className="flex items-center gap-6">
-            <span className="hover:text-slate-300 transition-colors cursor-pointer">Privacy Policy</span>
-            <span className="hover:text-slate-300 transition-colors cursor-pointer">Terms of Service</span>
+            <span className="hover:text-sky-800 transition-colors cursor-pointer font-medium">Privacy Policy</span>
+            <span className="hover:text-sky-800 transition-colors cursor-pointer font-medium">Terms of Service</span>
             <button
               onClick={scrollToTop}
-              className="flex items-center gap-1.5 text-slate-400 hover:text-slate-200 transition-colors font-mono cursor-pointer uppercase tracking-widest"
+              className="flex items-center gap-1.5 text-slate-600 hover:text-sky-800 transition-colors font-mono cursor-pointer uppercase tracking-widest font-bold"
             >
               <span>Back to Top</span>
               <ArrowUp className="w-3.5 h-3.5" />

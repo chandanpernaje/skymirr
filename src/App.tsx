@@ -13,6 +13,7 @@ import { ApplicationsPage } from './pages/ApplicationsPage';
 import { PartnersPage } from './pages/PartnersPage';
 
 import { AboutPage } from './pages/AboutPage';
+import { TeamPage } from './pages/TeamPage';
 import { ContactPage } from './pages/ContactPage';
 import { DesignServicesPage } from './pages/DesignServicesPage';
 import { ProductDetailsPage } from './pages/ProductDetailsPage';
@@ -27,6 +28,7 @@ export type PageId =
   | 'applications'
   | 'partners'
   | 'about'
+  | 'team'
   | 'contact'
   | 'design-services'
   | `product/${string}`;
@@ -152,6 +154,9 @@ export default function App() {
         )}
         {currentPage === 'about' && (
           <AboutPage onOpenQuote={handleOpenQuote} onNavigate={handleNavigate} />
+        )}
+        {currentPage === 'team' && (
+          <TeamPage onOpenQuote={handleOpenQuote} onNavigate={handleNavigate} />
         )}
         {currentPage === 'contact' && (
           <ContactPage />
