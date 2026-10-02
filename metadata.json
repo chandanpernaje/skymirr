@@ -1,0 +1,6 @@
+{
+  "name": "Skymirr – Technology to improve Quality of Life",
+  "description": "SkyMirr develops and manufactures advanced RF technology-based products that better connect the world, powered by patented MuLCAT® technology.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
