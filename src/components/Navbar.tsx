@@ -56,8 +56,8 @@ export function Navbar({ activePage, onNavigate, onOpenQuote, onOpenSearch }: Na
             : ''
         }`}
       >
-        {/* Top Tier: Light Blue, Logo + Search */}
-        <div className="bg-sky-100 py-3 sm:py-4 w-full border-b border-sky-200">
+        {/* Top Tier: Dark Blue (#001738), Logo + Search */}
+        <div className="bg-[#001738] py-3 sm:py-4 w-full">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
             {/* Logo */}
             <button
@@ -87,14 +87,14 @@ export function Navbar({ activePage, onNavigate, onOpenQuote, onOpenSearch }: Na
             <div className="flex xl:hidden items-center gap-3">
               <button
                 onClick={onOpenSearch}
-                className="p-2 rounded-lg text-slate-700 hover:bg-white/50 transition-colors"
+                className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
                 aria-label="Search SkyMirr"
               >
                 <Search className="w-5 h-5" />
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-lg text-slate-700 hover:bg-white/50 transition-colors border border-slate-300"
+                className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors border border-white/20"
                 aria-label="Toggle Mobile Navigation Menu"
               >
                 {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -103,8 +103,8 @@ export function Navbar({ activePage, onNavigate, onOpenQuote, onOpenSearch }: Na
           </div>
         </div>
 
-        {/* Bottom Tier: Light Grey/White (Navigation Links) */}
-        <div className="hidden xl:block bg-slate-50 border-b border-slate-200">
+        {/* Bottom Tier: Light Blue (Navigation Links) */}
+        <div className="hidden xl:block bg-sky-50 border-b border-sky-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <nav className="flex items-center gap-8 lg:gap-10 text-[12px] lg:text-[13px] tracking-widest font-bold text-slate-600 uppercase h-14">
               <button
