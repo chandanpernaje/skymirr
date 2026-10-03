@@ -106,7 +106,9 @@ export function ScrollingImagesGallery({ onOpenQuote, onNavigate }: ScrollingIma
   return (
     <section className="pt-12 pb-24 bg-white relative">
       {/* Radiant High-Tech Ambient Glow (Light mode version) */}
-      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-400/5 blur-[120px] rounded-full" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-400/5 blur-[120px] rounded-full" />
+      </div>
       
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 mb-20">
         <motion.div

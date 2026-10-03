@@ -125,7 +125,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 flex flex-col font-['Poppins'] selection:bg-blue-600/20 selection:text-blue-900">
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col font-['Poppins'] selection:bg-blue-600/20 selection:text-blue-900 w-full relative">
       {/* Top Navigation with Active Page Highlighting & Search Trigger */}
       <Navbar
         activePage={currentPage}
