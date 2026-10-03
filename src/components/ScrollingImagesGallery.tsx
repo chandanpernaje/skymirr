@@ -1,27 +1,7 @@
-import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Sparkles, Target } from 'lucide-react';
 import { ImageZoomModal } from './ImageZoomModal';
-import {
-  ArrowLeft,
-  ArrowRight,
-  Eye,
-  ShieldCheck,
-  Zap,
-  Sparkles,
-  Layers,
-  Activity,
-  Play,
-  Pause,
-  ChevronRight,
-  ChevronLeft,
-  CheckCircle2,
-  Radio,
-  Sliders,
-  Maximize2,
-  X,
-  Compass,
-  MoveHorizontal
-} from 'lucide-react';
 
 export interface GalleryItem {
   id: string;
@@ -43,9 +23,9 @@ const GALLERY_ITEMS: GalleryItem[] = [
     category: 'Antenna Systems',
     badge: 'Carrier Validated',
     image: '/images/antennas-new.jpg',
-    tagline: 'Multi-layer coupling omnidirectional whip array covering 617 to 5925 MHz with stable azimuth radiation',
+    tagline: 'Multi-layer coupling omnidirectional whip array covering 617 to 5925 MHz',
     highlight: '6.0 dBi Peak Gain · VSWR < 2.0:1',
-    description: 'Engineered with proprietary MuLCAT® multi-layer coupling that eliminates destructive phase interference between adjacent cellular and Wi-Fi bands. Delivers sustained high-efficiency transmission across all 4G LTE, 5G NR (FR1), and Wi-Fi 6E/7 frequency allocations.',
+    description: 'Engineered with proprietary MuLCAT® multi-layer coupling that eliminates destructive phase interference between adjacent cellular and Wi-Fi bands.',
     specs: [
       { label: 'Frequency Range', value: '617 – 5925 MHz' },
       { label: 'Peak Gain', value: '6.0 dBi' },
@@ -56,13 +36,13 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: 'routers-gallery',
-    title: 'Sky5G™ CPE Wireless Router (TCPA-117)',
+    title: 'Sky5G™ CPE Wireless Router',
     category: 'Carrier Gateway',
     badge: 'CES® 2026 Honoree',
     image: '/images/5g-routers.jpg',
-    tagline: 'Carrier-certified 5G Sub-6 & Wi-Fi 7 gateway with integrated MuLCAT® array for +42% cell-edge reach',
+    tagline: 'Carrier-certified 5G Sub-6 & Wi-Fi 7 gateway with integrated MuLCAT® array',
     highlight: 'T-Priority Ready · AT&T & T-Mobile Certified',
-    description: 'High-speed fixed wireless access gateway designed for mission-critical enterprise failover, retail branch deployments, and first responder command centers. Powered by dual internal MuLCAT® antennas that extract clean signal from weak suburban and rural cell towers.',
+    description: 'High-speed fixed wireless access gateway designed for mission-critical enterprise failover, retail branch deployments, and first responder command centers.',
     specs: [
       { label: 'Cellular Technology', value: '5G Sub-6 NSA/SA' },
       { label: 'Wi-Fi Standard', value: 'Wi-Fi 7 (802.11be)' },
@@ -73,13 +53,13 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: 'trackers-gallery',
-    title: 'SkyTrack™ Industrial Asset Trackers',
+    title: 'SkyTrack™ Asset Trackers',
     category: 'Industrial IoT',
     badge: 'ATEX Zone 2',
     image: '/images/asset-trackers.jpg',
-    tagline: 'Ruggedized IP68 cellular GPS telemetry terminal with internally decoupled MuLCAT® micro-antennas',
+    tagline: 'Ruggedized IP68 cellular GPS telemetry terminal',
     highlight: '7-Year Battery Life · Multi-Constellation GNSS',
-    description: 'Ultra-low-power industrial sensor gateway providing real-time location, temperature, shock, and battery diagnostics for heavy equipment, rail cars, cold-chain cargo, and offshore energy infrastructure.',
+    description: 'Ultra-low-power industrial sensor gateway providing real-time location, temperature, shock, and battery diagnostics for heavy equipment.',
     specs: [
       { label: 'Cellular Bands', value: 'LTE-M & NB-IoT Global' },
       { label: 'Ingress Protection', value: 'IP68 & MIL-STD-810H' },
@@ -90,13 +70,13 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: 'mimo-gallery',
-    title: 'SkyBlade™ TAMP161 Broadband MIMO',
+    title: 'SkyBlade™ Broadband MIMO',
     category: 'Vehicle & Transit',
     badge: 'MIL-STD-810H',
     image: '/images/our-products.png',
-    tagline: 'Dual cross-polarized omnidirectional antenna module engineered for emergency response & transport fleets',
+    tagline: 'Dual cross-polarized omnidirectional antenna module',
     highlight: 'IP67 Submersible · High Shock & Vibration',
-    description: 'Rugged low-profile aerodynamic rooftop antenna delivering simultaneous high-throughput cellular uplink and dual-band Wi-Fi connectivity for public safety vehicles, transit buses, and autonomous mobile robotics.',
+    description: 'Rugged low-profile aerodynamic rooftop antenna delivering simultaneous high-throughput cellular uplink and dual-band Wi-Fi connectivity.',
     specs: [
       { label: 'Configuration', value: '4x4 MIMO Cellular + 2x2 Wi-Fi' },
       { label: 'Housing Grade', value: 'Impact Resistant Xenoy™' },
@@ -105,23 +85,13 @@ const GALLERY_ITEMS: GalleryItem[] = [
     ],
     navigateTarget: 'antennas',
   },
-  {
-    id: 'next-gen-gallery',
-    title: 'Next-Gen MuLCAT® Multi-Resonance Arrays',
-    category: 'Electromagnetic R&D',
-    badge: 'Patent-Pending',
-    image: '/images/skymirr-next-gen-antennas.jpg',
-    tagline: 'Next-generation compact broadband modules prototyped in our Songdo Incheon 3D microwave chamber',
-    highlight: 'Multi-Layer Constructive Resonance',
-    description: 'Breakthrough electromagnetic topology utilizing tightly-spaced dielectric resonators that turn mutual coupling into constructive radiation power. Enables sub-miniature antenna form factors with octave bandwidths previously deemed impossible by the Chu-Harrington limit.',
-    specs: [
-      { label: 'Bandwidth Ratio', value: '10:1 Continuous' },
-      { label: 'Efficiency Gain', value: '+65% over Dipoles' },
-      { label: 'R&D Facility', value: 'Songdo 3D Anechoic Lab' },
-      { label: 'Key Patent', value: 'Multi-Layer Reactive Coupling' },
-    ],
-    navigateTarget: 'products',
-  },
+];
+
+const STICKY_CARD_COLORS = [
+  'bg-blue-50 border-blue-100 text-slate-900',
+  'bg-pink-50 border-pink-100 text-slate-900',
+  'bg-sky-50 border-sky-100 text-slate-900',
+  'bg-indigo-50 border-indigo-100 text-slate-900',
 ];
 
 interface ScrollingImagesGalleryProps {
@@ -130,248 +100,71 @@ interface ScrollingImagesGalleryProps {
 }
 
 export function ScrollingImagesGallery({ onOpenQuote, onNavigate }: ScrollingImagesGalleryProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
-
-  // Horizontal Scroll Carousel Ref & Mouse Dragging State
-  const scrollTrackRef = useRef<HTMLDivElement | null>(null);
-  const [isMouseDown, setIsMouseDown] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeftState, setScrollLeftState] = useState(0);
-  const touchStartXRef = useRef<number | null>(null);
-
-  // Hover state for Applications Accordion
   const [hoveredApp, setHoveredApp] = useState<string>('app-edu');
-  const [hoveredProduct, setHoveredProduct] = useState<string>('antennas-gallery');
-
-  // Auto-advance if playing
-  useEffect(() => {
-    if (!isPlaying) return;
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => {
-        const next = (prev + 1) % GALLERY_ITEMS.length;
-        scrollToCard(next);
-        return next;
-      });
-    }, 4500);
-    return () => clearInterval(interval);
-  }, [isPlaying]);
-
-  const scrollToCard = (index: number) => {
-    if (scrollTrackRef.current) {
-      const cardWidth = 280;
-      scrollTrackRef.current.scrollTo({
-        left: index * cardWidth,
-        behavior: 'smooth',
-      });
-    }
-  };
-
-  const nextSlide = () => {
-    const next = (activeIndex + 1) % GALLERY_ITEMS.length;
-    setActiveIndex(next);
-    scrollToCard(next);
-  };
-
-  const prevSlide = () => {
-    const prev = (activeIndex - 1 + GALLERY_ITEMS.length) % GALLERY_ITEMS.length;
-    setActiveIndex(prev);
-    scrollToCard(prev);
-  };
-
-  const scrollTrack = (direction: 'left' | 'right') => {
-    if (scrollTrackRef.current) {
-      const offset = 300;
-      scrollTrackRef.current.scrollBy({
-        left: direction === 'left' ? -offset : offset,
-        behavior: 'smooth',
-      });
-    }
-  };
-
-  // Drag-to-scroll handlers for desktop mouse
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!scrollTrackRef.current) return;
-    setIsMouseDown(true);
-    setStartX(e.pageX - scrollTrackRef.current.offsetLeft);
-    setScrollLeftState(scrollTrackRef.current.scrollLeft);
-  };
-
-  const handleMouseLeave = () => {
-    setIsMouseDown(false);
-  };
-
-  const handleMouseUp = () => {
-    setIsMouseDown(false);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isMouseDown || !scrollTrackRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - scrollTrackRef.current.offsetLeft;
-    const walk = (x - startX) * 1.5;
-    scrollTrackRef.current.scrollLeft = scrollLeftState - walk;
-  };
-
-  // Touch handlers for mobile swipe
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartXRef.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartXRef.current === null) return;
-    const touchEndX = e.changedTouches[0].clientX;
-    const diff = touchStartXRef.current - touchEndX;
-    if (Math.abs(diff) > 40) {
-      if (diff > 0) {
-        nextSlide();
-      } else {
-        prevSlide();
-      }
-    }
-    touchStartXRef.current = null;
-  };
-
-  const activeProduct = GALLERY_ITEMS[activeIndex];
-
+  
   return (
-    <section id="interactive-showcase" className="scroll-mt-20 py-10 sm:py-12 bg-sky-50 relative overflow-hidden border-t border-sky-100 text-slate-900">
-      {/* Radiant High-Tech Ambient Glows */}
-      <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-white/40 blur-[140px] rounded-full" />
-      <div className="pointer-events-none absolute bottom-0 right-10 w-[500px] h-[350px] bg-blue-100/50 blur-[120px] rounded-full" />
-      <div className="pointer-events-none absolute inset-0 rf-grid-dense opacity-5" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Section Header */}
+    <section className="pt-12 pb-24 bg-white relative">
+      {/* Radiant High-Tech Ambient Glow (Light mode version) */}
+      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-400/5 blur-[120px] rounded-full" />
+      
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 mb-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col items-center text-center gap-6 mb-12"
+          className="text-center max-w-3xl mx-auto"
         >
-          <div className="flex flex-col items-center">
-            <div className="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-sm bg-white border border-sky-200 text-sky-800 text-xs font-mono font-bold tracking-widest uppercase mb-3 shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-sky-600 animate-pulse" />
-              <span>WHEN IT HAS TO CONNECT, IT HAS TO BE SKYMIRR</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight uppercase [text-wrap:balance]">
-              PRODUCTS
-            </h2>
-            <p className="text-sky-800 font-sans text-sm sm:text-base mt-2 max-w-2xl leading-relaxed mx-auto">
-              We develop/manufacture advanced RF technology-based products that better our lives, such as cost-effective, better performing, broadband wireless communications for everyone and medical applications that treat serious disease far more effectively
-            </p>
-          </div>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 font-display tracking-tight leading-tight">
+            When It Has To Connect, <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">It Has To Be SkyMirr.</span>
+          </h2>
+          <p className="text-slate-600 text-base sm:text-lg mt-6 font-light leading-relaxed max-w-4xl mx-auto mb-16">
+            We develop/manufacture advanced RF technology-based products that better our lives, such as cost-effective, better performing, broadband wireless communications for everyone and medical applications that treat serious disease far more effectively.
+          </p>
         </motion.div>
+      </div>
 
-          {/* Products Accordion Layout */}
-          <div className="flex flex-col lg:flex-row h-[600px] lg:h-[500px] w-full gap-4 mt-8">
-            {GALLERY_ITEMS.map((item, idx) => {
-              const isHovered = hoveredProduct === item.id;
-              
-              const themeColors = [
-                { border: 'border-sky-400/30', bg: 'bg-sky-600/90', text: 'group-hover:text-sky-200' },
-                { border: 'border-indigo-400/30', bg: 'bg-indigo-600/90', text: 'group-hover:text-indigo-200' },
-                { border: 'border-emerald-400/30', bg: 'bg-emerald-600/90', text: 'group-hover:text-emerald-200' },
-                { border: 'border-amber-400/30', bg: 'bg-amber-600/90', text: 'group-hover:text-amber-200' },
-                { border: 'border-purple-400/30', bg: 'bg-purple-600/90', text: 'group-hover:text-purple-200' }
-              ];
-              const theme = themeColors[idx % themeColors.length];
+      {/* STICKY STACKING CARDS EFFECT */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+        {GALLERY_ITEMS.map((item, idx) => (
+          <StickyCard 
+            key={item.id} 
+            item={item} 
+            index={idx} 
+            totalCards={GALLERY_ITEMS.length} 
+            colorClass={STICKY_CARD_COLORS[idx % STICKY_CARD_COLORS.length]}
+            onOpenQuote={onOpenQuote}
+            onNavigate={onNavigate}
+            onZoom={() => setSelectedItem(item)}
+          />
+        ))}
+      </div>
 
-              return (
-                <motion.div
-                  key={item.id}
-                  layout
-                  onHoverStart={() => setHoveredProduct(item.id)}
-                  onClick={() => setHoveredProduct(item.id)}
-                  animate={{ flex: isHovered ? 4 : 1 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  className="group relative rounded-2xl overflow-hidden border border-slate-200 shadow-xl cursor-pointer w-full bg-white"
-                >
-                  {/* Clean Studio Background */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-slate-50 to-white pointer-events-none" />
-                  <div className="absolute w-64 h-64 rounded-full bg-sky-50 blur-3xl pointer-events-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+      <ImageZoomModal
+        isOpen={!!selectedItem}
+        onClose={() => setSelectedItem(null)}
+        imageSrc={selectedItem?.image || ''}
+        title={selectedItem?.title || ''}
+        subtitle={selectedItem?.category}
+        specs={selectedItem?.specs}
+        highlight={selectedItem?.highlight}
+      />
 
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="absolute inset-0 w-full h-full object-contain p-8 mix-blend-multiply opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none transition-opacity duration-500 ${isHovered ? 'opacity-90' : 'opacity-70'}`} />
-                  
-                  {/* Text Content */}
-                  <motion.div 
-                    layout="position"
-                    className="absolute bottom-6 left-6 right-6"
-                  >
-                    <div className="overflow-hidden flex">
-                      <motion.span 
-                        layout="position"
-                        className={`px-2.5 py-1 rounded-md backdrop-blur-sm text-white text-[10px] font-mono font-bold uppercase tracking-wider mb-2 inline-block shadow-md ${theme.bg} ${theme.border} whitespace-nowrap`}
-                      >
-                        {item.category}
-                      </motion.span>
-                    </div>
-                    
-                    <motion.h4 
-                      layout="position"
-                      className={`text-xl lg:text-3xl font-black font-display text-white transition-colors whitespace-nowrap ${theme.text}`}
-                    >
-                      {item.title}
-                    </motion.h4>
-                    
-                    <AnimatePresence>
-                      {isHovered && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0, y: 10 }}
-                          animate={{ opacity: 1, height: 'auto', y: 0 }}
-                          exit={{ opacity: 0, height: 0, y: 10 }}
-                          transition={{ duration: 0.3 }}
-                          className="mt-2"
-                        >
-                          <p className="text-xs sm:text-sm text-slate-200 line-clamp-2 md:line-clamp-3">
-                            {item.description}
-                          </p>
-                          <div className="mt-4 flex flex-col sm:flex-row gap-3">
-                            <button
-                              onClick={(e) => { e.stopPropagation(); onOpenQuote(item.title); }}
-                              className="w-full sm:w-auto py-2.5 px-5 rounded bg-white text-slate-900 font-bold text-[10px] sm:text-xs uppercase tracking-widest hover:bg-slate-100 transition-colors shadow flex items-center justify-center gap-1.5"
-                            >
-                              Request Datasheet
-                            </button>
-                            {onNavigate && (
-                              <button
-                                onClick={(e) => { e.stopPropagation(); onNavigate(item.navigateTarget || 'products'); }}
-                                className="w-full sm:w-auto py-2.5 px-5 rounded bg-slate-800 border border-slate-600 text-white font-bold text-[10px] sm:text-xs uppercase tracking-widest hover:bg-slate-700 transition-colors shadow flex items-center justify-center gap-1.5"
-                              >
-                                View All
-                              </button>
-                            )}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                </motion.div>
-              );
-            })}
-          </div>
-
-        {/* Advanced Deployment Use Cases Showcase */}
+      {/* Advanced Deployment Use Cases Showcase (Restored) */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-30px' }}
           transition={{ duration: 0.6 }}
-          className="mt-10"
         >
           <div className="flex flex-col items-center text-center mb-8">
-
             <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-display tracking-tight uppercase [text-wrap:balance]">
               APPLICATIONS
             </h3>
-            <p className="text-sky-800 font-sans text-sm mt-1 max-w-2xl leading-relaxed mx-auto">
+            <p className="text-blue-700 font-sans font-medium text-sm mt-2 max-w-2xl leading-relaxed mx-auto uppercase tracking-widest">
               Advanced Real-World Deployments Powered by MuLCAT®
             </p>
           </div>
@@ -413,12 +206,11 @@ export function ScrollingImagesGallery({ onOpenQuote, onNavigate }: ScrollingIma
             ].map((app) => {
               const isHovered = hoveredApp === app.id;
               
-              // Map colors to tailwind classes since dynamic string interpolation for colors can be stripped by JIT
               const colorMap = {
-                blue: { border: 'border-blue-400/30', bg: 'bg-blue-600/90', text: 'group-hover:text-blue-200' },
-                cyan: { border: 'border-cyan-400/30', bg: 'bg-cyan-600/90', text: 'group-hover:text-cyan-200' },
-                emerald: { border: 'border-emerald-400/30', bg: 'bg-emerald-600/90', text: 'group-hover:text-emerald-200' },
-                amber: { border: 'border-amber-400/30', bg: 'bg-amber-600/90', text: 'group-hover:text-amber-200' }
+                blue: { border: 'border-blue-400/30', bg: 'bg-blue-600/90', activeText: 'text-blue-200', hoverText: 'group-hover:text-blue-200' },
+                cyan: { border: 'border-cyan-400/30', bg: 'bg-cyan-600/90', activeText: 'text-cyan-200', hoverText: 'group-hover:text-cyan-200' },
+                emerald: { border: 'border-emerald-400/30', bg: 'bg-emerald-600/90', activeText: 'text-emerald-200', hoverText: 'group-hover:text-emerald-200' },
+                amber: { border: 'border-amber-400/30', bg: 'bg-amber-600/90', activeText: 'text-amber-200', hoverText: 'group-hover:text-amber-200' }
               };
               const theme = colorMap[app.color as keyof typeof colorMap];
 
@@ -428,26 +220,26 @@ export function ScrollingImagesGallery({ onOpenQuote, onNavigate }: ScrollingIma
                   layout
                   onHoverStart={() => setHoveredApp(app.id)}
                   onClick={() => setHoveredApp(app.id)}
-                  animate={{ flex: isHovered ? 4 : 1 }}
+                  animate={{ flex: isHovered ? 5 : 1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  className="group relative rounded-2xl overflow-hidden border border-slate-800 shadow-xl cursor-pointer w-full"
+                  className="group relative rounded-2xl overflow-hidden border border-slate-200 shadow-lg cursor-pointer w-full"
                 >
                   <img
                     src={app.img}
                     alt={app.title}
-                    className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                    className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${isHovered ? 'opacity-100 scale-105' : 'opacity-70 group-hover:opacity-100 group-hover:scale-105'}`}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none transition-opacity duration-500 group-hover:opacity-80" />
+                  <div className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none transition-opacity duration-500 ${isHovered ? 'opacity-80' : 'opacity-100 group-hover:opacity-80'}`} />
                   
                   {/* Text Content */}
                   <motion.div 
                     layout="position"
-                    className="absolute bottom-6 left-6 right-6"
+                    className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 flex flex-col justify-end"
                   >
                     <div className="overflow-hidden flex">
                       <motion.span 
                         layout="position"
-                        className={`px-2.5 py-1 rounded-md backdrop-blur-sm text-white text-[10px] font-mono font-bold uppercase tracking-wider mb-2 inline-block shadow-md ${theme.bg} ${theme.border} whitespace-nowrap`}
+                        className={`px-2 py-1 md:px-2.5 md:py-1 rounded-md backdrop-blur-sm text-white text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-wider mb-1.5 md:mb-2 inline-block shadow-md ${theme.bg} ${theme.border} whitespace-nowrap`}
                       >
                         {app.tagline}
                       </motion.span>
@@ -455,7 +247,7 @@ export function ScrollingImagesGallery({ onOpenQuote, onNavigate }: ScrollingIma
                     
                     <motion.h4 
                       layout="position"
-                      className={`text-xl lg:text-3xl font-black font-display text-white transition-colors whitespace-nowrap ${theme.text}`}
+                      className={`text-lg md:text-xl lg:text-3xl font-black font-display text-white transition-colors whitespace-nowrap ${isHovered ? theme.activeText : theme.hoverText}`}
                     >
                       {app.title}
                     </motion.h4>
@@ -467,7 +259,7 @@ export function ScrollingImagesGallery({ onOpenQuote, onNavigate }: ScrollingIma
                           animate={{ opacity: 1, height: 'auto', y: 0 }}
                           exit={{ opacity: 0, height: 0, y: 10 }}
                           transition={{ duration: 0.3 }}
-                          className="text-xs sm:text-sm text-slate-300 mt-2 line-clamp-2 md:line-clamp-none max-w-sm"
+                          className="text-xs sm:text-sm text-slate-200 mt-2 line-clamp-2 md:line-clamp-none max-w-sm"
                         >
                           {app.desc}
                         </motion.p>
@@ -480,17 +272,91 @@ export function ScrollingImagesGallery({ onOpenQuote, onNavigate }: ScrollingIma
           </div>
         </motion.div>
       </div>
-
-      {/* Lightbox Modal for Enlarge Image & Engineering Inspection with Zoom & Pan */}
-      <ImageZoomModal
-        isOpen={!!selectedItem}
-        onClose={() => setSelectedItem(null)}
-        imageSrc={selectedItem?.image || ''}
-        title={selectedItem?.title || ''}
-        subtitle={selectedItem?.category}
-        specs={selectedItem?.specs}
-        highlight={selectedItem?.highlight}
-      />
     </section>
   );
 }
+
+// Sub-component for individual sticky cards
+function StickyCard({ item, index, totalCards, colorClass, onOpenQuote, onNavigate, onZoom }: any) {
+  const cardRef = React.useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "start top"] // Track when card enters screen to when it hits top
+  });
+
+  // Calculate dynamic top spacing so they stack beautifully
+  const topOffset = `calc(10vh + ${index * 30}px)`;
+  
+  // Parallax the inner image based on scroll
+  const imageY = useTransform(scrollYProgress, [0, 1], ["20%", "0%"]);
+  // Scale down the card slightly as subsequent cards overlap it
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1]); // Kept at 1 to prevent layout shift, stacking is sufficient
+
+  return (
+    <div className="sticky w-full" style={{ top: topOffset, marginBottom: '40px', zIndex: index }}>
+      <motion.div 
+        ref={cardRef}
+        style={{ scale }}
+        className={`relative w-full h-auto md:h-[500px] rounded-[32px] overflow-hidden shadow-2xl flex flex-col md:flex-row border border-black/5 ${colorClass}`}
+      >
+        {/* Image Side (Top on Mobile, Right on Desktop) */}
+        <div className="w-full md:w-1/2 h-[300px] md:h-full relative overflow-hidden bg-black/5 cursor-pointer group order-1 md:order-2" onClick={onZoom}>
+          {/* subtle animated grid background */}
+          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:16px_16px] group-hover:scale-110 transition-transform duration-700" />
+          
+          <motion.div 
+            style={{ y: imageY }}
+            className="absolute inset-0 w-full h-full flex items-center justify-center p-6 md:p-8"
+          >
+            <img 
+               src={item.image} 
+               alt={item.title}
+               className="w-full h-full object-contain filter drop-shadow-xl group-hover:scale-105 transition-transform duration-500 mix-blend-multiply" 
+            />
+          </motion.div>
+          
+          {/* Zoom Hint */}
+          <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-200 text-slate-800 shadow-md text-[10px] font-mono font-bold tracking-widest flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+            <Target className="w-3 h-3 text-blue-600" /> Click to Inspect
+          </div>
+        </div>
+
+        {/* Content Side (Bottom on Mobile, Left on Desktop) */}
+        <div className="w-full md:w-1/2 p-6 sm:p-12 flex flex-col justify-center relative z-20 order-2 md:order-1">
+           <div className="inline-block px-3 py-1 rounded bg-white/50 border border-black/10 text-slate-800 text-[10px] font-mono font-bold uppercase tracking-widest w-fit mb-4 md:mb-6 shadow-sm">
+             {item.category}
+           </div>
+           
+           <h3 className="text-2xl sm:text-3xl md:text-4xl font-black font-display text-slate-900 mb-3 md:mb-4 leading-tight">
+             {item.title}
+           </h3>
+           
+           <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6 md:mb-8 font-light">
+             {item.description}
+           </p>
+
+           <div className="grid grid-cols-2 gap-3 md:gap-4 mb-6 md:mb-8">
+             {item.specs.slice(0, 2).map((spec: any, i: number) => (
+               <div key={i} className="bg-white/60 p-3 rounded-xl border border-black/5 shadow-sm">
+                 <div className="text-[10px] text-slate-500 uppercase tracking-wider mb-1 font-mono font-semibold">{spec.label}</div>
+                 <div className="text-xs sm:text-sm font-bold text-slate-900">{spec.value}</div>
+               </div>
+             ))}
+           </div>
+
+           <div className="flex flex-wrap gap-3 md:gap-4 mt-auto">
+             {onNavigate && (
+               <button 
+                 onClick={() => onNavigate(item.navigateTarget)}
+                 className="px-5 py-3 md:px-6 md:py-3 bg-white/50 text-slate-700 border border-slate-300 rounded-full font-bold text-[10px] md:text-xs uppercase tracking-widest hover:bg-white hover:text-blue-600 transition-colors flex items-center gap-2 shadow-sm"
+               >
+                 View All
+               </button>
+             )}
+           </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+

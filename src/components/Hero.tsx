@@ -31,17 +31,19 @@ export function Hero({ onOpenQuote, onNavigate }: HeroProps) {
     {
       title: 'Antenna-First Design: Why Real-World 5G Performance Starts at the RF Layer',
       tag: 'Technical Whitepaper',
-    },
+    }
   ];
+
+  const [page, setPage] = useState(0);
 
   // Auto-rotate hero slider every 6 seconds
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      paginate(1);
     }, 6000);
     return () => clearInterval(timer);
-  }, [isPaused, slides.length]);
+  }, [isPaused, page, slides.length]);
 
   // Auto-rotate ticker every 5 seconds
   useEffect(() => {
@@ -51,50 +53,72 @@ export function Hero({ onOpenQuote, onNavigate }: HeroProps) {
     return () => clearInterval(tickerTimer);
   }, [tickerItems.length]);
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  const paginate = (newDirection: number) => {
+    setPage(page + newDirection);
+  };
+
   const nextTicker = () => setTickerIndex((prev) => (prev + 1) % tickerItems.length);
   const prevTicker = () => setTickerIndex((prev) => (prev - 1 + tickerItems.length) % tickerItems.length);
 
+  const imageIndex = ((page % slides.length) + slides.length) % slides.length;
+
+  // Seamless crossfade transition (no black screen)
+  const variants = {
+    enter: {
+      opacity: 0,
+      scale: 1.02
+    },
+    center: {
+      zIndex: 1,
+      opacity: 1,
+      scale: 1
+    },
+    exit: {
+      zIndex: 0,
+      opacity: 0,
+      scale: 1
+    }
+  };
+
   return (
     <div className="w-full pt-16 sm:pt-20 bg-slate-950 flex flex-col">
-      {/* 1. IMMERSIVE ANIMATED HERO SLIDER */}
+      {/* 1. SEAMLESS CROSSFADING HERO SLIDER */}
       <section
         className="relative w-full overflow-hidden group select-none flex-1 bg-slate-950"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
-        {/* Invisible placeholder image sets the exact responsive height of the container to match the banners */}
+        {/* Invisible placeholder for perfect aspect ratio uncropped sizing */}
         <img
           src={slides[0].image}
           className="w-full h-auto invisible opacity-0 pointer-events-none block"
           alt="Layout Placeholder"
         />
 
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="popLayout" initial={false}>
           <motion.div
-            key={currentSlide}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
+            key={page}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              opacity: { duration: 1.2, ease: "easeInOut" },
+              scale: { duration: 1.2, ease: "easeOut" }
+            }}
             className="absolute inset-0 w-full h-full"
           >
-            {/* Background Image */}
-            <div className="absolute inset-0 w-full h-full">
-              <img
-                src={slides[currentSlide].image}
-                alt={slides[currentSlide].title}
-                className="w-full h-full object-cover object-center"
-                loading="eager"
-              />
-            </div>
+            <img
+              src={slides[imageIndex].image}
+              alt={slides[imageIndex].title}
+              className="w-full h-full object-cover object-center pointer-events-none"
+              loading="eager"
+            />
           </motion.div>
         </AnimatePresence>
 
-        {/* Navigation Controls */}
-        <div className="absolute inset-x-0 bottom-0 p-6 z-20 flex justify-between items-end pointer-events-none max-w-7xl mx-auto">
-          {/* Scroll Indicator */}
+        {/* Scroll Indicator Only (Removed < > ... controls as requested) */}
+        <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6 z-20 flex justify-end items-end pointer-events-none max-w-7xl mx-auto">
           <div className="pointer-events-auto hidden sm:block">
              <ScrollingMouse targetId="products-overview" />
           </div>

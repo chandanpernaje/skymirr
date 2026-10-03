@@ -52,18 +52,36 @@ export const TeamPage: React.FC = () => {
       <div className="absolute top-1/2 right-10 w-[500px] h-[500px] bg-gradient-to-br from-sky-400/10 to-blue-600/10 blur-[130px] rounded-full pointer-events-none" />
 
       {/* Page Header Banner */}
-      <section className="relative py-16 bg-gradient-to-b from-[#001738] via-[#05224D] to-[#001738] text-white overflow-hidden">
-        <WaveCanvas opacity={0.16} speed={0.8} />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="max-w-3xl">
-            <div className="text-xs font-mono font-bold tracking-widest text-cyan-300 uppercase mb-2">
-              Team &amp; Leadership
+      <section className="relative w-full h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-slate-950">
+        
+        {/* Parallax Background */}
+        <div className="absolute inset-0 w-full h-full">
+          <img 
+            src="/images/global_hero.jpg" 
+            alt="Global Connectivity" 
+            className="w-full h-full object-cover object-center opacity-30 mix-blend-screen grayscale"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-20 w-full pt-16">
+          <div className="max-w-3xl space-y-6">
+            <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+              <Award className="w-4 h-4 text-blue-400" />
+              <span className="text-[11px] sm:text-xs font-mono tracking-[0.2em] text-blue-300 uppercase font-bold">
+                Team & Leadership
+              </span>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white leading-tight">
-              Team & Leadership
+            
+            <h1 className="text-4xl sm:text-6xl font-black tracking-tighter leading-[1.05] text-white font-display">
+              The Visionaries <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400">
+                Behind SkyMirr.
+              </span>
             </h1>
-            <p className="text-slate-300 text-sm sm:text-base mt-3 leading-relaxed">
-              Our visionary leaders guiding SkyMirr's innovative breakthroughs.
+            
+            <p className="text-base sm:text-lg text-slate-400 leading-relaxed font-light max-w-2xl">
+              Led by industry veterans from Taoglas and Samsung Electronics, our team combines decades of specialized experience in RF engineering and global telecommunications.
             </p>
           </div>
         </div>

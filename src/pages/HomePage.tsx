@@ -1,7 +1,6 @@
 import { Hero } from '../components/Hero';
 import { ScrollingImagesGallery } from '../components/ScrollingImagesGallery';
 
-import { ScrollingPartnerMarquee } from '../components/ScrollingPartnerMarquee';
 import { PartnersSection } from '../components/PartnersSection';
 import { MulcatDeepDive } from '../components/MulcatDeepDive';
 
@@ -22,9 +21,8 @@ export function HomePage({ onOpenQuote, onNavigate }: HomePageProps) {
 
 
 
-      {/* 5. OUR PARTNERS: Online Partners & Partners & Distributors with marquee */}
+      {/* 5. OUR PARTNERS */}
       <div className="border-t border-slate-200">
-        <ScrollingPartnerMarquee />
         <PartnersSection onNavigate={onNavigate} />
       </div>
 

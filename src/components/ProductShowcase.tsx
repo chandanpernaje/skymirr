@@ -254,16 +254,9 @@ export function ProductShowcase({ onOpenQuote }: ProductShowcaseProps) {
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-3 pt-2">
-                <button
-                  onClick={() => onOpenQuote(currentProduct.name)}
-                  className="px-5 py-2.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors flex items-center gap-2 shadow-sm shadow-blue-500/20"
-                >
-                  Request Sample / Pricing
-                  <ArrowUpRight className="w-4 h-4" />
-                </button>
 
                 <button
-                  onClick={() => onOpenQuote(`${currentProduct.name} Datasheet`)}
+                  onClick={() => window.open(currentProduct.datasheetUrl || 'https://skymirr.com', '_blank')}
                   className="px-5 py-2.5 text-xs font-semibold text-slate-800 hover:text-blue-700 bg-white border border-slate-300 rounded-lg transition-colors shadow-sm"
                 >
                   Download Engineering Datasheet (PDF)

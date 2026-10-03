@@ -1,6 +1,7 @@
+import { useRef } from 'react';
 import { WaveCanvas } from '../components/WaveCanvas';
 import { PenTool, Target, Cpu, CheckCircle2, ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 interface DesignServicesPageProps {
   onOpenQuote: (productName?: string) => void;
@@ -8,6 +9,15 @@ interface DesignServicesPageProps {
 }
 
 export function DesignServicesPage({ onOpenQuote, onNavigate }: DesignServicesPageProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   const services = [
     {
       id: 'custom-antenna',
@@ -33,32 +43,39 @@ export function DesignServicesPage({ onOpenQuote, onNavigate }: DesignServicesPa
   ];
 
   return (
-    <div className="pt-24 pb-20 bg-white">
+    <div ref={containerRef} className="bg-slate-50 font-sans min-h-screen selection:bg-blue-900 selection:text-white">
       {/* Header */}
-      <section className="relative py-16 bg-gradient-to-b from-[#001738] via-[#05224D] to-[#001738] text-white overflow-hidden">
-        <WaveCanvas opacity={0.16} speed={0.8} />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="max-w-3xl">
-            <div className="text-xs font-mono font-bold tracking-widest text-cyan-300 uppercase mb-2">
-              Engineering & Consulting
+      <section className="relative w-full h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-slate-950">
+        
+        {/* Parallax Background */}
+        <motion.div style={{ y, opacity }} className="absolute inset-0 w-full h-full z-0">
+          <img 
+            src="/images/hardware_render.jpg" 
+            alt="Design Services" 
+            className="w-full h-full object-cover object-center opacity-40 mix-blend-screen grayscale"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/30" />
+        </motion.div>
+        
+        <WaveCanvas opacity={0.15} speed={0.5} />
+        
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-20 w-full pt-24 flex justify-center text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="max-w-4xl flex flex-col items-center gap-6"
+          >
+            <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+              <span className="text-[11px] sm:text-xs font-mono tracking-[0.2em] text-cyan-300 uppercase font-bold">
+                Engineering & Consulting
+              </span>
             </div>
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white leading-tight"
-            >
+            
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight leading-[1.15] text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400 font-sans">
               Design Services
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-slate-300 text-sm sm:text-base mt-4 leading-relaxed"
-            >
-              Leveraging our proprietary MuLCAT® (Multi-Layer Coupling Controlled Antenna Technology) to achieve higher isolation, better radiation efficiency, and optimized performance in challenging RF environments.
-            </motion.p>
-          </div>
+            </h1>
+          </motion.div>
         </div>
       </section>
 

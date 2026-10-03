@@ -826,8 +826,8 @@ export const SKYMIRR_DATA = {
     {
       id: 'slide-1',
       image: '/images/slider1.jpg',
-      tagline: 'ANTENNA-FIRST WIRELESS',
-      title: 'SIGNAL WITHOUT LIMITS',
+      tagline: 'Antenna-First Wireless',
+      title: 'Signal Without Limits',
       description: 'We develop and manufacture advanced RF technology-based products that better connect the world, such as cost-effective better-performing broadband wireless for everyone.',
       ctaText: 'How do we do that?',
       ctaLink: '#technology',
@@ -836,8 +836,8 @@ export const SKYMIRR_DATA = {
     {
       id: 'slide-2',
       image: '/images/slider2.jpg',
-      tagline: 'MISSION-CRITICAL CONNECTIVITY',
-      title: 'WHEN IT HAS TO CONNECT, IT HAS TO BE SKYMIRR',
+      tagline: 'Mission-Critical Connectivity',
+      title: 'When It Has To Connect, It Has To Be SkyMirr',
       description: 'We develop/manufacture advanced RF technology-based products that better our lives, such as cost-effective, better performing, broadband wireless communications for everyone and medical applications that treat serious disease far more effectively.',
       ctaText: 'Explore Technology',
       ctaLink: '#technology',
@@ -846,8 +846,8 @@ export const SKYMIRR_DATA = {
     {
       id: 'slide-3',
       image: '/images/skymirr-next-gen-antennas.jpg',
-      tagline: 'NEXT-GENERATION 5G & WI-FI 7',
-      title: 'NEXT GENERATION ANTENNAS',
+      tagline: 'Next-Generation 5G & Wi-Fi 7',
+      title: 'Next Generation Antennas',
       description: 'Powered by MuLCAT® Technology — Ultra-wideband omnidirectional 4G/5G, Sub-6 GHz, C-Band, and Wi-Fi 7 solutions engineered from the electromagnetic field outward.',
       ctaText: 'View Product Portfolio',
       ctaLink: '#products-grid',

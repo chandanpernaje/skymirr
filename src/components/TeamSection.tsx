@@ -76,93 +76,111 @@ export function TeamSection() {
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
           variants={{
-            visible: { transition: { staggerChildren: 0.1 } },
+            visible: { transition: { staggerChildren: 0.2, delayChildren: 0.1 } },
             hidden: {}
           }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10"
         >
           {filteredTeam.map((member, index) => (
             <motion.div
               key={index}
               layoutId={`member-card-${member.name.replace(/\s+/g, '-')}`}
               variants={{
-                hidden: { opacity: 0, y: 40, scale: 0.95 },
+                hidden: { opacity: 0, y: 60, scale: 0.9, rotateX: 15 },
                 visible: { 
                   opacity: 1, 
                   y: 0, 
                   scale: 1, 
-                  transition: { type: "spring", stiffness: 120, damping: 20 } 
+                  rotateX: 0,
+                  transition: { type: "spring", stiffness: 100, damping: 15, mass: 1.2 } 
                 }
               }}
               whileHover={{ 
-                y: -12, 
-                scale: 1.03, 
-                rotate: 1,
-                boxShadow: "0 25px 35px -5px rgba(37, 99, 235, 0.15), 0 15px 15px -5px rgba(37, 99, 235, 0.1)"
+                y: -15, 
+                scale: 1.02, 
+                boxShadow: "0 30px 60px -12px rgba(37, 99, 235, 0.25), 0 18px 36px -18px rgba(37, 99, 235, 0.15)"
               }}
-              whileTap={{ scale: 0.95, rotate: -1 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => setSelectedMember(member)}
-              className="bg-white/80 backdrop-blur-md border border-slate-200/60 hover:border-blue-400/60 rounded-3xl p-5 sm:p-6 transition-all duration-300 flex flex-col justify-between group shadow-lg shadow-slate-200/40 cursor-pointer relative overflow-hidden"
+              className="bg-white/70 backdrop-blur-xl border border-white/50 hover:border-blue-300/50 rounded-[2rem] p-6 sm:p-8 transition-all duration-500 flex flex-col justify-between group shadow-[0_8px_30px_rgb(0,0,0,0.04)] cursor-pointer relative overflow-hidden"
+              style={{ transformPerspective: 1000 }}
             >
-              {/* Dynamic Animated Gradient Background on Hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-100/40 via-blue-50/20 to-purple-100/40 opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none" />
+              {/* Dynamic Animated Gradient Background - Always slightly visible, glows on hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-cyan-50/50 opacity-100 group-hover:from-blue-100/60 group-hover:via-white/50 group-hover:to-cyan-100/60 transition-all duration-700 pointer-events-none" />
+              
               {/* Top animated border line */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out z-20" />
-              {/* Decorative blur circle */}
-              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-400/10 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-500 via-cyan-400 to-indigo-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-in-out z-20" />
+              
+              {/* Decorative floating shapes inside the card */}
+              <motion.div 
+                animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }} 
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: index * 0.2 }}
+                className="absolute -top-12 -right-12 w-32 h-32 bg-blue-400/10 rounded-full blur-2xl group-hover:bg-blue-400/20 transition-colors pointer-events-none" 
+              />
+              <motion.div 
+                animate={{ y: [0, 15, 0], rotate: [0, -10, 0] }} 
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: index * 0.3 }}
+                className="absolute -bottom-8 -left-8 w-24 h-24 bg-cyan-400/10 rounded-full blur-xl group-hover:bg-cyan-400/20 transition-colors pointer-events-none" 
+              />
 
-              <div className="relative z-10">
-                <div className="flex items-start gap-4 mb-4">
-                  {/* Portrait photo */}
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden bg-slate-100 border-2 border-slate-100 shrink-0 shadow-sm relative group-hover:border-blue-400 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] group-hover:rounded-[2rem] transition-all duration-500">
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex flex-col items-center text-center mb-6 relative">
+                  {/* Portrait photo - Made larger and centered for a more premium "badge" look */}
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden bg-white border-4 border-white shadow-[0_8px_16px_-6px_rgba(0,0,0,0.1)] relative group-hover:border-blue-100 group-hover:shadow-[0_12px_24px_-8px_rgba(59,130,246,0.4)] group-hover:scale-105 transition-all duration-500 mb-4 z-10">
+                    <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 mix-blend-overlay" />
                     {member.image ? (
                       <img
                         src={member.image}
                         alt={member.name}
-                        className="w-full h-full object-cover object-top group-hover:scale-110 group-hover:-rotate-3 transition-all duration-700"
+                        className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700"
                         loading="lazy"
                         onError={(e) => {
                           (e.target as HTMLImageElement).style.display = 'none';
                         }}
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center font-bold text-blue-700 font-display text-lg">
+                      <div className="w-full h-full flex items-center justify-center font-black text-blue-600 font-display text-2xl bg-slate-50">
                         {getInitials(member.name)}
                       </div>
                     )}
                   </div>
+                  
+                  {/* Connective line from photo to text (decorative) */}
+                  <div className="w-0.5 h-6 bg-gradient-to-b from-blue-200 to-transparent absolute top-[6.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-base font-bold text-slate-950 font-display leading-tight group-hover:text-blue-700 transition-colors">
+                  <div className="flex-1 min-w-0 mt-2">
+                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 font-display leading-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-700 group-hover:to-cyan-600 transition-all duration-300">
                       {member.name}
                     </h3>
-                    <div className="text-xs font-bold text-blue-700 mt-1 leading-snug">
+                    <div className="text-sm font-bold text-blue-600 mt-1.5 leading-snug">
                       {member.role}
                     </div>
-                    <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider mt-1.5">
+                    <div className="inline-block mt-2 px-3 py-1 rounded-full bg-slate-100/80 border border-slate-200 text-[9px] sm:text-[10px] font-mono text-slate-500 uppercase tracking-widest shadow-inner group-hover:bg-blue-50 group-hover:text-blue-700 group-hover:border-blue-200 transition-colors duration-300">
                       {member.category === 'leadership'
-                        ? 'Executive Officer'
+                        ? 'Executive Team'
                         : member.category === 'board'
-                        ? 'Board Director'
-                        : 'Advisory Member'}
+                        ? 'Board of Directors'
+                        : 'Advisory Board'}
                     </div>
                   </div>
                 </div>
 
                 {/* Brief bio excerpt */}
                 {member.bio && (
-                  <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed mb-2 relative z-10">
+                  <p className="text-sm text-slate-600 font-light line-clamp-3 leading-relaxed mb-6 relative z-10 text-center flex-1">
                     {member.bio}
                   </p>
                 )}
-              </div>
 
-              <div className="mt-4 pt-4 border-t border-slate-100/80 flex items-center justify-between text-[11px] text-slate-500 relative z-10 group-hover:border-blue-200/60 transition-colors duration-300">
-                <span className="font-mono text-blue-800 bg-blue-50/80 px-3 py-1 rounded-full border border-blue-200/60 font-semibold text-[10px] group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 group-hover:shadow-md transition-all duration-300">
-                  View Bio &amp; Background
-                </span>
-                <div className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-blue-100 transition-colors duration-300">
-                  <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-0.5 transition-all duration-300" />
+                <div className="pt-5 border-t border-slate-200/50 flex items-center justify-center text-xs text-slate-500 relative z-10 group-hover:border-blue-200 transition-colors duration-300 w-full">
+                  <div className="flex items-center gap-2 font-bold text-blue-600 group-hover:text-blue-700">
+                    <span className="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">Read</span>
+                    <span className="relative">
+                      Profile
+                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300" />
+                    </span>
+                    <ChevronRight className="w-4 h-4 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                  </div>
                 </div>
               </div>
             </motion.div>

@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { SKYMIRR_DATA, Product } from '../data/skymirrData';
-import { WaveCanvas } from '../components/WaveCanvas';
-import { ArrowRight, CheckCircle2, Radio, Shield, Cpu, ChevronRight, Layers, ZoomIn } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Radio, Shield, Cpu, ChevronRight, Layers, ZoomIn, Search, Filter } from 'lucide-react';
 import { ImageZoomModal } from '../components/ImageZoomModal';
-import { TiltCard } from '../components/TiltCard';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 
 interface ProductsPageProps {
   onOpenQuote: (productName?: string) => void;
@@ -12,10 +11,20 @@ interface ProductsPageProps {
 }
 
 export function ProductsPage({ onOpenQuote, onNavigate, initialCategory = 'all' }: ProductsPageProps) {
-  const [activeCategory, setActiveCategory] = useState<'all' | 'antenna' | 'router' | 'tracker' | 'embedded'>(initialCategory);
+  const [activeCategory, setActiveCategory] = useState<'all' | 'antenna' | 'router' | 'tracker' | 'embedded'>(initialCategory === 'all' ? 'antenna' : initialCategory);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Advanced scroll effects for hero
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   useEffect(() => {
-    setActiveCategory(initialCategory);
+    setActiveCategory(initialCategory === 'all' ? 'antenna' : initialCategory);
   }, [initialCategory]);
 
   const [zoomModalData, setZoomModalData] = useState<{
@@ -31,25 +40,7 @@ export function ProductsPage({ onOpenQuote, onNavigate, initialCategory = 'all' 
     title: '',
   });
 
-  const openZoom = (
-    imageSrc: string,
-    title: string,
-    subtitle?: string,
-    specs?: { label: string; value: string }[],
-    highlight?: string
-  ) => {
-    setZoomModalData({
-      isOpen: true,
-      imageSrc,
-      title,
-      subtitle,
-      specs,
-      highlight,
-    });
-  };
-
   const categories = [
-    { id: 'all', label: 'All Products', count: SKYMIRR_DATA.products.length },
     { id: 'antenna', label: 'Antennas', count: SKYMIRR_DATA.products.filter((p) => p.category === 'antenna').length },
     { id: 'router', label: '5G Routers', count: SKYMIRR_DATA.products.filter((p) => p.category === 'router').length },
     { id: 'tracker', label: 'Asset Trackers', count: SKYMIRR_DATA.products.filter((p) => p.category === 'tracker').length },
@@ -62,225 +53,212 @@ export function ProductsPage({ onOpenQuote, onNavigate, initialCategory = 'all' 
       : SKYMIRR_DATA.products.filter((p) => p.category === activeCategory);
 
   return (
-    <div className="pt-24 pb-20 bg-white">
-      {/* Page Header Banner */}
-      <section className="relative py-16 bg-gradient-to-b from-[#001738] via-[#05224D] to-[#001738] text-white overflow-hidden">
-        <WaveCanvas opacity={0.16} speed={0.8} />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="max-w-3xl">
-            <div className="text-xs font-mono font-bold tracking-widest text-cyan-300 uppercase mb-2">
-              SkyMirr Hardware Catalog
-            </div>
-            <h1 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white leading-tight">
-              Products Built From The Field Outward
-            </h1>
-            <p className="text-slate-300 text-sm sm:text-base mt-3 leading-relaxed">
-              Explore SkyMirr’s patented MuLCAT® 5G CPE routers, ultra-wideband omnidirectional antennas, and ruggedized IoT asset trackers certified for carrier networks worldwide.
-            </p>
-          </div>
+    <div ref={containerRef} className="bg-slate-50 font-sans min-h-screen selection:bg-blue-900 selection:text-white">
+      
+      {/* 1. IMMERSIVE CATALOG HERO */}
+      <section className="relative w-full h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-slate-950">
+        
+        {/* Parallax Background */}
+        <motion.div style={{ y, opacity }} className="absolute inset-0 w-full h-full">
+          <img 
+            src="/images/enterprise_hero.jpg" 
+            alt="Advanced Hardware Catalog" 
+            className="w-full h-full object-cover object-center opacity-30 mix-blend-screen grayscale"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
+        </motion.div>
 
-          {/* Category Filter Controls */}
-          <div className="flex items-center gap-2 mt-8 flex-wrap">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveCategory(cat.id as any)}
-                className={`px-4 py-2 text-xs font-semibold rounded-xl transition-all cursor-pointer flex items-center gap-2 ${
-                  activeCategory === cat.id
-                    ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
-                    : 'bg-white/10 hover:bg-white/20 text-slate-200 border border-white/10'
-                }`}
-              >
-                <span>{cat.label}</span>
-                <span
-                  className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full ${
-                    activeCategory === cat.id ? 'bg-white/20 text-white' : 'bg-black/30 text-slate-300'
-                  }`}
-                >
-                  {cat.count}
-                </span>
-              </button>
-            ))}
-          </div>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-20 w-full pt-24 sm:pt-16 pb-12 flex justify-center text-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="max-w-4xl flex flex-col items-center gap-6 sm:gap-8"
+          >
+            <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+              <Layers className="w-4 h-4 text-blue-400" />
+              <span className="text-[11px] sm:text-xs font-mono tracking-[0.2em] text-blue-300 uppercase font-bold">
+                Enterprise Hardware Catalog
+              </span>
+            </div>
+            
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tight leading-[1.15] text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400 font-sans">
+              {activeCategory === 'router' ? 'Sky5G Wireless Router' :
+               activeCategory === 'tracker' ? 'SkyTracker (LIPA122)' :
+               activeCategory === 'embedded' ? 'Embedded Modules' :
+               'SkyMirr Antennas'}
+            </h1>
+            
+            <p className="text-base sm:text-lg lg:text-xl text-slate-300 leading-relaxed font-sans max-w-2xl px-4 sm:px-0">
+              {activeCategory === 'router' ? 'Unleashing Reliable Connectivity Anywhere' :
+               activeCategory === 'tracker' ? 'Unmatched Real-Time IoT Asset Tracking' :
+               activeCategory === 'embedded' ? 'Ultra Compact Wireless Solutions for Seamless Integration' :
+               'High-Performance Antenna Solutions for Every Connection'}
+            </p>
+          </motion.div>
         </div>
       </section>
 
-      {/* Flagship Product Showcase (Shown only for 'all' or 'router' category) */}
-      {(activeCategory === 'all' || activeCategory === 'router') && (
-        <section className="py-10 sm:py-12 bg-[#F8FAFC] border-b border-slate-200">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-xs font-bold text-blue-700 tracking-wider uppercase mb-2 font-mono">
-              Featured Hardware
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-950 font-display mb-8">
-              Sky5G™ Wireless Router (TCPA-117)
-            </h2>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-              {/* Left: Router Hardware Card with Click-to-Zoom */}
-              <div className="lg:col-span-6 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm overflow-hidden group">
-                <div
-                  onClick={() =>
-                    openZoom(
-                      '/images/5g-routers.jpg',
-                      'Sky5G™ Wireless Router (TCPA-117)',
-                      'Carrier-Certified 5G Sub-6 & Wi-Fi 7 Enterprise Gateway',
-                      [
-                        { label: 'Bands', value: 'Sub-6 GHz & Wi-Fi 7' },
-                        { label: 'Carrier', value: 'AT&T & T-Mobile' },
-                        { label: 'Antenna', value: 'Dual Internal MuLCAT®' },
-                      ],
-                      'CES® 2026 Innovation Awards Honoree'
-                    )
-                  }
-                  className="relative aspect-[16/11] bg-slate-900 rounded-xl overflow-hidden flex items-center justify-center p-4 cursor-zoom-in group/featured"
-                  title="Click to zoom in high-resolution"
+      {/* 2. FILTER & SEARCH BAR (Sticky on Desktop) */}
+      <div className="sticky top-20 z-40 bg-white/80 backdrop-blur-xl border-b border-slate-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            
+            <div className="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-2 sm:pb-0 hide-scrollbar">
+              {categories.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id as any)}
+                  className={`shrink-0 px-4 py-2.5 text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-300 flex items-center gap-2 ${
+                    activeCategory === cat.id
+                      ? 'bg-slate-900 text-white shadow-lg'
+                      : 'bg-slate-100 hover:bg-slate-200 text-slate-600'
+                  }`}
                 >
-                  <img
-                    src="/images/5g-routers.jpg"
-                    alt="Sky5G Wireless Router (TCPA-117)"
-                    className="w-full h-full object-contain group-hover/featured:scale-106 transition-transform duration-500"
-                  />
-                  <div className="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-white text-[10px] font-mono border border-white/20">
-                    Model: TCPA-117 · FCC ID: 2BXXX-TCPA117
-                  </div>
-
-                  <div className="absolute top-3 right-3 bg-blue-600 text-white px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold flex items-center gap-1 shadow-md opacity-0 group-hover/featured:opacity-100 transition-opacity">
-                    <ZoomIn className="w-3 h-3" />
-                    <span>Zoom / Inspect</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right: Key Specs & Features */}
-              <div className="lg:col-span-6 space-y-6">
-                <div>
-                  <span className="text-xs font-mono font-bold text-blue-600 uppercase tracking-wider block mb-1">
-                    CES® 2026 Innovation Awards Honoree
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-950 font-display">
-                    Next-Generation Carrier-Grade Fixed Wireless Access
-                  </h3>
-                  <p className="text-slate-600 text-sm mt-3 leading-relaxed">
-                    Engineered specifically for challenging RF environments where traditional routers fail to connect.
-                    Equipped with dual internal patented MuLCAT® antennas providing unmatched constructive phase alignment.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="p-4 rounded-xl bg-white border border-slate-200">
-                    <div className="text-xs text-slate-500 font-mono">Cell Edge Reach</div>
-                    <div className="text-xl font-extrabold text-blue-700 font-mono mt-1">+42% Range</div>
-                  </div>
-                  <div className="p-4 rounded-xl bg-white border border-slate-200">
-                    <div className="text-xs text-slate-500 font-mono">Throughput</div>
-                    <div className="text-xl font-extrabold text-slate-900 font-mono mt-1">Multi-Gigabit</div>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap gap-3">
-                  <button
-                    onClick={() => onOpenQuote('Sky5G™ Wireless Router (TCPA-117)')}
-                    className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-xl transition-all shadow-md shadow-blue-600/25 flex items-center gap-2 cursor-pointer font-display"
+                  <span>{cat.label}</span>
+                  <span
+                    className={`text-[10px] font-mono px-1.5 py-0.5 rounded-full ${
+                      activeCategory === cat.id ? 'bg-white/20 text-white' : 'bg-slate-300/50 text-slate-500'
+                    }`}
                   >
-                    <span>Request Evaluation Unit</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              </div>
+                    {cat.count}
+                  </span>
+                </button>
+              ))}
             </div>
-          </div>
-        </section>
-      )}
 
-      {/* Main Filterable Product Grid */}
-      <section className="py-10 sm:py-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-xl sm:text-2xl font-black font-display text-slate-950">
-              {activeCategory === 'all'
-                ? 'All SkyMirr Hardware'
-                : categories.find((c) => c.id === activeCategory)?.label}
-            </h2>
-            <span className="text-xs font-mono text-slate-500">
-              Showing {filteredProducts.length} certified models
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProducts.map((product, idx) => (
-              <TiltCard key={product.id} index={idx}>
-                <div>
-                  {/* Product Image Box with Click-to-Zoom Trigger */}
-                    <div
-                      onClick={() => onNavigate(`product/${product.id}`)}
-                      className="relative aspect-[16/11] bg-white border-b border-slate-100 flex items-center justify-center p-6 cursor-pointer group/cardImage"
-                      title="View product details"
-                    >
-                    {product.image ? (
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-full object-contain group-hover/cardImage:scale-108 transition-transform duration-300 filter drop-shadow-md"
-                      />
-                    ) : (
-                      <div className="w-16 h-16 rounded-2xl bg-blue-100/60 text-blue-600 flex items-center justify-center">
-                        <Radio className="w-8 h-8" />
-                      </div>
-                    )}
-
-                    {product.award && (
-                      <div className="absolute top-3 left-3 bg-blue-600 text-white font-mono text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                        {product.award}
-                      </div>
-                    )}
-                    
-                    {/* NEW Ribbon */}
-                    {product.isNew && (
-                      <div className="absolute -top-1 -right-1 overflow-hidden w-24 h-24">
-                        <div className="absolute top-4 -right-8 bg-red-600 text-white font-bold text-[10px] py-1 px-10 transform rotate-45 shadow-md tracking-wider">
-                          NEW
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6">
-                    <div className="text-[11px] font-mono text-blue-700 font-bold uppercase tracking-wider mb-1">
-                      {product.category === 'router'
-                        ? '5G CPE Gateway'
-                        : product.category === 'antenna'
-                        ? 'Ultra-Wideband Antenna'
-                        : product.category === 'tracker'
-                        ? 'Industrial Asset Tracker'
-                        : 'Embedded Array'}
-                    </div>
-                    <h3 className="text-xl sm:text-2xl font-bold font-display text-[#034B9C] mb-3 text-center transition-colors">
-                      {product.name.replace('SkyBlade™ ', '').replace('BioTrack™ ', '').replace('SkyTrack™ ', '')}
-                    </h3>
-                    <p className="text-sm font-semibold text-slate-800 text-center leading-relaxed">
-                      {product.tagline || product.description}
-                    </p>
-
-                    {/* Features and Specs removed to match skymirr.com clean grid design */}
-                  </div>
-                </div>
-
-                  {/* Action Bar */}
-                  <div className="p-6 pt-0">
-                    <button
-                      onClick={() => onNavigate(`product/${product.id}`)}
-                      className="w-full py-3 px-4 bg-[#0FA5E9] hover:bg-[#0284C7] text-white font-semibold text-sm rounded-full transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-md font-display"
-                    >
-                      <span>View Product</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
-              </TiltCard>
-            ))}
+            <div className="hidden lg:flex items-center gap-2 text-slate-400">
+               <Search className="w-4 h-4" />
+               <span className="text-xs font-mono uppercase tracking-widest">Global Catalog</span>
+            </div>
+            
           </div>
         </div>
+      </div>
+
+      {/* 3. HARDWARE GRID */}
+      <section className="py-16 sm:py-24 max-w-7xl mx-auto px-6 lg:px-8">
+        
+        <div className="flex items-center justify-between mb-12 border-b border-slate-200 pb-6">
+           <h2 className="text-2xl sm:text-3xl font-black font-display text-slate-900">
+             {activeCategory === 'all'
+               ? 'All Systems & Modules'
+               : categories.find((c) => c.id === activeCategory)?.label}
+           </h2>
+           <span className="text-xs font-mono text-slate-500 uppercase tracking-widest font-bold bg-slate-200 px-3 py-1 rounded-full">
+             {filteredProducts.length} Results
+           </span>
+        </div>
+
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+          <AnimatePresence mode="popLayout">
+            {filteredProducts.map((product, idx) => (
+              <motion.div
+                key={product.id}
+                layout
+                initial={{ opacity: 0, scale: 0.9, y: 60, rotateX: 15 }}
+                animate={{ opacity: 1, scale: 1, y: 0, rotateX: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 60, rotateX: -15 }}
+                transition={{ type: "spring", stiffness: 100, damping: 15, mass: 1.2, delay: idx * 0.1 }}
+                whileHover={{ 
+                  y: -15, 
+                  scale: 1.02, 
+                  boxShadow: "0 30px 60px -12px rgba(37, 99, 235, 0.25), 0 18px 36px -18px rgba(37, 99, 235, 0.15)"
+                }}
+                whileTap={{ scale: 0.97 }}
+                className="group relative bg-white/70 backdrop-blur-xl border border-white/50 hover:border-blue-300/50 rounded-[2rem] transition-all duration-500 overflow-hidden flex flex-col h-full shadow-[0_8px_30px_rgb(0,0,0,0.04)] cursor-pointer"
+                style={{ transformPerspective: 1000 }}
+              >
+                {/* Dynamic Animated Gradient Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-cyan-50/50 opacity-100 group-hover:from-blue-100/60 group-hover:via-white/50 group-hover:to-cyan-100/60 transition-all duration-700 pointer-events-none z-0" />
+                
+                {/* Top animated border line */}
+                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-500 via-cyan-400 to-indigo-500 transform origin-center scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-in-out z-20" />
+                
+                {/* Decorative floating shapes */}
+                <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-400/10 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0" />
+
+                {/* Image Section */}
+                <div 
+                  onClick={() => onNavigate(`product/${product.id}`)}
+                  className="relative w-full aspect-[4/3] flex items-center justify-center p-8 cursor-pointer overflow-hidden z-10"
+                >
+                  {product.image ? (
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700 relative z-10 drop-shadow-xl"
+                    />
+                  ) : (
+                    <div className="w-20 h-20 rounded-3xl bg-white shadow-lg border border-blue-100 text-blue-400 flex items-center justify-center relative z-10 group-hover:scale-110 group-hover:text-blue-600 transition-all duration-500">
+                      <Radio className="w-10 h-10" />
+                    </div>
+                  )}
+
+                  {/* Badges */}
+                  <div className="absolute top-5 left-5 z-20 flex flex-col gap-2 pointer-events-none">
+                    {product.award && (
+                      <span className="bg-blue-600/90 backdrop-blur-sm border border-blue-500 text-white font-mono text-[9px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg">
+                        {product.award}
+                      </span>
+                    )}
+                    {product.isNew && (
+                      <span className="bg-cyan-100/90 backdrop-blur-sm border border-cyan-200 text-cyan-800 font-mono text-[9px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg w-fit">
+                        New Release
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Content Section - Centered Text Alignment */}
+                <div className="px-6 sm:px-8 pb-6 flex-1 flex flex-col items-center text-center relative z-10">
+                  
+                  {/* Category Pill */}
+                  <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm text-[9px] sm:text-[10px] font-mono text-slate-500 uppercase tracking-[0.2em] group-hover:bg-blue-50 group-hover:text-blue-700 group-hover:border-blue-200 transition-colors duration-300">
+                    {product.category === 'router'
+                      ? '5G CPE Gateway'
+                      : product.category === 'antenna'
+                      ? 'Ultra-Wideband Antenna'
+                      : product.category === 'tracker'
+                      ? 'Industrial Asset Tracker'
+                      : 'Embedded Array'}
+                  </div>
+                  
+                  <h3 className="text-xl sm:text-2xl font-black font-display text-slate-900 mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-700 group-hover:to-cyan-600 transition-all duration-300">
+                    {product.name}
+                  </h3>
+                  
+                  <p className="text-sm font-light text-slate-600 leading-relaxed flex-1 w-full max-w-sm">
+                    {product.tagline || product.description}
+                  </p>
+                  
+                  {/* Tech Specs Micro-Grid */}
+                  {(product.bands && product.bands.length > 0) && (
+                     <div className="mt-5 pt-4 border-t border-slate-200/50 flex flex-wrap justify-center gap-2 w-full">
+                       {product.bands.slice(0,3).map(band => (
+                         <span key={band} className="text-[10px] font-mono font-medium px-2.5 py-1 bg-slate-100/80 border border-slate-200/60 text-slate-600 rounded-md shadow-inner group-hover:bg-white group-hover:border-blue-100 group-hover:text-blue-700 transition-colors">
+                           {band}
+                         </span>
+                       ))}
+                     </div>
+                  )}
+                </div>
+
+                {/* Persistent Action Bar */}
+                <div className="p-1 mx-6 mb-6 border-t border-slate-200/50 relative z-10 group-hover:border-blue-200 transition-colors duration-300">
+                  <button
+                    onClick={() => onNavigate(`product/${product.id}`)}
+                    className="w-full py-3 px-4 bg-transparent text-slate-500 hover:text-blue-700 font-bold text-[11px] uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer font-display"
+                  >
+                    <span className="group-hover:-translate-x-1 transition-transform">View Specifications</span>
+                    <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-blue-600" />
+                  </button>
+                </div>
+
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </section>
 
       {/* Global Image Zoom Lightbox Modal */}

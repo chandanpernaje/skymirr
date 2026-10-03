@@ -57,8 +57,8 @@ export function Navbar({ activePage, onNavigate, onOpenQuote, onOpenSearch }: Na
             : ''
         }`}
       >
-        {/* Top Tier: Dark Blue (#001738), Logo + Search */}
-        <div className="bg-[#001738] py-3 sm:py-4 w-full">
+        {/* Top Tier: Logo + Search */}
+        <div className="bg-sky-50 py-3 sm:py-4 w-full">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
             {/* Logo */}
             <button
@@ -66,7 +66,7 @@ export function Navbar({ activePage, onNavigate, onOpenQuote, onOpenSearch }: Na
               className="flex items-center gap-2 group shrink-0 cursor-pointer text-left"
             >
               <img
-                src="/images/skymirr-logo-3d-hd.png"
+                src="/images/skymirr-logo-footer.png"
                 alt="SkyMirr"
                 className="h-10 sm:h-12 lg:h-14 w-auto object-contain transition-all duration-500 group-hover:opacity-80"
               />
@@ -76,7 +76,7 @@ export function Navbar({ activePage, onNavigate, onOpenQuote, onOpenSearch }: Na
             <div className="hidden xl:flex items-center">
               <button
                 onClick={onOpenSearch}
-                className="flex items-center justify-between w-64 md:w-80 h-10 px-4 rounded bg-white text-slate-500 border border-slate-200 shadow-inner hover:bg-slate-50 transition-colors cursor-text group"
+                className="flex items-center justify-between w-64 md:w-80 h-10 px-4 rounded bg-white text-slate-500 border border-slate-200 shadow-sm hover:bg-slate-50 transition-colors cursor-text group"
                 aria-label="Search"
               >
                 <span className="text-sm font-sans">Search here...</span>
@@ -88,14 +88,14 @@ export function Navbar({ activePage, onNavigate, onOpenQuote, onOpenSearch }: Na
             <div className="flex xl:hidden items-center gap-3">
               <button
                 onClick={onOpenSearch}
-                className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
+                className="p-2 rounded-lg text-slate-800 hover:bg-slate-200 transition-colors"
                 aria-label="Search SkyMirr"
               >
                 <Search className="w-5 h-5" />
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors border border-white/20"
+                className="p-2 rounded-lg text-slate-800 hover:bg-slate-200 transition-colors border border-slate-300"
                 aria-label="Toggle Mobile Navigation Menu"
               >
                 {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
